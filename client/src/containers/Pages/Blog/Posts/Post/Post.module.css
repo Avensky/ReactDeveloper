@@ -1,0 +1,128 @@
+.Post {
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    background-color: rgba(34,84,112,0.35);
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    padding: 10px;
+    display: grid;
+    grid-gap: .25em;
+    width: 100%;
+}
+
+.Card {   
+	grid-template-columns: 3fr 1fr;
+    grid-template-rows: 35px 35px  1fr;
+    grid-template-areas:
+		"title thumbnail"
+		"details thumbnail"
+        "description thumbnail"
+}
+
+.CardTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    grid-area: title;
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.CardTitle h1{ margin: 0; }
+.CardDetails {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: baseline;
+}
+
+.CardDetails h2 {
+    text-transform: uppercase;
+    margin: .25em 0 .5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 3px;
+    color: #42C3C9;
+}
+
+.CardDetails p{
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin: .25em 0;
+    line-height: 1;
+
+}
+
+.CardDescription {
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    grid-area: description;
+}
+
+.CardThumbnail {
+    grid-area: thumbnail;
+    margin: 0;
+    text-align: center;
+	overflow: hidden;
+    text-align: center;
+}
+.CardThumbnail img {
+    height: 100%;
+    max-height: 12.5rem;
+}
+.CardThumbnail img:after  {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.Author {
+    margin: 16px 0;
+    color: #ccc;
+}
+
+
+
+
+.Edit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Edit label {
+    display: block;
+    color: grey;
+}
+
+.Edit button {
+    border: none;
+    background-color: darkcyan;
+    width: 100%;
+    opacity: 0.9;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+}
+
+.Edit button:hover,
+.Edit button:active {
+    opacity:1;
+}
+
+.Edit button.Delete {
+    background-color: darkred;
+}
+
+.Edit button.Delete:hover,
+.Edit button.Delete:active {
+    opacity:1;
+}

@@ -1,0 +1,26 @@
+.Layout {
+    margin: 0 15%;
+    padding: 6vh 0 0;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-rows: 5vh min-content;
+    overflow: hidden;
+}
+
+.blog {
+    grid-template-columns: 50vw 18vw;
+	grid-template-areas:
+		"header header"
+		"content archives"
+}
+
+.new {
+    grid-template-columns: 1fr;
+	grid-template-areas:
+		"header"
+		"content"
+}
+
+.one {
+    display: flex;
+}

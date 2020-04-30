@@ -1,0 +1,86 @@
+.borderTop {
+    border-top: 1px solid #dee2e6!important;
+}
+
+.pt {
+    padding-top: 1rem!important;
+}
+
+
+.Pages {
+    width: 80%;
+    padding: 2%;
+    margin: 20px auto;
+    box-shadow: 0 2px 3px #ccc;
+    grid-area: content;
+    justify-content: center;
+    width: 620px;
+    background-color: rgba(34,84,112,0.35);
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    
+}
+.Pages legend {
+    font-size: 1.5rem;
+
+}
+
+.Pages label {
+    display: block;
+    margin: 1rem auto;
+    font-weight: bold;
+}
+
+.Pages input,
+.Pages textarea,
+.Pages select {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    outline: none;
+    font: inherit;
+    margin: 0;
+    background: #f1f1f1;
+    font-size: 1.25rem;
+    padding: .5rem .75rem;
+    color:#495057;
+    line-height: 1.5;
+    border-radius:.3rem;
+    font-weight: 400;
+}
+
+.Pages input:checked,
+.Pages input[type=checkbox]{
+    width: auto;
+}
+
+.Pages .inline {
+    display: inline-block;
+}
+
+.Pages input:focus {
+    background-color:#ddd;
+    border-color:#80bdff;
+}
+
+.Pages button {
+    border: 1px solid #17a2b8;
+    background-color: darkcyan;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    vertical-align: middle;
+    font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.Pages button:hover {
+    color: white;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
