@@ -102,7 +102,7 @@ class Login extends Component {
                     />
                     <input type="checkbox"/> <p className={classes.inline}>Rembember Me</p>
                     <button className={classes.btn}>{this.state.isSignup ? 'Login' : 'Register'}</button>
-
+                    <a href="/auth/google">Login With Google</a>
                     <p>Forgot Password?</p>
                     <div className={classes.borderTop + classes.pt3}  />
                     
