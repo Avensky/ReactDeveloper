@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
 import classes from '../Pages.module.css';
 import { Redirect } from 'react-router-dom';
-//import { checkValidity } from '../../../utility/utility'
-import {connect} from 'react-redux'
+//import { checkValidity } from '../../../utility/utility';
+import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
-//import { updateObject } from '../../../utility/utility'
+//import { updateObject } from '../../../utility/utility';
 
 class Login extends Component {
     state = {
@@ -30,6 +30,10 @@ class Login extends Component {
             }
         },
         isSignup: true
+    }
+
+    componentDidMount() {
+        this.props.onFetchUser();
     }
 
     switchModeHandler = () => {
@@ -98,8 +102,10 @@ class Login extends Component {
                     />
                     <input type="checkbox"/> <p className={classes.inline}>Rembember Me</p>
                     <button className={classes.btn}>{this.state.isSignup ? 'Login' : 'Register'}</button>
-                    <p><a href="null">Forgot Password?</a></p>
+
+                    <p>Forgot Password?</p>
                     <div className={classes.borderTop + classes.pt3}  />
+                    
                     <div 
                         onClick={this.switchModeHandler}>{this.state.isSignup ? 'Need an account? Sign up!' : 'Ready to log in.'}
                     </div>
@@ -132,7 +138,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password, isSignup) => dispatch(actions.login(email,password,isSignup)),
-        onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/'))
+        onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/')),
+        onFetchUser: () => dispatch(actions.fetchUser())
     }
 }
 

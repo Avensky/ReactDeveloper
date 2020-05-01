@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component} from 'react';
 //import axios from 'axios';
 import {connect} from 'react-redux'
 import Layout from '../../../Layout/Layout';
@@ -11,9 +11,9 @@ import myClasses from '../Posts/Post/Post.module.css';
 //import { Redirect } from 'react-router-dom'
 //import user from '../../../../assets/images/user.jpg'
 class FullPost extends Component {
-    state = {
-        selectedPostId: this.props.fetchedPostsById.id,
-    }
+//    state = {
+//        selectedPostId: this.props.fetchedPostsById.id,
+//    }
 
     componentDidMount(event) {
         console.log(this.props)

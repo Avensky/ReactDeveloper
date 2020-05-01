@@ -2,7 +2,8 @@ export {
     login,
     logout,
     loginCheckState,
-    setLoginRedirectPath
+    setLoginRedirectPath,
+    fetchUser
 } from './auth';
 
 export {

@@ -1,18 +1,39 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../utility/utility';
+import { fetchUser } from '../actions';
 
 const initialState = {
     token: null,
     userId: null,
     error: null,
     loading: false,
-    loginRedirectPath: '/'
+    loginRedirectPath: '/',
+    payload: null,
+
 };
+
+const fetchUserStart = (state, action) => {
+    return updateObject(state, {error: null, loading:true})
+}
+
+const fetchUserFail = (state, action) => {
+    return updateObject( state, {
+        error: action.error,
+        loading: false
+    });
+}
+
+const fetchUserSuccess = (state, action) => {
+    return updateObject(state, {
+        payload: action.payload,
+        error: null,
+        loading: false
+    })
+}
 
 const loginStart = (state, action) => {
     return updateObject( state, {error: null, loading: true })
 }
-
 
 const loginSuccess = (state, action) => {
     return updateObject( state, {
@@ -40,6 +61,9 @@ const setLoginRedirectPath = (state, action) => {
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
+        case actionTypes.FETCH_USER_START: return fetchUserStart(state, action);
+        case actionTypes.FETCH_USER_SUCCESS: return fetchUserSuccess(state, action);
+        case actionTypes.FETCH_USER_FAIL: return fetchUserFail(state, action);
         case actionTypes.LOGIN_START: return loginStart(state, action);
         case actionTypes.LOGIN_SUCCESS: return loginSuccess(state, action);
         case actionTypes.LOGIN_FAIL: return loginFail(state, action);
