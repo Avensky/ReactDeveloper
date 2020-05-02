@@ -16,6 +16,14 @@ const fetchUserStart = (state, action) => {
     return updateObject(state, {error: null, loading:true})
 }
 
+const fetchUserSuccess = (state, action) => {
+    console.log(action);
+    return updateObject(state, {
+        payload: action.payload,
+        error: null,
+        loading: false
+    })
+}
 const fetchUserFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
@@ -23,13 +31,6 @@ const fetchUserFail = (state, action) => {
     });
 }
 
-const fetchUserSuccess = (state, action) => {
-    return updateObject(state, {
-        payload: action.payload,
-        error: null,
-        loading: false
-    })
-}
 
 const loginStart = (state, action) => {
     return updateObject( state, {error: null, loading: true })

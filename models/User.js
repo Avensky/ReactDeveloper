@@ -4,11 +4,10 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
     googleId: String,
-    name: String,
-    givenName: String,
-    familyName: String,
-    picture: String,
-    email: String
+    userName: String,
+    name: Object,
+    picture: Array,
+    emails: Array
 })
 
 // const user = mongoose.model('users', userSchema);
