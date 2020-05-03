@@ -32,10 +32,6 @@ class Login extends Component {
         isSignup: true
     }
 
-    componentDidMount() {
-        this.props.onFetchUser();
-    }
-
     switchModeHandler = () => {
         this.setState(prevState => {
             return {isSignup: !prevState.isSignup};
@@ -130,7 +126,7 @@ class Login extends Component {
 const mapStateToProps = state => {
     return {
        error: state.auth.error,
-       isLoggedIn: state.auth.token !== null,
+       isLoggedIn: state.auth.payload !== null,
        loginRedirectPath: state.auth.loginRedirectPath
     };
 };
@@ -138,8 +134,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password, isSignup) => dispatch(actions.login(email,password,isSignup)),
-        onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/')),
-        onFetchUser: () => dispatch(actions.fetchUser())
+        onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/blog'))
     }
 }
 

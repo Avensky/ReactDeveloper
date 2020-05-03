@@ -19,6 +19,8 @@ import FullPost from './containers/Pages/Blog/FullPost/FullPost';
 class App extends Component {
   componentDidMount () {
     this.props.autoLogin();
+    this.props.onFetchUser();
+
   }
 
   render() {
@@ -71,7 +73,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    autoLogin: () => dispatch( actions.loginCheckState() )
+    autoLogin: () => dispatch( actions.loginCheckState() ),
+    onFetchUser: () => dispatch(actions.fetchUser())
   };
 };
 

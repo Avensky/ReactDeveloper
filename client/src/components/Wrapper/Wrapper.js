@@ -41,7 +41,7 @@ class Wrapper extends Component {
 }
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.auth.token !== null
+        isLoggedIn: state.auth.payload !== null
     };
 };
 
