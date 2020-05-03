@@ -7,13 +7,13 @@ const initialState = {
     userId: null,
     error: null,
     loading: false,
-    loginRedirectPath: '/',
+    loginRedirectPath: '/blog',
     payload: null,
 
 };
 
 const fetchUserStart = (state, action) => {
-    return updateObject(state, {error: null, loading:true})
+    return updateObject(state, {error: null, loading:true,})
 }
 
 const fetchUserSuccess = (state, action) => {
@@ -27,7 +27,7 @@ const fetchUserSuccess = (state, action) => {
 const fetchUserFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
-        loading: false
+        loading: false,
     });
 }
 
@@ -53,7 +53,7 @@ const loginFail = (state, action) => {
 };
 
 const logout = (state, action) => {
-    return updateObject(state, { token: null, userId: null });
+    return updateObject(state, { token: null, userId: null, payload: null, });
 };
 
 const setLoginRedirectPath = (state, action) => {

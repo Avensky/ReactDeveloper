@@ -13,7 +13,6 @@ import Account from './containers/Pages/Account/Account';
 import Register from './containers/Pages/Register/Register';
 //import asyncComponent from './hoc/asyncComponent';
 import Wrapper from './components/Wrapper/Wrapper';
-import Logout from './containers/Pages/Logout/Logout';
 import FullPost from './containers/Pages/Blog/FullPost/FullPost';
 
 class App extends Component {
@@ -48,7 +47,6 @@ class App extends Component {
           <Route path="/newPost" exact component={NewPost} />
           <Route path="/projects" component={Projects} />
           <Route path="/account" component={Account} />
-          <Route path="/logout" component={Logout} />
           <Redirect to="/home" /> 
         </Switch>
       )
@@ -65,7 +63,7 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.auth.token !== null
+    isLoggedIn: state.auth.payload
   };
 };
 

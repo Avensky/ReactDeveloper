@@ -126,7 +126,7 @@ class Login extends Component {
 const mapStateToProps = state => {
     return {
        error: state.auth.error,
-       isLoggedIn: state.auth.token !== null,
+       isLoggedIn: state.auth.payload,
        loginRedirectPath: state.auth.loginRedirectPath
     };
 };
@@ -134,7 +134,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password, isSignup) => dispatch(actions.login(email,password,isSignup)),
-        onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/')),
+        onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/home')),
     }
 }
 
