@@ -32,10 +32,6 @@ class Login extends Component {
         isSignup: true
     }
 
-    componentDidMount() {
-        this.props.onFetchUser();
-    }
-
     switchModeHandler = () => {
         this.setState(prevState => {
             return {isSignup: !prevState.isSignup};
@@ -139,7 +135,6 @@ const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password, isSignup) => dispatch(actions.login(email,password,isSignup)),
         onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/')),
-        onFetchUser: () => dispatch(actions.fetchUser())
     }
 }
 

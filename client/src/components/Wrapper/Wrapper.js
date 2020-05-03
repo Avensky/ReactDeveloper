@@ -5,10 +5,14 @@ import classes from './Wrapper.module.css';
 import Navbar from '../Navigation/Navbar/Navbar';
 import Sidebar from '../Navigation/Sidebar/Sidebar';
 import Background from '../UI/Background/Background';
+import * as actions from '../../store/actions/index'
 
 class Wrapper extends Component {
     state = {
         showSidebar: false
+    }
+    componentDidMount() {
+        this.props.onFetchUser();
     }
 
     sidebarClosedHandler = () => {
@@ -44,5 +48,10 @@ const mapStateToProps = state => {
         isLoggedIn: state.auth.token !== null
     };
 };
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchUser: () => dispatch(actions.fetchUser())
+    }
+}
 
-export default connect( mapStateToProps )(Wrapper);
+export default connect( mapStateToProps, mapDispatchToProps )(Wrapper);
