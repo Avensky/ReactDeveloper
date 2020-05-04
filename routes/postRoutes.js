@@ -1,7 +1,7 @@
 const post = require('../models/Post');
 
 module.exports = app => {
-  app.get('/posts', (req,res) =>{          //get all posts info from db
+  app.get('/api/posts', (req,res) =>{          //get all posts info from db
     post.find({},(err,doc)=>{
         if(doc)
             res.json({"Available posts" : doc});
@@ -11,12 +11,12 @@ module.exports = app => {
     })
   });
 
-  app.post('/addPost',(req,res)=>{        //add a new post
+  app.post('/api/addPost',(req,res)=>{        //add a new post
     var postObj = new post({
         postTitle : req.body.posttitle,
         author : req.body.author,
-        postId : req.body.postid,
-        publisher : req.body.publisher,
+//        postId : req.body.postid,
+        content : req.body.content,
         publishDate : req.body.publishdate
     })
     postObj.save((err)=>{
@@ -29,7 +29,7 @@ module.exports = app => {
     })
   });
 
-  app.get('/getpostDetails/:postid',(req,res)=>{              //get a post details
+  app.get('/api/getpostDetails/:postid',(req,res)=>{              //get a post details
     post.findOne({postId : req.params.postid},{},(err,doc)=>{
         if(doc)
             res.json(doc);
@@ -39,7 +39,7 @@ module.exports = app => {
     })
   });
 
-  app.post('/update',(req,res)=>{          //update a post data
+  app.post('/api/update',(req,res)=>{          //update a post data
     post.findOneAndUpdate({postId : req.body.postid},{$set:{publisher : req.body.publisher}},(err,doc)=>{
         if(doc)
             res.send('Post updated successfully!');
@@ -49,7 +49,7 @@ module.exports = app => {
     })
   });
 
-  app.delete('/deletepost/:postid',(req,res)=>{           //delete a perticular post
+  app.delete('/api/deletepost/:postid',(req,res)=>{           //delete a perticular post
     post.findOneAndRemove({postId : req.params.postid},{},(err,doc)=>{
         if(doc)
             res.json(doc);

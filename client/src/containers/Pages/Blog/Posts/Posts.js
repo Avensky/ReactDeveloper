@@ -1,10 +1,10 @@
 import React, {Component } from 'react';
-import Post from './Post/Post';
-import {Route} from 'react-router-dom';
+//import Post from './Post/Post';
+//import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import FullPost from '../FullPost/FullPost';
+//import FullPost from '../FullPost/FullPost';
 import * as actions from '../../../../store/actions/index'
-import classes from './Posts.module.css';
+//import classes from './Posts.module.css';
 
 
 class Posts extends Component {
@@ -21,19 +21,20 @@ class Posts extends Component {
     render (){
         let posts = <p style={{textAlign: 'center'}}>Something went wrong!</p>
         if (!this.props.error) {
-            posts = this.props.posts.map( post => {
-                return (
-                    <div className={classes.Posts}>
-                        <Post
-                        key={post.id} 
-                        title={post.title} 
-                        author={post.author}
-    //                    clName={"Post"}
-                        clicked={() => this.postClickedHandler(post.id)}/>
+//           posts = this.props.posts.map( post => {
+//               return (
+//                   <div className={classes.Posts}>
+//                       <Post
+//                       key={post.id} 
+//                       title={post.title} 
+//                       author={post.author}
+//   //                    clName={"Post"}
+//                       clicked={() => this.postClickedHandler(post.id)}/>
+//
+//                   </div>
+//               )
+//           })
 
-                    </div>
-                )
-            })
         }
 
         return (
@@ -41,7 +42,7 @@ class Posts extends Component {
                 <section className="Posts">
                     {posts}
                 </section>
-                <Route path={this.props.match.url + '/:id'} exact component={FullPost} />
+        {/* <Route path={this.props.match.url + '/:id'} exact component={FullPost} /> */}
             </div>
 
         )

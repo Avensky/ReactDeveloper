@@ -12,17 +12,17 @@ const postSchema = new Schema({
         type : String,
         required : false  
     },
-    postId : {
-        type : String,
-        required : true,
-        unique : true      //ensures this will have always unique value
-    },
-    publisher : {
+//    postId : {
+//        type : String,
+//        required : true,
+//        unique : true      //ensures this will have always unique value
+//    },
+    content : {
         type : String,
         required : true
     },
     publishDate : {
-        type : Date,
+        type : String,
         required : true
     }
 })

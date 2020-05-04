@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import axios from '../../axios';
+import axios from 'axios';
 
 export const setNewPostRedirectPath  = (path) =>{
     return{
@@ -21,22 +21,21 @@ export const newPostFail = (error) => {
     }
 }
 
-export const newPostSuccess = (id, postData) => {
+export const newPostSuccess = (postData) => {
     return {
         type: actionTypes.NEW_POST_SUCCESS,
-        postId: id,
         postData: postData
     }
 }
     
-export const newPost = (title, content, author, date) => {
+export const newPost = (postTitle, content, author, publishDate) => {
     return dispatch => {
-        const postData={title, content, author, date}
+        const postData={postTitle, content, author, publishDate}
         dispatch(newPostStart())
-        axios.post('/posts.json', postData)
+        axios.post('/api/addPost', postData)
             .then(response => {
                 console.log(response);
-                dispatch(newPostSuccess(response.data.name, postData))
+                dispatch(newPostSuccess(postData))
         })
         .catch(error => {
             console.log(error);

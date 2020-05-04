@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../utility/utility';
-import { fetchUser } from '../actions';
 
 const initialState = {
     token: null,
