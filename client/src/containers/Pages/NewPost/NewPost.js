@@ -50,10 +50,11 @@ class NewPost extends Component {
         event.preventDefault();
         //this.props.onSetAuthRedirectPath('/checkout');
         this.props.history.push('/blog');
+        const author = "poly";
         this.props.onNewPost(
             this.state.postForm.title.value, 
             this.state.postForm.content.value, 
-            this.state.postForm.author.value, 
+            author, 
             this.state.postForm.date.value
         );
     }
@@ -109,10 +110,6 @@ class NewPost extends Component {
                     type="textarea"
                     rows="4" 
                     onChange={(event) => this.inputChangedHandler( event, "content")}/>
-                <label>Author</label>
-                <input 
-                    type="text" 
-                    onChange={(event) => this.inputChangedHandler( event, "author")}/>
                 <button 
                     className={classes.btn}
                     onClick={this.setDateHandler()}
@@ -135,7 +132,8 @@ class NewPost extends Component {
 const mapStateToProps = state => {
     return {
         error: state.newPost.error,
-        isLoggedIn: state.auth.token !== null,
+        isLoggedIn: state.auth.payload !== null,
+        user: state.auth.payload,
         userId: state.auth.userId,
         newPostRedirectPath: state.newPost.newPostRedirectPath, 
     }
