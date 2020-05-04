@@ -46,7 +46,7 @@ class Blog extends Component {
                         title={featured.title} 
                         author={featured.author}
                         content={featured.content}
-                        postDate={featured.date}
+                        date={featured.date}
                         lines={6}
                         clName={classes.FeaturedPost}
                         klName={classes.EditOff}
