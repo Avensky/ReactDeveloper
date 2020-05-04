@@ -40,13 +40,15 @@ class Blog extends Component {
         let featuredPost = <p style={{textAlign: 'center'}}>Something went wrong!</p>
         if (!this.props.error) {
             featuredPost = this.props.featuredPost.map( featured => {
+                const d = new Date(featured.date);
+                const date = (d.getMonth()+1)  + "-" + (d.getDate()) + "-" + d.getFullYear();
                 return ( 
                     <Post
                         key={featured.id} 
                         title={featured.title} 
                         author={featured.author}
                         content={featured.content}
-                        date={featured.date}
+                        date={date}
                         lines={6}
                         clName={classes.FeaturedPost}
                         klName={classes.EditOff}
@@ -56,6 +58,8 @@ class Blog extends Component {
             })
             
             blogPosts = this.props.fetchedPosts.map( post => {
+                const d = new Date(post.date);
+                const date = (d.getMonth()+1)  + "-" + (d.getDate()) + "-" + d.getFullYear();
                 return (
                     <div className={classes.Posts}>
                         <Post
@@ -63,7 +67,7 @@ class Blog extends Component {
                             title={post.title} 
                             author={post.author}
                             content={post.content}
-                            postDate={post.date}
+                            postDate={date}
                             lines={4}
                             clName={classes.BlogPost}
                             klName={classes.EditOff}
