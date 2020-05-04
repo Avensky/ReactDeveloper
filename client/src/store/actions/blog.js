@@ -4,10 +4,10 @@ import * as actionTypes from './actionTypes'
 export const fetchPostsSuccess = (fetchedPosts) => {
     return {
         type:  actionTypes.FETCH_POSTS_SUCCESS,
-        posts: fetchedPosts 
- //       posts: fetchedPosts.slice(0, fetchedPosts.length-1).reverse(),
- //       featuredPost: fetchedPosts.slice(fetchedPosts.length - 1, fetchedPosts.length),
- //       fetchedPosts: fetchedPosts,
+ //       posts: fetchedPosts,
+        posts: fetchedPosts.slice(0, fetchedPosts.length-1).reverse(),
+        featuredPost: fetchedPosts.slice(fetchedPosts.length - 1, fetchedPosts.length),
+        fetchedPosts: fetchedPosts,
     }
 }
 export const fetchPostsFail = (error) => {
@@ -28,14 +28,14 @@ export const fetchPosts = () => {
         .then( result => {
             console.log(result)
             const posts = result.data
-            const fetchedPosts = []
-                for ( let key in posts ) {
-                    fetchedPosts.push( {
-                        ...result.data[key],
-                        id: key
-                    } );
-                }
-                dispatch(fetchPostsSuccess(fetchedPosts));
+//            const fetchedPosts = []
+//                for ( let key in posts ) {
+//                    fetchedPosts.push( {
+//                        ...result.data[key],
+//                        id: key
+//                    } );
+//                }
+                dispatch(fetchPostsSuccess(posts));
             } )
             .catch( error => {
                 dispatch(fetchPostsFail(error));

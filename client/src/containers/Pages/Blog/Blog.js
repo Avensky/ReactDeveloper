@@ -20,10 +20,10 @@ class Blog extends Component {
         console.log(this.props)
         this.props.onFetchPosts()
     }
-
-    componentDidUpdate(){
-        console.log(this.props)
-    }
+//
+//    componentDidUpdate(){
+//        console.log(this.props)
+//    }
 
     postClickedHandler = (id) => {
         this.setState({selectedPostId: id});
@@ -36,60 +36,59 @@ class Blog extends Component {
     }
 
     render (){
-        //let posts = <p style={{textAlign: 'center'}}>Something went wrong!</p>
-        //let featuredPost = <p style={{textAlign: 'center'}}>Something went wrong!</p>
-        //if (!this.props.error) {
-        //    featuredPost = this.props.featuredPost.map( featured => {
-        //        return ( 
-        //            <Post
-        //                key={featured.id} 
-        //                title={featured.title} 
-        //                author={featured.author}
-        //                content={featured.content}
-        //                postDate={featured.date}
-        //                lines={6}
-        //                clName={classes.FeaturedPost}
-        //                klName={classes.EditOff}
-        //                clicked={() => this.postClickedHandler(featured.id)}
-        //            /> 
-        //        )
-        //    })
-        //    
-        //    
-        //    posts = this.props.posts.map( post => {
-        //        return (
-        //            <div className={classes.Posts}>
-        //                <Post
-        //                    key={post.id} 
-        //                    title={post.title} 
-        //                    author={post.author}
-        //                    content={post.content}
-        //                    postDate={post.date}
-        //                    lines={4}
-        //                    clName={classes.BlogPost}
-        //                    klName={classes.EditOff}
-        //                    clicked={() => this.postClickedHandler(post.id)}
-        //                />
-        //            </div>
-        //        )
-        //    })
-        // }
+        let blogPosts = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+        let featuredPost = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+        if (!this.props.error) {
+            featuredPost = this.props.featuredPost.map( featured => {
+                return ( 
+                    <Post
+                        key={featured.id} 
+                        title={featured.title} 
+                        author={featured.author}
+                        content={featured.content}
+                        postDate={featured.date}
+                        lines={6}
+                        clName={classes.FeaturedPost}
+                        klName={classes.EditOff}
+                        clicked={() => this.postClickedHandler(featured.id)}
+                    /> 
+                )
+            })
+            
+            blogPosts = this.props.fetchedPosts.map( post => {
+                return (
+                    <div className={classes.Posts}>
+                        <Post
+                            key={post.id} 
+                            title={post.title} 
+                            author={post.author}
+                            content={post.content}
+                            postDate={post.date}
+                            lines={4}
+                            clName={classes.BlogPost}
+                            klName={classes.EditOff}
+                            clicked={() => this.postClickedHandler(post.id)}
+                        />
+                    </div>
+                )
+            })
+         }
 
         return (
             <Layout grid="blog">
                 <Header />
                 <section className={classes.Blog}>
-                    <Posts />
+                    {featuredPost}
+                    {blogPosts}
                 </section>
-{/*                <Archives 
-//                        key={archive.id} 
-//                        title={archive.title} 
-//                        author={archive.author}
-//                        content={archive.content}
-//                    posts={this.props.fetchedPosts}
-//                        clicked={() => this.postClickedHandler(archive.id)}
+               <Archives 
+//                    key={archive.id} 
+//                    title={archive.title} 
+//                    author={archive.author}
+//                    content={archive.content}
+                    posts={this.props.fetchedPosts}
+//                    clicked={() => this.postClickedHandler(archive.id)}
                 />
-*/}
             </Layout>
         )
     }

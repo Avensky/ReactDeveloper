@@ -1,11 +1,12 @@
 const post = require('../models/Post');
 const mongoose = require('mongoose');
 const Post = mongoose.model('posts');
+
 module.exports = app => {
   app.get('/api/posts', (req,res) =>{          //get all posts info from db
     Post.find({},(err,doc)=>{
         if(doc)
-            res.json({"Available posts" : doc});
+            res.json(doc);
         else {
             res.err(err);
         }

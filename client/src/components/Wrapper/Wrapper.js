@@ -11,9 +11,9 @@ class Wrapper extends Component {
     state = {
         showSidebar: false
     }
-    componentDidMount() {
-        this.props.onFetchUser();
-    }
+//    componentDidMount() {
+//        this.props.onFetchUser();
+//    }
 
     sidebarClosedHandler = () => {
         this.setState({showSidebar: false})
@@ -50,6 +50,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
+        onFetchPosts:  () => dispatch( actions.fetchPosts()),
         onFetchUser: () => dispatch(actions.fetchUser())
     }
 }
