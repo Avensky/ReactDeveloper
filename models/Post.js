@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
-    postTitle : {
+    title : {
         type : String,
         uppercase : true,   //it will always covert firstName to Uppercase
-        required : true
+//        required : true
     },
     author : {
         type : String,
@@ -19,11 +19,11 @@ const postSchema = new Schema({
 //    },
     content : {
         type : String,
-        required : true
+//        required : true
     },
-    publishDate : {
+    date : {
         type : String,
-        required : true
+//        required : true
     }
 })
 

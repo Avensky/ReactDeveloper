@@ -28,9 +28,9 @@ export const newPostSuccess = (postData) => {
     }
 }
     
-export const newPost = (postTitle, content, author, publishDate) => {
+export const newPost = (postTitle, content, author) => {
     return dispatch => {
-        const postData={postTitle, content, author, publishDate}
+        const postData={postTitle, content, author}
         dispatch(newPostStart())
         axios.post('/api/addPost', postData)
             .then(response => {

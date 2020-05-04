@@ -34,6 +34,7 @@ db.once('open', ()=> {
 app.use(passport.initialize());
 app.use(passport.session())
 require('./routes/authRoutes')(app);
+require('./routes/postRoutes')(app);
 // let db = mongoose.connection;
 // db.once('open', ()=> {
 //     console.log('Connected to mongoDB');

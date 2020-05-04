@@ -81,14 +81,15 @@ class Blog extends Component {
                 <section className={classes.Blog}>
                     <Posts />
                 </section>
-                <Archives 
+{/*                <Archives 
 //                        key={archive.id} 
 //                        title={archive.title} 
 //                        author={archive.author}
 //                        content={archive.content}
-                    posts={this.props.fetchedPosts}
+//                    posts={this.props.fetchedPosts}
 //                        clicked={() => this.postClickedHandler(archive.id)}
                 />
+*/}
             </Layout>
         )
     }

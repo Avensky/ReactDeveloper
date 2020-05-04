@@ -1,8 +1,9 @@
 const post = require('../models/Post');
-
+const mongoose = require('mongoose');
+const Post = mongoose.model('posts');
 module.exports = app => {
   app.get('/api/posts', (req,res) =>{          //get all posts info from db
-    post.find({},(err,doc)=>{
+    Post.find({},(err,doc)=>{
         if(doc)
             res.json({"Available posts" : doc});
         else {
@@ -12,12 +13,13 @@ module.exports = app => {
   });
 
   app.post('/api/addPost',(req,res)=>{        //add a new post
-    var postObj = new post({
-        postTitle : req.body.posttitle,
+//    const { title, author, content} = req.body;
+    const postObj = new Post({
+        title : req.body.posttitle,
         author : req.body.author,
 //        postId : req.body.postid,
         content : req.body.content,
-        publishDate : req.body.publishdate
+        date : Date.now()
     })
     postObj.save((err)=>{
         if(err){
@@ -37,7 +39,7 @@ module.exports = app => {
             res.status(404).send('Ops!Detail not found');
         }
     })
-  });
+  });   
 
   app.post('/api/update',(req,res)=>{          //update a post data
     post.findOneAndUpdate({postId : req.body.postid},{$set:{publisher : req.body.publisher}},(err,doc)=>{
