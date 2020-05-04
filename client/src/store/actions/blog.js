@@ -4,7 +4,6 @@ import * as actionTypes from './actionTypes'
 export const fetchPostsSuccess = (fetchedPosts) => {
     return {
         type:  actionTypes.FETCH_POSTS_SUCCESS,
- //       posts: fetchedPosts,
         posts: fetchedPosts.slice(0, fetchedPosts.length-1).reverse(),
         featuredPost: fetchedPosts.slice(fetchedPosts.length - 1, fetchedPosts.length),
         fetchedPosts: fetchedPosts,

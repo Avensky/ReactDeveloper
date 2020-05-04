@@ -16,11 +16,11 @@ module.exports = app => {
   app.post('/api/addPost',(req,res)=>{        //add a new post
 //    const { title, author, content} = req.body;
     const postObj = new Post({
-        title : req.body.posttitle,
+        title : req.body.title,
         author : req.body.author,
 //        postId : req.body.postid,
         content : req.body.content,
-        date : Date.now()
+        date : new Date()
     })
     postObj.save((err)=>{
         if(err){
