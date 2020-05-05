@@ -8,7 +8,7 @@ export {
 
 export {
     newPost,
-    newPostInit,
+    newPostStart,
     setNewPostRedirectPath,
 } from './newPost';
 
@@ -17,3 +17,7 @@ export {
     fetchPostsById,
     deletePost,
 } from './blog'
+
+export {
+    updateUser,
+} from './account'

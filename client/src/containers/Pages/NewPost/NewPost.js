@@ -50,7 +50,7 @@ class NewPost extends Component {
         event.preventDefault();
         //this.props.onSetAuthRedirectPath('/checkout');
         this.props.history.push('/blog');
-        const author = "poly";
+        const author =  this.props.payload.name;
         this.props.onNewPost(
             this.state.postForm.title.value, 
             this.state.postForm.content.value, 
@@ -84,10 +84,6 @@ class NewPost extends Component {
         this.setState( { postForm: updatedControls } );
     }
 
-    setDateHandler= () => {
-        
-    }
-
     render () {
         let errorMessage = null;
         if (this.props.error) {
@@ -110,10 +106,7 @@ class NewPost extends Component {
                     type="textarea"
                     rows="4" 
                     onChange={(event) => this.inputChangedHandler( event, "content")}/>
-                <button 
-                    className={classes.btn}
-                    onClick={this.setDateHandler()}
-                    >Add Post
+                <button className={classes.btn}>Add Post
                 </button>
             </form>
         )
@@ -133,7 +126,7 @@ const mapStateToProps = state => {
     return {
         error: state.newPost.error,
         isLoggedIn: state.auth.payload !== null,
-        user: state.auth.payload,
+        payload: state.auth.payload,
         userId: state.auth.userId,
         newPostRedirectPath: state.newPost.newPostRedirectPath, 
     }

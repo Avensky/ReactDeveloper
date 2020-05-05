@@ -28,9 +28,9 @@ export const newPostSuccess = (postData) => {
     }
 }
     
-export const newPost = (title, content, author) => {
+export const newPost = (title, content, author, date) => {
     return dispatch => {
-        const postData={title, content, author}
+        const postData={title, content, author, date}
         dispatch(newPostStart())
         axios.post('/api/addPost', postData)
             .then(response => {
@@ -41,11 +41,5 @@ export const newPost = (title, content, author) => {
             console.log(error);
             dispatch(newPostFail(error))
         })    
-    }
-}
-
-export const newPostInit = () => {
-    return {
-        type: actionTypes.NEW_POST_INIT
     }
 }
