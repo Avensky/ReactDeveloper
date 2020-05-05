@@ -34,10 +34,11 @@ passport.use(
 
             const user = await new User({ 
               googleId: profile.id,
-              userName: profile.displayName,
-              name: profile.name,
-              picture: profile.photos,
-              emails: profile.emails
+              name: profile._json.name,
+              givenName: profile._json.given_name,
+              familyName: profile._json.family_name,
+              picture: profile._json.picture,
+              email: profile._json.email
             }).save();
             done(null, user);
         }
