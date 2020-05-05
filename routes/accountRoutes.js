@@ -1,8 +1,18 @@
-const post = require('../models/Post');
 const mongoose = require('mongoose');
+const user = require('../models/User');
 const User = mongoose.model('users');
 
 module.exports = app => {
+    app.get('/api/users', (req,res) =>{          //get all posts info from db
+        User.find({},(err,doc)=>{
+            if(doc)
+                res.json(doc);
+            else {
+                res.err(err);
+            }
+        })
+    });
+
     app.post('/api/addUser',(req,res)=>{        //add a new user
         const userObj = new User({
             name : req.body.name,
@@ -22,7 +32,7 @@ module.exports = app => {
     });
 
     app.get('/api/getuserDetails/:userid',(req,res)=>{              //get user details
-        user.findOne({userId : req.params.userid},{},(err,doc)=>{
+        User.findOne({userId : req.params.userid},{},(err,doc)=>{
             if(doc)
                 res.json(doc);
             else {
@@ -32,7 +42,17 @@ module.exports = app => {
     });   
 
     app.post('/api/updateuser',(req,res)=>{          //update a post data
-        user.findOneAndUpdate({name : req.body.name},{givenName : req.body.givenName},{familyName : req.body.familyName},{email: req.body.email},{picture: req.body.picture},(err,doc)=>{
+        User.findOneAndUpdate(
+            {"_id": req.body.userid},
+            { $set:
+                {
+                    name : req.body.name,
+                    givenName : req.body.givenName,
+                    familyName : req.body.familyName,
+                    email: req.body.email,
+                    picture: req.body.picture
+                }
+            },(err,doc)=>{
             if(doc)
                 res.send('User account updated successfully!');
             else {
@@ -42,7 +62,7 @@ module.exports = app => {
     });
 
     app.delete('/api/deleteuser/:userid',(req,res)=>{           //delete a perticular user
-        user.findOneAndRemove({userId : req.params.userid},{},(err,doc)=>{
+        User.findOneAndRemove({userId : req.params.userid},{},(err,doc)=>{
             if(doc)
                 res.json(doc);
             else {

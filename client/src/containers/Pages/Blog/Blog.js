@@ -4,7 +4,7 @@ import classes from './Blog.module.css';
 import Header from '../../Layout/Header/Header';
 import Archives from '../../Archives/Archives';
 import Post from './Posts/Post/Post';
-import Posts from './Posts/Posts';
+//import Posts from './Posts/Posts';
 //import { Redirect, NavLink } from 'react-router-dom';
 //import FullPost from './FullPost/FullPost';
 import Layout from '../../Layout/Layout';

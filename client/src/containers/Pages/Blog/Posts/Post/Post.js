@@ -4,6 +4,8 @@ import classes from './Post.module.css';
 //import TextTruncate from 'react-text-truncate'; // recommend
 //import { NavLink } from 'react-router-dom'
 
+
+
 const post = (props) => (
 
     <article className={[

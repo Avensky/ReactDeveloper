@@ -21,9 +21,9 @@ export const updateUserFail = (error) => {
     }
 };
 
-export const updateUser = (name, givenName, familyName, email, picture) => {
+export const updateUser = (userId, name, givenName, familyName, email, picture) => {
     return dispatch => {
-        const userData={name, givenName, familyName, email, picture}
+        const userData={userId, name, givenName, familyName, email, picture}
         dispatch(updateUserStart());
         axios.post('/api/updateuser', userData)
             .then( result => {

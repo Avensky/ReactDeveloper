@@ -33,7 +33,7 @@ module.exports = app => {
   });
 
   app.get('/api/getpostDetails/:postid',(req,res)=>{              //get a post details
-    post.findOne({postId : req.params.postid},{},(err,doc)=>{
+    Post.findOne({postId : req.params.postid},{},(err,doc)=>{
         if(doc)
             res.json(doc);
         else {
@@ -43,7 +43,7 @@ module.exports = app => {
   });   
 
   app.post('/api/update',(req,res)=>{          //update a post data
-    post.findOneAndUpdate({postId : req.body.postid},{$set:{publisher : req.body.publisher}},(err,doc)=>{
+    Post.findOneAndUpdate({postId : req.body.postid},{$set:{publisher : req.body.publisher}},(err,doc)=>{
         if(doc)
             res.send('Post updated successfully!');
         else {
@@ -53,7 +53,7 @@ module.exports = app => {
   });
 
   app.delete('/api/deletepost/:postid',(req,res)=>{           //delete a perticular post
-    post.findOneAndRemove({postId : req.params.postid},{},(err,doc)=>{
+    Post.findOneAndRemove({postId : req.params.postid},{},(err,doc)=>{
         if(doc)
             res.json(doc);
         else {

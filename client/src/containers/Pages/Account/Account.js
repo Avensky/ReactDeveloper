@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
 //import Header from '../../Layout/Header/Header';
 import myClasses from './Account.module.css';
-import user from '../../../assets/images/user.jpg';
+//import user from '../../../assets/images/user.jpg';
 import classes from '../Pages.module.css';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
@@ -13,7 +13,7 @@ class Account extends Component {
             name: {
                 value: '',
                 validation: {
-                    required: true
+                    required: false
                 }
             },
             givenName: {
@@ -64,7 +64,8 @@ class Account extends Component {
         this.props.history.push('/account');
 //        const pic = this.state.postForm.email.value
         const pic = 'https://lh3.googleusercontent.com/a-/AOh14Gjyf9dG_HQji_W8Js4Kps0_nxl5RyobebP6Nqeg'
-        this.props.onUpdateAccount(
+        this.props.onUpdateUser(
+            this.props.payload._id,
             this.state.postForm.name.value, 
             this.state.postForm.givenName.value, 
             this.state.postForm.familyName.value, 
@@ -97,7 +98,7 @@ class Account extends Component {
         let account = <p style={{textAlign: 'center'}}>Something went wrong!</p>
         if (!this.props.error) {
             account = (                
-                <form className={attachedClasses.join(' ')}>
+                <form className={attachedClasses.join(' ')} onSubmit={this.updateUserHandler}>
                     <img src={this.props.payload.picture} alt="user"/>
                     <h1>{this.props.payload.name}</h1>
                     <small>{this.props.payload.email}</small>
@@ -158,7 +159,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onUpdateUser: (name, givenName, familyName, email, picture) => dispatch(actions.updateUser(name, givenName, familyName, email, picture))
+        onUpdateUser: (userId, name, givenName, familyName, email, picture) => dispatch(actions.updateUser(userId, name, givenName, familyName, email, picture))
     }
 }
 
