@@ -26,7 +26,7 @@ class Blog extends Component {
 //    }
 
     postClickedHandler = (id) => {
-        this.setState({selectedPostId: id});
+//        this.setState({selectedPostId: id});
         this.props.onFetchPostsById(id)
         this.props.history.push('fullPost/' + id);
     }
@@ -44,7 +44,7 @@ class Blog extends Component {
                 const date = (d.getMonth()+1)  + "-" + (d.getDate()) + "-" + d.getFullYear();
                 return ( 
                     <Post
-                        key={featured.id} 
+                        key={featured._id} 
                         title={featured.title} 
                         author={featured.author}
                         content={featured.content}
@@ -52,7 +52,7 @@ class Blog extends Component {
                         lines={6}
                         clName={classes.FeaturedPost}
                         klName={classes.EditOff}
-                        clicked={() => this.postClickedHandler(featured.id)}
+                        clicked={() => this.postClickedHandler(featured._id)}
                     /> 
                 )
             })
@@ -63,7 +63,7 @@ class Blog extends Component {
                 return (
                     <div className={classes.Posts}>
                         <Post
-                            key={post.id} 
+                            key={post._id} 
                             title={post.title} 
                             author={post.author}
                             content={post.content}
@@ -71,7 +71,7 @@ class Blog extends Component {
                             lines={4}
                             clName={classes.BlogPost}
                             klName={classes.EditOff}
-                            clicked={() => this.postClickedHandler(post.id)}
+                            clicked={() => this.postClickedHandler(post._id)}
                         />
                     </div>
                 )

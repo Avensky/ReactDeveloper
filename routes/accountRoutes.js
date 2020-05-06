@@ -32,7 +32,7 @@ module.exports = app => {
     });
 
     app.get('/api/getuserDetails/:userid',(req,res)=>{              //get user details
-        User.findOne({userId : req.params.userid},{},(err,doc)=>{
+        User.findOne({userId : req.body.userid},{},(err,doc)=>{
             if(doc)
                 res.json(doc);
             else {
