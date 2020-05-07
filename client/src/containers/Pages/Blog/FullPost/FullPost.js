@@ -8,36 +8,39 @@ import * as actions from '../../../../store/actions/index'
 import Post from '../Posts/Post/Post';
 import classes from './FullPost.module.css';
 import myClasses from '../Posts/Post/Post.module.css';
-//import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 //import user from '../../../../assets/images/user.jpg'
 class FullPost extends Component {
-//    state = {
-//        selectedPostId: this.props.fetchedPostsById.id,
-//    }
-
-    componentDidMount(event) {
-        console.log(this.props)
+    componentDidMount() {
+        console.log(this.props.fetchPostsById)
+        if (!this.props.fetchedPostsById){
+            this.props.history.push('/blog');
+        }
     }
 
-    deletePostHandler(id) {
-        this.props.history.replace('blog/', "urlhistory");
-        this.props.onDeletePost(id)
+    deletePostHandler = (id) => {
+        this.props.history.push('/blog');
+        this.props.onDeletePost(id);
     }
+
 
     render () {
         let postsById = <p style={{textAlign: 'center'}}>Something went wrong!</p>
-        
+
         if (!this.props.fetchedPostsById.error) {
+
+            const d = new Date(this.props.fetchedPostsById.date);
+            const date = (d.getMonth()+1)  + "-" + (d.getDate()) + "-" + d.getFullYear();
             postsById = ( 
                 <Post
-                    key={this.props.fetchedPostsById.id} 
+                    key={this.props.fetchedPostsById._id} 
                     title={this.props.fetchedPostsById.title} 
                     author={this.props.fetchedPostsById.author}
                     content={this.props.fetchedPostsById.content}
-                    postDate={this.props.fetchedPostsById.date}
+                    date={date}
                     lines={20}
                     clName={classes.FullPost}
-                    click={()=> this.deletePostHandler(this.props.fetchedPostsById.id)}
+                    click={()=> this.deletePostHandler(this.props.fetchedPostsById._id)}
                 /> 
             )
         }
@@ -46,10 +49,17 @@ class FullPost extends Component {
 //        if (this.props.match.params.id) {
 //            post = <p style={{textAlign: 'center'}}>Loading...!</p>;
 //        }
+
+        let nopostRedirect = null;
+        if (this.props.fetchPostsById) {
+            nopostRedirect = <Redirect to="/blog"/>
+        }
+
         return( 
             <Layout grid="blog">
                 <Header />
                 <section className={myClasses.Blog}>
+                    {nopostRedirect}
                     {postsById}
                 </section>
                 <Archives 
@@ -66,6 +76,7 @@ class FullPost extends Component {
 
 const mapStateToProps = state => {
     return {
+        loading: state.blog.loading,
         posts: state.blog.posts,
         featuredPost: state.blog.featuredPost,
         fetchedPosts: state.blog.fetchedPosts,

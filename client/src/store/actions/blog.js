@@ -97,7 +97,7 @@ export const deletePostStart = () => {
 export const deletePost = (id) => {
     return dispatch => {
         dispatch(deletePostStart());
-        axios.delete( '/posts/' + id + '.json')
+        axios.delete( '/api/deletepost/' + id)
         .then( result => {
             console.log(result);
             dispatch(deletePostSuccess());

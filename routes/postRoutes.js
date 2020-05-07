@@ -33,8 +33,6 @@ module.exports = app => {
   });
 
   app.get('/api/getpostDetails/:postid',(req,res)=>{              //get a post details
-    //const id = '5eb0d6728ce6835760c35d6f'
-    const id = req.params.postid
     Post.findOne({_id : req.params.postid},{},(err,doc)=>{
         if(doc)
             res.json(doc);
@@ -55,7 +53,7 @@ module.exports = app => {
   });
 
   app.delete('/api/deletepost/:postid',(req,res)=>{           //delete a perticular post
-    Post.findOneAndRemove({postId : req.params.postid},{},(err,doc)=>{
+    Post.findOneAndRemove({_id : req.params.postid},{},(err,doc)=>{
         if(doc)
             res.json(doc);
         else {

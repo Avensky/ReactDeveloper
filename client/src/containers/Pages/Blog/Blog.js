@@ -57,7 +57,7 @@ class Blog extends Component {
                 )
             })
             
-            blogPosts = this.props.fetchedPosts.map( post => {
+            blogPosts = this.props.posts.map( post => {
                 const d = new Date(post.date);
                 const date = (d.getMonth()+1)  + "-" + (d.getDate()) + "-" + d.getFullYear();
                 return (
@@ -67,7 +67,7 @@ class Blog extends Component {
                             title={post.title} 
                             author={post.author}
                             content={post.content}
-                            postDate={date}
+                            date={date}
                             lines={4}
                             clName={classes.BlogPost}
                             klName={classes.EditOff}

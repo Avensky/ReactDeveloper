@@ -16,12 +16,12 @@ class Archives extends Component {
 //        let archives = <p style={{textAlign: 'center'}}>Something went wrong!</p> 
 //		if (!this.props.error) {
 //		}
-		let showAuthors =  this.props.fetchedPosts.map(post => <li key={post.id}>{post.author}</li>)
+		let showAuthors =  this.props.fetchedPosts.map(post => <li key={post._id}>{post.author}</li>)
 		let showAuthor = [...new Set(showAuthors)];
 
 		let showYears = this.props.posts.map(post => {
 			return (
-				<li key={post.id}>
+				<li key={post._id}>
 					{post.dates}
 				</li>
 			)
@@ -46,19 +46,19 @@ class Archives extends Component {
 									<div className="ArchiveList-item">
 										<input id="togList11" type="checkbox" />
 										<label>
-											<span><li>August(2)</li></span>
-											<span><li>August(2)</li></span>
+											<span><li key="1">August(2)</li></span>
+											<span><li key="1e">August(2)</li></span>
 										</label>
 										<div className="list">
 											<ul>
-												<li>Blog Title</li>
-												<li>Blog Title</li>
+												<li key="1wer">Blog Title</li>
+												<li key="asdf1">Blog Title</li>
 											</ul>
 										</div>
 									</div>
-									<li>July(2)</li>
-									<li>June(2)</li>
-									<li>May(10)</li>
+									<li key="1eeweq">July(2)</li>
+									<li key="qqq1">June(2)</li>
+									<li key="qwer1">May(10)</li>
 								</ul>
 							</div>
 						</div>
