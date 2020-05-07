@@ -33,7 +33,9 @@ module.exports = app => {
   });
 
   app.get('/api/getpostDetails/:postid',(req,res)=>{              //get a post details
-    Post.findOne({_id : '5eb0d6728ce6835760c35d6f'},{},(err,doc)=>{
+    //const id = '5eb0d6728ce6835760c35d6f'
+    const id = req.params.postid
+    Post.findOne({_id : req.params.postid},{},(err,doc)=>{
         if(doc)
             res.json(doc);
         else {

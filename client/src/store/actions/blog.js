@@ -62,7 +62,7 @@ export const fetchPostsByIdStart = () => {
 export const fetchPostsById = (id) => {
     return dispatch => {
         dispatch(fetchPostsByIdStart());
-        axios.get( '/api/getpostDetails/:postid')
+        axios.get( '/api/getpostDetails/' + id)
         .then( result => {
             console.log(result)
             const fetchedPostsById = result.data
