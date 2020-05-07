@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 //import { updateObject } from '../../../utility/utility';
-
+import Spinner from '../../../components/UI/Spinner/Spinner'
 class Login extends Component {
     state = {
         controls: {
@@ -63,29 +63,27 @@ class Login extends Component {
     }
 
     render () {
-        
-        let errorMessage = null;
-        if (this.props.error) {
-            errorMessage = (
-                <p>{this.props.error.message}</p>
-            );
+        let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+
+        if (this.props.loading) {
+            form = <Spinner />;
         }
 
-        let form = (
-            <form className={classes.Pages} onSubmit={this.loginHandler}>
-                <legend>Log in!</legend>
-                {errorMessage}
-                <label>Email:</label>
-                <input 
-                    type="email"
-                    name="email"
-                    //id="email"
-//                    onChange={this.inputChangedHandler}
-                    onChange={(event) => this.inputChangedHandler( event, "email")}
+        if (!this.props.error) {
+            form = (
+                <form className={classes.Pages} onSubmit={this.loginHandler}>
+                    <legend>Log in!</legend>
+                    <label>Email:</label>
+                    <input 
+                        type="email"
+                        name="email"
+                        //id="email"
+                    //                    onChange={this.inputChangedHandler}
+                        onChange={(event) => this.inputChangedHandler( event, "email")}
 
-                    //value={this.state.value}
-                    placeholder="Enter Email"
-                />
+                        //value={this.state.value}
+                        placeholder="Enter Email"
+                    />
 
                     <label>Password:</label>
                     <input 
@@ -107,8 +105,10 @@ class Login extends Component {
                     </div>
                     <div className={classes.borderTop + classes.pt3}  />
                 </form>
-        )
+            )
+        }
 
+        
         let loginRedirect = null;
         if (this.props.isLoggedIn) {
             loginRedirect = <Redirect to={this.props.loginRedirectPath}/>

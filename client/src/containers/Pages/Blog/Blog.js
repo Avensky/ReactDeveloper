@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 //import axios from '../../../axios';
 import classes from './Blog.module.css';
 import Header from '../../Layout/Header/Header';
@@ -37,7 +38,14 @@ class Blog extends Component {
 
     render (){
         let blogPosts = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+        if (this.props.loading) {
+            blogPosts = <Spinner />;
+        }
         let featuredPost = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+        if (this.props.loading) {
+            featuredPost = <Spinner />;
+        }
+        
         if (!this.props.error) {
             featuredPost = this.props.featuredPost.map( featured => {
                 const d = new Date(featured.date);
@@ -76,7 +84,24 @@ class Blog extends Component {
                     </div>
                 )
             })
-         }
+        }
+            let archives = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+            if (this.props.loading) {
+                archives = <Spinner />;
+            }
+            if (!this.props.error) {
+                archives = (
+                    <Archives 
+//                    key={archive.id} 
+//                    title={archive.title} 
+//                    author={archive.author}
+//                    content={archive.content}
+                    posts={this.props.fetchedPosts}
+//                    clicked={() => this.postClickedHandler(archive.id)}
+                    />
+                )
+            
+        }
 
         return (
             <Layout grid="blog">
@@ -85,14 +110,7 @@ class Blog extends Component {
                     {featuredPost}
                     {blogPosts}
                 </section>
-               <Archives 
-//                    key={archive.id} 
-//                    title={archive.title} 
-//                    author={archive.author}
-//                    content={archive.content}
-                    posts={this.props.fetchedPosts}
-//                    clicked={() => this.postClickedHandler(archive.id)}
-                />
+                {archives}
             </Layout>
         )
     }

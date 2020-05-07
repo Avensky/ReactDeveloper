@@ -9,6 +9,7 @@ import Post from '../Posts/Post/Post';
 import classes from './FullPost.module.css';
 import myClasses from '../Posts/Post/Post.module.css';
 import { Redirect } from 'react-router-dom'
+import Spinner from '../../../../components/UI/Spinner/Spinner'
 //import user from '../../../../assets/images/user.jpg'
 class FullPost extends Component {
     componentDidMount() {
@@ -26,7 +27,11 @@ class FullPost extends Component {
 
     render () {
         let postsById = <p style={{textAlign: 'center'}}>Something went wrong!</p>
-
+        
+        if (this.props.loading) {
+            postsById = <Spinner />;
+        }
+        
         if (!this.props.fetchedPostsById.error) {
 
             const d = new Date(this.props.fetchedPostsById.date);
@@ -52,7 +57,7 @@ class FullPost extends Component {
 
         let nopostRedirect = null;
         if (this.props.fetchPostsById) {
-            nopostRedirect = <Redirect to="/blog"/>
+            this.props.history.push('/blog');
         }
 
         return( 
