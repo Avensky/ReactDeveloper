@@ -68,7 +68,7 @@
     background-color: darkcyan;
     color: white;
     padding: 16px 20px;
-    margin: 8px 0;
+    margin: 20px 0 0;
     cursor: pointer;
     width: 100%;
     opacity: 0.9;
@@ -83,4 +83,7 @@
     color: white;
     background-color: #17a2b8;
     border-color: #17a2b8;
+}
+.Danger {
+    background-color: red;
 }

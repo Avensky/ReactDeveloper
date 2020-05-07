@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
 import classes from '../Pages.module.css';
+import myClasses from './Login.module.css';
 import { Redirect } from 'react-router-dom';
 //import { checkValidity } from '../../../utility/utility';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 //import { updateObject } from '../../../utility/utility';
 import Spinner from '../../../components/UI/Spinner/Spinner'
+import Auxiliary from '../../../hoc/Auxiliary';
 class Login extends Component {
     state = {
         controls: {
+            name: {
+                value: '',
+                validation: {
+                    required: false
+                }
+            },
+            givenName: {
+                value: '',
+                validation: {
+                    required: false
+                }
+            },
+            familyName: {
+                value: '',
+                validation: {
+                    required: false
+                }
+            },
             email: {
                 value: '',
                 validation: {
@@ -32,6 +52,9 @@ class Login extends Component {
         isSignup: true
     }
 
+    componentDidMount() {
+        console.log("isSignup: "+this.state.isSignup)
+    }
     switchModeHandler = () => {
         this.setState(prevState => {
             return {isSignup: !prevState.isSignup};
@@ -61,53 +84,122 @@ class Login extends Component {
         event.preventDefault();
         this.props.onLogin( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
     }
+    registerHandler = ( event ) => {
+        event.preventDefault();
+        this.props.onLogin( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
+    }
 
     render () {
-        let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+    //       let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
+        let form = (
+            <form onSubmit={this.loginHandler}>
+            <legend>Log in!</legend>
+            <label>Email:</label>
+            <input 
+                type="email"
+                name="email"
+                onChange={(event) => this.inputChangedHandler( event, "email")}
+                placeholder="Enter Email"
+            />
 
-        if (this.props.loading) {
-            form = <Spinner />;
-        }
+            <label>Password:</label>
+            <input 
+                type="password"
+                name="password"
+                onChange={(event) => this.inputChangedHandler( event, "password")}
+                placeholder="Enter Password"
+            />
+            
+            <input type="checkbox"/> <p className={classes.inline}>Rembember Me</p>
+                    <button 
+                        className={classes.btn}>Login</button>
+            </form>
 
-        if (!this.props.error) {
+        )        
+        if (!this.state.isSignup){
             form = (
-                <form className={classes.Pages} onSubmit={this.loginHandler}>
-                    <legend>Log in!</legend>
+            <Auxiliary>
+                <form onSubmit={this.registerHandler}>
+                    <legend>Register Today!</legend>
+                    <label>Username:</label>
+                    <input 
+                        type="text"
+                        name="Username"
+                        onChange={(event) => this.inputChangedHandler( event, "password")}
+                        placeholder="Enter Username"
+                    />
+                    <label>First Name:</label>
+                    <input 
+                        type="text"
+                        name="givenName"
+                        onChange={(event) => this.inputChangedHandler( event, "givenName")}
+                        placeholder="Enter Username"
+                    />
+                    <label>Last Name:</label>
+                    <input 
+                        type="text"
+                        name="familyName"
+                        onChange={(event) => this.inputChangedHandler( event, "familyName")}
+                        placeholder="Enter Last Name"
+                    />
                     <label>Email:</label>
                     <input 
                         type="email"
-                        name="email"
-                        //id="email"
-                    //                    onChange={this.inputChangedHandler}
+                        name="Email"
                         onChange={(event) => this.inputChangedHandler( event, "email")}
-
-                        //value={this.state.value}
                         placeholder="Enter Email"
                     />
 
                     <label>Password:</label>
                     <input 
-                        type="password"
-                        name="password"
-                        //id="password"
+                        type="Password"
+                        name="Password"
                         onChange={(event) => this.inputChangedHandler( event, "password")}
-                        //value={this.state.value}
                         placeholder="Enter Password"
                     />
-                    <input type="checkbox"/> <p className={classes.inline}>Rembember Me</p>
-                    <button className={classes.btn}>{this.state.isSignup ? 'Login' : 'Register'}</button>
-                    <a href="/auth/google">Login With Google</a>
-                    <p>Forgot Password?</p>
-                    <div className={classes.borderTop + classes.pt3}  />
-                    
-                    <div 
-                        onClick={this.switchModeHandler}>{this.state.isSignup ? 'Need an account? Sign up!' : 'Ready to log in.'}
-                    </div>
-                    <div className={classes.borderTop + classes.pt3}  />
-                </form>
+
+                    <label>Confirm Password:</label>
+                    <input 
+                        type="Password"
+                        name="Confirm Password"
+                        onChange={(event) => this.inputChangedHandler( event, "confirmPassword")}
+                        placeholder="Confirm Password"
+                    />
+                        <button 
+                            className={classes.btn}>Register</button>
+                    </form>
+                </Auxiliary>
             )
         }
 
+        let body = (
+            <div className={classes.Pages}>
+                {form}
+                <button 
+                    onClick={this.switchModeHandler}
+                    className={myClasses.Danger}
+                >Switch to {this.state.isSignup ? 'Sign up' : 'Sign in'}</button>
+                <a href="/auth/google">Login With Google</a>
+                <p>Forgot Password?</p>
+                <div className={classes.borderTop + classes.pt3}  />
+                
+                <button>Need an account? Sign up!</button>
+                <div className={classes.borderTop + classes.pt3}  />
+            </div>
+        )
+ 
+        
+        if (this.props.loading) {
+            form = <Spinner />
+        }
+
+        let errorMessage = null;
+
+        if (this.props.error) {
+            errorMessage = (
+                <p>{this.props.error.message}</p>
+            );
+        }
         
         let loginRedirect = null;
         if (this.props.isLoggedIn) {
@@ -117,7 +209,8 @@ class Login extends Component {
         return(
             <Layout grid="one">
                 {loginRedirect}
-                {form}
+                {errorMessage}
+                {body}
             </Layout>
             )
     }
@@ -125,16 +218,17 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-       error: state.auth.error,
-       isLoggedIn: state.auth.payload,
-       loginRedirectPath: state.auth.loginRedirectPath
+        loading: state.auth.loading,
+        error: state.auth.error,
+        isLoggedIn: state.auth.payload,
+        loginRedirectPath: state.auth.loginRedirectPath
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password, isSignup) => dispatch(actions.login(email,password,isSignup)),
-        onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/home')),
+        onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/blog')),
     }
 }
 

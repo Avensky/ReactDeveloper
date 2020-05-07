@@ -6,6 +6,7 @@ import myClasses from './Account.module.css';
 import classes from '../Pages.module.css';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import Auxiliary from '../../../hoc/Auxiliary'
 
 class Account extends Component {
     state = {
@@ -34,6 +35,24 @@ class Account extends Component {
                     required: false,
                     isEmail: true
                 }
+            },
+            password: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            },
+            confirmPassword: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
             },
             picture: {
                 value: '',

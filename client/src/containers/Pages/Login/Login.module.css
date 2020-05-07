@@ -1,0 +1,10 @@
+button.Danger {
+    background-color: #191050;
+    border-color:#191050;
+}
+
+button.Danger:hover {
+    background-color: #191050;
+    border-color: white;
+
+}
