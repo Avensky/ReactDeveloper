@@ -12,7 +12,7 @@ import Auxiliary from '../../../hoc/Auxiliary';
 class Login extends Component {
     state = {
         controls: {
-            name: {
+            username: {
                 value: '',
                 validation: {
                     required: false
@@ -40,6 +40,15 @@ class Login extends Component {
                 touched: false
             },
             password: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            },
+            confirmPassword: {
                 value: '',
                 validation: {
                     required: true,
@@ -84,9 +93,17 @@ class Login extends Component {
         event.preventDefault();
         this.props.onLogin( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
     }
-    registerHandler = ( event ) => {
+    newUserHandler = ( event ) => {
         event.preventDefault();
-        this.props.onLogin( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
+        this.props.history.push('/blog');
+        this.props.onNewUser(
+            this.state.postForm.username.value, 
+            this.state.postForm.givenName.value,
+            this.state.postForm.familyName.value, 
+            this.state.postForm.email.value, 
+            this.state.postForm.password.value, 
+            this.state.postForm.confirmPassword.value,
+        );
     }
 
     render () {
@@ -178,12 +195,13 @@ class Login extends Component {
                 <button 
                     onClick={this.switchModeHandler}
                     className={myClasses.Danger}
-                >Switch to {this.state.isSignup ? 'Sign up' : 'Sign in'}</button>
-                <a href="/auth/google">Login With Google</a>
+                >{this.state.isSignup ? 'Need an account? Sign up!' : 'Already registered? Sign in!'}</button>
+                <button >
+                    <a href="/auth/google">Login With Google</a>
+                </button>
                 <p>Forgot Password?</p>
                 <div className={classes.borderTop + classes.pt3}  />
                 
-                <button>Need an account? Sign up!</button>
                 <div className={classes.borderTop + classes.pt3}  />
             </div>
         )
@@ -229,6 +247,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password, isSignup) => dispatch(actions.login(email,password,isSignup)),
         onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/blog')),
+        onNewUser: (username, givenName, familyName, email, password) => dispatch(actions.newUser(username, givenName, familyName, email, password))
     }
 }
 

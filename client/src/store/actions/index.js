@@ -21,3 +21,9 @@ export {
 export {
     updateUser,
 } from './account'
+
+export {
+    newUser,
+    newUserStart,
+    setNewUserRedirectPath
+} from './newUser'

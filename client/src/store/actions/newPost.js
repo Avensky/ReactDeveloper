@@ -27,7 +27,7 @@ export const newPostSuccess = (postData) => {
         postData: postData
     }
 }
-    
+
 export const newPost = (title, content, author, date) => {
     return dispatch => {
         const postData={title, content, author, date}
