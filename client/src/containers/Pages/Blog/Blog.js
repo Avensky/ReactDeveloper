@@ -69,9 +69,8 @@ class Blog extends Component {
                 const d = new Date(post.date);
                 const date = (d.getMonth()+1)  + "-" + (d.getDate()) + "-" + d.getFullYear();
                 return (
-                    <div className={classes.Posts}>
+                    <div key={post._id} className={classes.Posts}>
                         <Post
-                            key={post._id} 
                             title={post.title} 
                             author={post.author}
                             content={post.content}

@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from'./NavItems.module.css';
+import myClasses from'./NavItem/NavItem.module.css';
 import NavItem from './NavItem/NavItem';
 
 const navItems = (props) => (
@@ -15,7 +16,7 @@ const navItems = (props) => (
                   : null}
             {!props.isLoggedIn 
                   ? <NavItem link='/login'>Login</NavItem> 
-                  : <a href="/api/logout">Logout</a>}
+                  : <li className={myClasses.NavItem}><a href="/api/logout">Logout</a></li>}
       </ul>
 )
 
