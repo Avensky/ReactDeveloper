@@ -121,14 +121,14 @@ class Account extends Component {
             account = (                
                 <form className={attachedClasses.join(' ')} onSubmit={this.updateUserHandler}>
                     <img src={this.props.payload.picture} alt="user"/>
-                    <h1>{this.props.payload.name}</h1>
+                    <h1>{this.props.payload.username}</h1>
                     <small>{this.props.payload.email}</small>
                     <h2>Update account details</h2>
                     <label>Username:</label>
                     <input 
                         type="text"
                         onChange={(event) => this.inputChangedHandler( event, "name")} 
-                        placeholder={this.props.payload.name} 
+                        placeholder={this.props.payload.username} 
                     />
                     
                     <label>First Name:</label>
@@ -159,7 +159,7 @@ class Account extends Component {
                     />
                     
                     <button className={classes.btn}>Update Account</button>
-                    <div onClick={this.deleteUserHandler()}>Delete Account</div>
+                    <div onClick={this.deleteUserHandler}>Delete Account</div>
                 </form>
             )
         }

@@ -44,7 +44,7 @@ module.exports = app => {
 
     app.post('/api/updateuser',(req,res)=>{          //update a post data
         User.findOneAndUpdate(
-            {"_id": req.body.userid},
+            {userId: req.body.userid},
             { $set:
                 {
                     username : req.body.name,
