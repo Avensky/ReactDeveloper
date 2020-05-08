@@ -95,12 +95,9 @@ class Account extends Component {
         );
     }
 
-    deleteUserHandler = (event) => {
-        event.preventDefault();
+    deleteUserHandler = () => {        
         this.props.history.push('/login');
-        this.props.onDeleteUser(
-            this.props.payload._id,
-        );
+        this.props.onDeleteUser(this.props.payload._id);
     }
 
     inputChangedHandler = ( event, controlName ) => {
@@ -162,7 +159,7 @@ class Account extends Component {
                     />
                     
                     <button className={classes.btn}>Update Account</button>
-                    <div onClick={this.props.onDeleteUser}>Delete Account</div>
+                    <div onClick={this.deleteUserHandler()}>Delete Account</div>
                 </form>
             )
         }
