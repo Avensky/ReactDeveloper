@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
+import Header from '../../Layout/Header/Header';
 //import Header from '../../Layout/Header/Header';
 import myClasses from './Account.module.css';
 //import user from '../../../assets/images/user.jpg';
 import classes from '../Pages.module.css';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
-import Auxiliary from '../../../hoc/Auxiliary'
+//import Auxiliary from '../../../hoc/Auxiliary'
 
 class Account extends Component {
     state = {
@@ -161,7 +162,8 @@ class Account extends Component {
             )
         }
         return(
-            <Layout grid="one">
+            <Layout grid="new">
+                <Header />
                 {account}
             </Layout>
         )

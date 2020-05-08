@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
+import Header from '../../Layout/Header/Header';
 import classes from '../Pages.module.css';
 import myClasses from './Login.module.css';
 import { Redirect } from 'react-router-dom';
@@ -62,18 +63,14 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        console.log("isSignup: "+this.state.isSignup)
+        console.log("isSignup: " + this.state.isSignup)
     }
+
     switchModeHandler = () => {
         this.setState(prevState => {
             return {isSignup: !prevState.isSignup};
         });
     }
-
-    inputChangeHandler = ( event ) => {
-        console.log(event.target.value);
-    }
-
 
     inputChangedHandler = ( event, controlName ) => {
         const updatedControls = {
@@ -95,14 +92,13 @@ class Login extends Component {
     }
     newUserHandler = ( event ) => {
         event.preventDefault();
-        this.props.history.push('/blog');
         this.props.onNewUser(
-            this.state.postForm.username.value, 
-            this.state.postForm.givenName.value,
-            this.state.postForm.familyName.value, 
-            this.state.postForm.email.value, 
-            this.state.postForm.password.value, 
-            this.state.postForm.confirmPassword.value,
+            this.state.controls.username.value, 
+            this.state.controls.givenName.value,
+            this.state.controls.familyName.value, 
+            this.state.controls.email.value, 
+            this.state.controls.password.value, 
+            this.state.controls.confirmPassword.value,
         );
     }
 
@@ -136,7 +132,7 @@ class Login extends Component {
         if (!this.state.isSignup){
             form = (
             <Auxiliary>
-                <form onSubmit={this.registerHandler}>
+                <form onSubmit={this.newUserHandler}>
                     <legend>Register Today!</legend>
                     <label>Username:</label>
                     <input 
@@ -225,7 +221,8 @@ class Login extends Component {
         }
 
         return(
-            <Layout grid="one">
+            <Layout grid="new">
+                <Header></Header>
                 {loginRedirect}
                 {errorMessage}
                 {body}
