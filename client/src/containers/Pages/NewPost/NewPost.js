@@ -50,7 +50,7 @@ class NewPost extends Component {
         event.preventDefault();
         //this.props.onSetAuthRedirectPath('/checkout');
         this.props.history.push('/blog');
-        const author =  this.props.payload.name;
+        const author =  this.props.payload.username;
         this.props.onNewPost(
             this.state.postForm.title.value, 
             this.state.postForm.content.value, 
