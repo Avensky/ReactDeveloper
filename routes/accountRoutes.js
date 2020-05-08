@@ -13,18 +13,19 @@ module.exports = app => {
         })
     });
 
-    app.post('/api/addUser',(req,res)=>{        //add a new user
+    app.post('/api/addUser',(req,res)=>{        //add a new post
         const userObj = new User({
-            name : req.body.name,
-            givenName : req.body.givenName,
-            familyName : req.body.familyName,
-            email: req.body.email,
-            picture: req.body.picture
+            username : req.body.username, 
+            givenName : req.body.givenName, 
+            familyName : req.body.familyName, 
+            email : req.body.email, 
+            password : req.body.password,
+            picture: req.body.picture,
         })
         userObj.save((err)=>{
             if(err){
             console.log(err);
-            res.send('Unable to add new user data!');
+            res.send('Unable to save user data!');
             }
             else
             res.send('User data saved successfully!');
@@ -46,7 +47,7 @@ module.exports = app => {
             {"_id": req.body.userid},
             { $set:
                 {
-                    name : req.body.name,
+                    username : req.body.name,
                     givenName : req.body.givenName,
                     familyName : req.body.familyName,
                     email: req.body.email,
@@ -62,7 +63,7 @@ module.exports = app => {
     });
 
     app.delete('/api/deleteuser/:userid',(req,res)=>{           //delete a perticular user
-        User.findOneAndRemove({userId : req.params.userid},{},(err,doc)=>{
+        User.findOneAndRemove({_id : req.params.userid},{},(err,doc)=>{
             if(doc)
                 res.json(doc);
             else {

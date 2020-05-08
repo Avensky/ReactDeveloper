@@ -90,13 +90,17 @@ class Account extends Component {
             this.state.postForm.givenName.value, 
             this.state.postForm.familyName.value, 
             this.state.postForm.email.value,
+//            this.state.postForm.picture.value,
             pic
         );
     }
 
-    updateUserContinueHandler = () => {
-        this.props.onUpdateUserInit();
-//        this.props.history.push('/home')
+    deleteUserHandler = (event) => {
+        event.preventDefault();
+        this.props.history.push('/login');
+        this.props.onDeleteUser(
+            this.props.payload._id,
+        );
     }
 
     inputChangedHandler = ( event, controlName ) => {
@@ -158,6 +162,7 @@ class Account extends Component {
                     />
                     
                     <button className={classes.btn}>Update Account</button>
+                    <div onClick={this.props.onDeleteUser}>Delete Account</div>
                 </form>
             )
         }
@@ -180,7 +185,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onUpdateUser: (userId, name, givenName, familyName, email, picture) => dispatch(actions.updateUser(userId, name, givenName, familyName, email, picture))
+        onUpdateUser: (userId, name, givenName, familyName, email, picture) => dispatch(actions.updateUser(userId, name, givenName, familyName, email, picture)),
+        onDeleteUser: (userId) => dispatch(actions.deleteUser(userId)),
     }
 }
 

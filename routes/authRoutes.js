@@ -2,26 +2,6 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
 module.exports = app => {
-  app.post('/api/addUser',(req,res)=>{        //add a new post
-    //    const { title, author, content} = req.body;
-        const userObj = new User({
-            name :req.body.username, 
-            givenName :req.body.givenName, 
-            familyName :req.body.familyName, 
-            email :req.body.email, 
-            password :req.body.password
-        })
-        userObj.save((err)=>{
-            if(err){
-            console.log(err);
-            res.send('Unable to save user data!');
-            }
-            else
-            res.send('User data saved successfully!');
-        })
-      });
-
-
   app.get(
     '/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));

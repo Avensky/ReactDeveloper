@@ -27,3 +27,8 @@ export {
     newUserStart,
     setNewUserRedirectPath
 } from './newUser'
+
+export {
+    deleteUser,
+    deleteUserStart
+} from './deleteUser'

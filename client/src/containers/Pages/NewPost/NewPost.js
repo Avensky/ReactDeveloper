@@ -59,14 +59,6 @@ class NewPost extends Component {
         );
     }
 
-    newPostCancelHandler = () => {
-    }
-
-    newPostContinueHandler = () => {
-        this.props.onNewPostInit();
-//        this.props.history.push('/home')
-    }
-
     inputChangedHandler = ( event, controlName ) => {
         const updatedControls = {
             ...this.state.postForm,

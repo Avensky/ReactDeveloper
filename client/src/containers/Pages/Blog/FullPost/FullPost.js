@@ -8,7 +8,7 @@ import * as actions from '../../../../store/actions/index'
 import Post from '../Posts/Post/Post';
 import classes from './FullPost.module.css';
 import myClasses from '../Posts/Post/Post.module.css';
-import { Redirect } from 'react-router-dom'
+//import { Redirect } from 'react-router-dom'
 import Spinner from '../../../../components/UI/Spinner/Spinner'
 //import user from '../../../../assets/images/user.jpg'
 class FullPost extends Component {

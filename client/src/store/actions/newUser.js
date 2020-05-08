@@ -21,16 +21,16 @@ export const newUserFail = (error) => {
     }
 }
 
-export const newUserSuccess = (postData) => {
+export const newUserSuccess = (userData) => {
     return {
         type: actionTypes.NEW_USER_SUCCESS,
-        postData: postData
+        userData: userData
     }
 }
     
-export const newUser = (username, givenName, familyName, email, password) => {
+export const newUser = (username, givenName, familyName, email, password, picture) => {
     return dispatch => {
-        const userData={username, givenName, familyName, email, password}
+        const userData={username, givenName, familyName, email, password, picture}
         dispatch(newUserStart())
         axios.post('/api/addUser', userData)
             .then(response => {

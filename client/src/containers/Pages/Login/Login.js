@@ -57,6 +57,12 @@ class Login extends Component {
                 },
                 valid: false,
                 touched: false
+            },
+            picture: {
+                value: '',
+                validation: {
+                    required: false
+                }
             }
         },
         isSignup: true
@@ -92,13 +98,15 @@ class Login extends Component {
     }
     newUserHandler = ( event ) => {
         event.preventDefault();
+        const pic = 'https://lh3.googleusercontent.com/a-/AOh14Gjyf9dG_HQji_W8Js4Kps0_nxl5RyobebP6Nqeg';
         this.props.onNewUser(
             this.state.controls.username.value, 
             this.state.controls.givenName.value,
             this.state.controls.familyName.value, 
             this.state.controls.email.value, 
             this.state.controls.password.value, 
-            this.state.controls.confirmPassword.value,
+//            this.state.controls.picture.value,
+            pic
         );
     }
 
@@ -138,7 +146,7 @@ class Login extends Component {
                     <input 
                         type="text"
                         name="Username"
-                        onChange={(event) => this.inputChangedHandler( event, "password")}
+                        onChange={(event) => this.inputChangedHandler( event, "username")}
                         placeholder="Enter Username"
                     />
                     <label>First Name:</label>
@@ -177,6 +185,12 @@ class Login extends Component {
                         name="Confirm Password"
                         onChange={(event) => this.inputChangedHandler( event, "confirmPassword")}
                         placeholder="Confirm Password"
+                    />
+                    <p>Update profile picture</p>
+                    <input 
+                        className={classes.picure} 
+                        type="file" 
+                        name="picture"
                     />
                         <button 
                             className={classes.btn}>Register</button>
@@ -244,7 +258,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password, isSignup) => dispatch(actions.login(email,password,isSignup)),
         onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/blog')),
-        onNewUser: (username, givenName, familyName, email, password) => dispatch(actions.newUser(username, givenName, familyName, email, password))
+        onNewUser: (username, givenName, familyName, email, password, picture) => dispatch(actions.newUser(username, givenName, familyName, email, password, picture))
     }
 }
 
