@@ -6,6 +6,7 @@ const initialState = {
     featuredPost: [],
     fetchedPosts: [],
     fetchedPostsById: [],
+    fetchedPostsByYear: [],    
     loading: false,
 }
 
@@ -63,6 +64,24 @@ const deletePostSuccess = (state, action) => {
         loading: false,
     })
 }
+ 
+const fetchPostsByYearStart = (state, action) => {
+    return updateObject( state, {
+        loading: true
+    })
+}
+
+const fetchPostsByYearFail = (state, action) => {
+    return updateObject( state, {
+        loading: false
+    })
+}
+const fetchPostsByYearSuccess = (state, action) => {
+    return updateObject( state, {
+        fetchedPostsByYear: action.fetchedPostsByYear,
+        loading: false,
+    })
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -72,6 +91,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_POSTS_BY_ID_START: return fetchPostsByIdStart(state, action);
         case actionTypes.FETCH_POSTS_BY_ID_FAIL: return fetchPostsByIdFail(state, action);
         case actionTypes.FETCH_POSTS_BY_ID_SUCCESS: return fetchPostsByIdSuccess(state, action);
+        case actionTypes.FETCH_POSTS_BY_YEAR_START: return fetchPostsByYearStart(state, action);
+        case actionTypes.FETCH_POSTS_BY_YEAR_FAIL: return fetchPostsByYearFail(state, action);
+        case actionTypes.FETCH_POSTS_BY_YEAR_SUCCESS: return fetchPostsByYearSuccess(state, action);
         case actionTypes.DELETE_POST_START: return deletePostStart(state, action);
         case actionTypes.DELETE_POST_FAIL: return deletePostFail(state, action);
         case actionTypes.DELETE_POST_SUCCESS: return deletePostSuccess(state, action);

@@ -6,7 +6,7 @@ export const fetchPostsSuccess = (fetchedPosts) => {
         type:  actionTypes.FETCH_POSTS_SUCCESS,
         posts: fetchedPosts.slice(0, fetchedPosts.length-1).reverse(),
         featuredPost: fetchedPosts.slice(fetchedPosts.length - 1, fetchedPosts.length),
-        fetchedPosts: fetchedPosts,
+        fetchedPosts: fetchedPosts
     }
 }
 export const fetchPostsFail = (error) => {
@@ -104,6 +104,41 @@ export const deletePost = (id) => {
         })
         .catch( error => {
             dispatch(deletePostFail(error));
+        });
+    };
+}
+
+
+export const fetchPostsByYearSuccess = (fetchedPostsByYear) => {
+    return {
+        type: actionTypes.FETCH_POSTS_BY_YEAR_SUCCESS,
+        fetchedPostsByYear: fetchedPostsByYear,
+    }
+}
+export const fetchPostsByYearFail = (error) => {
+    return {
+        type:  actionTypes.FETCH_POSTS_BY_YEAR_FAIL, 
+        error: error
+    }
+}
+export const fetchPostsByYearStart = () => {
+    return {
+        type:  actionTypes.FETCH_POSTS_BY_YEAR_START
+    }
+}
+export const fetchPostsByYear = () => {
+    return dispatch => {
+        dispatch(fetchPostsByYearStart());
+        axios.get( '/api/archive/year')
+        .then( result => {
+            console.log(result)
+            const fetchedPostsByYear = result.data
+//            const fetchedPostsById = {id: id}
+//            const obj = {...post, ...fetchedPostsById}
+            dispatch(fetchPostsByYearSuccess(fetchedPostsByYear));
+        })
+        .catch( error => {
+            dispatch(fetchPostsByYearFail(error));
         });
     };
 }

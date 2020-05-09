@@ -3,17 +3,29 @@ const mongoose = require('mongoose');
 const Post = mongoose.model('posts');
 
 module.exports = app => {
-  app.get('/api/posts', (req,res) =>{          //get all posts info from db
-    Post.find({},(err,doc)=>{
-        if(doc)
-            res.json(doc);
-        else {
-            res.err(err);
-        }
-    })
-  });
+    
+    app.get('/api/archive/year',(req,res) => {
+        Post.find({date: { $gte:'2020-01-01', $lte:'2020-09-05'}})
+            .sort({date:1},(err,doc)=>{
+            if(doc)
+                res.json(doc);
+            else {
+                res.err(err);
+            }
+        })
+    });
 
-  app.post('/api/addPost',(req,res)=>{        //add a new post
+    app.get('/api/posts', (req,res) =>{          //get all posts info from db
+        Post.find({},(err,doc)=>{
+            if(doc)
+                res.json(doc);
+            else {
+                res.err(err);
+            }
+        })
+    });
+
+  app.post('/api/addPost',(req,res) => {        //add a new post
 //    const { title, author, content} = req.body;
     const postObj = new Post({
         title : req.body.title,

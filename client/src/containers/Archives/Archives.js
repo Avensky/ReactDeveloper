@@ -6,8 +6,8 @@ import * as actions from '../../store/actions/index'
 class Archives extends Component {
 
 	componentDidMount() {
-        console.log(this.props)
-//        this.props.onFetchPosts()
+		console.log(this.props)
+		this.props.onfetchPostsByYear()
 	}
 	
 	fetchYearHandler() {
@@ -19,7 +19,7 @@ class Archives extends Component {
 		let showAuthors =  this.props.fetchedPosts.map(post => <li key={post._id}>{post.author}</li>)
 		let showAuthor = [...new Set(showAuthors)];
 
-		let showYears = this.props.posts.map(post => {
+		let showYears = this.props.fetchedPostsByYear.map(post => {
 			return (
 				<li key={post._id}>
 					{post.dates}
@@ -80,13 +80,16 @@ const mapStateToProps = state => {
     return {
 		posts: state.blog.posts,
 		fetchedPosts: state.blog.fetchedPosts,
-        featuredPost: state.blog.featuredPost,
+		fetchedPostsByYear: state.blog.fetchedPostsByYear,
+		featuredPost: state.blog.featuredPost,
+		
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPosts:  () => dispatch( actions.fetchPosts())
+		onFetchPosts:  () => dispatch( actions.fetchPosts()),
+		onfetchPostsByYear: () => dispatch( actions.fetchPostsByYear()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps) (Archives);

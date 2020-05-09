@@ -16,6 +16,7 @@ export {
     fetchPosts,
     fetchPostsById,
     deletePost,
+    fetchPostsByYear,
 } from './blog'
 
 export {
