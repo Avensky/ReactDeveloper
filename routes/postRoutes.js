@@ -3,9 +3,20 @@ const mongoose = require('mongoose');
 const Post = mongoose.model('posts');
 
 module.exports = app => {
+    app.get('/api/archive/month',(req,res) => {
+        Post.find({date: { $gte:'2020-05-01', $lte:'2020-05-11'}},(err,doc)=>{
+            if(doc)
+                res.json(doc);
+            else {
+                res.err(err);
+            }
+        })
+    })
     
     app.get('/api/archive/year',(req,res) => {
-        Post.find({date: { $gte:'2020-01-01', $lte:'2020-09-05'}},(err,doc)=>{
+        const start = '2010-01-01'
+        const end = new Date
+        Post.find({date: { $gte:start, $lte:end}},(err,doc)=>{
             if(doc)
                 res.json(doc);
             else {

@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const postSchema = new Schema({
     title : {
         type : String,
-        uppercase : true,   //it will always covert firstName to Uppercase
+//        uppercase : true,   //it will always covert firstName to Uppercase
 //        required : true
     },
     author : {

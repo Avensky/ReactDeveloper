@@ -6,8 +6,9 @@ import Auxiliary from '../../hoc/Auxiliary';
 
 class Archives extends Component {
 	componentDidMount() {
-		console.log(this.props)
-		this.props.onfetchPostsByYear()
+		console.log(this.props);
+		this.props.onfetchPostsByYear();
+		this.props.onfetchPostsByMonth();
 	}
 	
 	fetchYearHandler() {
@@ -21,61 +22,120 @@ class Archives extends Component {
 //        let archives = <p style={{textAlign: 'center'}}>Something went wrong!</p> 
 //		if (!this.props.error) {
 //		}
+
+
 		let showAuthor =  this.props.fetchedPosts.map(post => {
 			return post.author
 		})
 		showAuthor = this.removeDuplicatesHandler(showAuthor);
 
-		let showYears = this.props.fetchedPostsByYear.map(post => {
+{/* 
+// Title
+		let showTitle = this.props.fetchedPostsByMonth.map(post => {
+			return 	(
+				<ul>
+					<li key={post._id}>{post.title}</li>
+				</ul>
+			)
+		})
+
+		
+// Years
+		let showYearsArray = this.props.fetchedPosts.map(post => {
 			const d = new Date(post.date);
 			const date = d.getFullYear();
 			return date
 		})
-		showYears = this.removeDuplicatesHandler(showYears)
+		showYearsArray = this.removeDuplicatesHandler(showYearsArray)
+		showYearsArray = showYearsArray.reverse()
+		let showYears = showYearsArray.map( year => {
+
+
+// Months
+			const m = [ "January", "February", "March", "April", "May", "June", 
+			"July", "August", "September", "October", "November", "December" ];
+			let showMonthsArray = this.props.fetchedPostsByMonth.map(post => {
+				const d = new Date(post.date);
+				const date = m[d.getMonth()];
+				return date
+			})
+			showMonthsArray= this.removeDuplicatesHandler(showMonthsArray)
+			showMonthsArray = showMonthsArray.reverse()
+			let showMonths = showMonthsArray.map( months => {
+				return (
+					<ul>
+						<li key={months}>{months}</li>
+					</ul>
+				)
+			})
+
+		console.log('showMonths: ' + showMonths)	
+			
+			return showMonths
+		})
+	*/}
+
+
+
+		let years = this.props.fetchedPosts.map(post => {
+			const d = new Date(post.date);
+			const year = d.getFullYear();
+			console.log("Year: " + year)
+			return year
+		})
+		years = this.removeDuplicatesHandler(years)
+		console.log('years: ' + years)
+
+
+
+		
+
+
 
 		const m = [ "January", "February", "March", "April", "May", "June", 
 		"July", "August", "September", "October", "November", "December" ];
-		let showMonths = this.props.fetchedPostsByYear.map(post => {
+		let showMonthsArray = this.props.fetchedPostsByYear.map(post => {
 			const d = new Date(post.date);
 			const date = m[d.getMonth()];
 			return date
 		})
-		showMonths= this.removeDuplicatesHandler(showMonths)
-
-		let showTitle = this.props.fetchedPostsByYear.map(post => {
-			return 	<li>{post.title}</li>
+		showMonthsArray= this.removeDuplicatesHandler(showMonthsArray)
+		showMonthsArray = showMonthsArray.reverse()
+		console.log('showMonthsArray: ' + showMonthsArray)	
+		let showMonths = showMonthsArray.map( months => {
+			return (
+				<li key={months}>
+					{months}
+				</li>
+			)
 		})
 
-		const archives = ( 
-			<Auxiliary>
-				<div className="list">
+
+
+
+		
+
+		let archives = years.map(year => {
+
+			return 	(
+				<ul>
+					{year}
 					<ul>
-						{showYears}
-						<ul>
-							{showMonths}
-							<ul>
-								<li>
-									{showTitle}
-								</li>
-							</ul>
-						</ul>
+						{showMonths}
 					</ul>
-				</div>
-			</Auxiliary>
-
-		)
-
-
+				</ul>			
+			)
+		})
 
 
 
 		return (
 			<div className="Archives">
-				<p className="ArchiveTitle">Contributors</p>					
+				<p className="ArchiveTitle">Contributors:</p>					
 				<ul>
 					{showAuthor}
 				</ul>
-				<p className="">Blog Archive</p>
+				<p className="">Blog Archive:</p>
 				{archives}
 				<p className="ArchiveTitle">Statement:</p>
 				<p className="ArchiveInfo">Lorem ipsum dolor sit amet, 
@@ -94,6 +154,7 @@ const mapStateToProps = state => {
 		posts: state.blog.posts,
 		fetchedPosts: state.blog.fetchedPosts,
 		fetchedPostsByYear: state.blog.fetchedPostsByYear,
+		fetchedPostsByMonth: state.blog.fetchedPostsByMonth,
 		featuredPost: state.blog.featuredPost,
 		
     }
@@ -103,6 +164,9 @@ const mapDispatchToProps = dispatch => {
     return {
 		onFetchPosts:  () => dispatch( actions.fetchPosts()),
 		onfetchPostsByYear: () => dispatch( actions.fetchPostsByYear()),
+
+		onfetchPostsByMonth: () => dispatch( actions.fetchPostsByMonth()),
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps) (Archives);

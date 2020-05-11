@@ -142,3 +142,38 @@ export const fetchPostsByYear = () => {
         });
     };
 }
+
+
+export const fetchPostsByMonthSuccess = (fetchedPostsByMonth) => {
+    return {
+        type: actionTypes.FETCH_POSTS_BY_MONTH_SUCCESS,
+        fetchedPostsByMonth: fetchedPostsByMonth,
+    }
+}
+export const fetchPostsByMonthFail = (error) => {
+    return {
+        type:  actionTypes.FETCH_POSTS_BY_MONTH_FAIL, 
+        error: error
+    }
+}
+export const fetchPostsByMonthStart = () => {
+    return {
+        type:  actionTypes.FETCH_POSTS_BY_MONTH_START
+    }
+}
+export const fetchPostsByMonth = () => {
+    return dispatch => {
+        dispatch(fetchPostsByMonthStart());
+        axios.get( '/api/archive/month')
+        .then( result => {
+            console.log(result)
+            const fetchedPostsByMonth = result.data
+//            const fetchedPostsById = {id: id}
+//            const obj = {...post, ...fetchedPostsById}
+            dispatch(fetchPostsByMonthSuccess(fetchedPostsByMonth));
+        })
+        .catch( error => {
+            dispatch(fetchPostsByMonthFail(error));
+        });
+    };
+}

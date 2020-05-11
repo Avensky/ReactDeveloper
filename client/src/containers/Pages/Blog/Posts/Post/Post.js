@@ -14,7 +14,10 @@ const post = (props) => (
         props.clName
       ].join(' ')} onClick={props.clicked}>
         <div className={classes.CardTitle}><h1>{props.title}</h1></div>
-        <div className={classes.CardDetails}><h2>By {props.author}</h2> <p> on {props.date}</p></div> 
+        <div className={classes.CardDetails}>
+            <h2>By {props.author} </h2>
+            <p> on {props.date}</p>
+        </div> 
         <div className={classes.CardDescription}>{props.content}</div>
         <figure className={classes.CardThumbnail}>
             <img src={user} alt="user"/>

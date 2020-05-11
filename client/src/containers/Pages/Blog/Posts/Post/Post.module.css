@@ -13,7 +13,7 @@
 
 .Card {   
 	grid-template-columns: 3fr 1fr;
-    grid-template-rows: 35px 35px  1fr;
+    grid-template-rows: 30px 30px  1fr;
     grid-template-areas:
 		"title thumbnail"
 		"details thumbnail"
@@ -25,37 +25,42 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     grid-area: title;
-    font-size: 1.55rem;
+    font-size: 1.35rem;
     font-weight: 800;
     letter-spacing: 3px;
+    display: flex;
 }
 
-.CardTitle h1{ margin: 0; }
+
+.CardTitle h1{ 
+    margin: 0;
+    align-items: baseline;
+}
+
+
 .CardDetails {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: flex;
-    align-items: baseline;
+    align-self: start;
+    align-items: center;
+    font-size: 1rem;
+    margin:0;
+
 }
 
 .CardDetails h2 {
-    text-transform: uppercase;
-    margin: .25em 0 .5rem;
-    font-size: 1.25rem;
     font-weight: 600;
-    line-height: 1;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     color: #42C3C9;
+    margin:0;
 }
 
-.CardDetails p{
-    font-size: 1.15rem;
+.CardDetails p {
     font-weight: 400;
-    letter-spacing: 3px;
-    margin: .25em 0;
-    line-height: 1;
-
+    letter-spacing: 2px;
+    margin:0;
 }
 
 .CardDescription {
