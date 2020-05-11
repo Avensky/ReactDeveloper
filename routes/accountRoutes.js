@@ -21,6 +21,7 @@ module.exports = app => {
             email : req.body.email, 
             password : req.body.password,
             picture: req.body.picture,
+            date: new Date()
         })
         userObj.save((err)=>{
             if(err){

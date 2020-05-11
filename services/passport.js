@@ -38,7 +38,8 @@ passport.use(
               givenName: profile._json.given_name,
               familyName: profile._json.family_name,
               picture: profile._json.picture,
-              email: profile._json.email
+              email: profile._json.email,
+              date : new Date()
             }).save();
             done(null, user);
         }

@@ -28,9 +28,9 @@ export const newUserSuccess = (userData) => {
     }
 }
     
-export const newUser = (username, givenName, familyName, email, password, picture) => {
+export const newUser = (username, givenName, familyName, email, password, picture, date) => {
     return dispatch => {
-        const userData={username, givenName, familyName, email, password, picture}
+        const userData={username, givenName, familyName, email, password, picture, date}
         dispatch(newUserStart())
         axios.post('/api/addUser', userData)
             .then(response => {
