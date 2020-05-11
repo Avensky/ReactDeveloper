@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './Archives.modules.css';
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
+import Auxiliary from '../../hoc/Auxiliary';
 
 class Archives extends Component {
-
 	componentDidMount() {
 		console.log(this.props)
 		this.props.onfetchPostsByYear()
@@ -12,65 +12,78 @@ class Archives extends Component {
 	
 	fetchYearHandler() {
 	}
+	
+	removeDuplicatesHandler = (array) => {
+		return array.filter((a, b) => array.indexOf(a) === b)
+	}
+
 	render() {
 //        let archives = <p style={{textAlign: 'center'}}>Something went wrong!</p> 
 //		if (!this.props.error) {
 //		}
-		let showAuthors =  this.props.fetchedPosts.map(post => <li key={post._id}>{post.author}</li>)
-		let showAuthor = [...new Set(showAuthors)];
+		let showAuthor =  this.props.fetchedPosts.map(post => {
+			return post.author
+		})
+		showAuthor = this.removeDuplicatesHandler(showAuthor);
 
 		let showYears = this.props.fetchedPostsByYear.map(post => {
-			return (
-				<li key={post._id}>
-					{post.dates}
-				</li>
-			)
+			const d = new Date(post.date);
+			const date = d.getFullYear();
+			return date
+		})
+		showYears = this.removeDuplicatesHandler(showYears)
+
+		const m = [ "January", "February", "March", "April", "May", "June", 
+		"July", "August", "September", "October", "November", "December" ];
+		let showMonths = this.props.fetchedPostsByYear.map(post => {
+			const d = new Date(post.date);
+			const date = m[d.getMonth()];
+			return date
+		})
+		showMonths= this.removeDuplicatesHandler(showMonths)
+
+		let showTitle = this.props.fetchedPostsByYear.map(post => {
+			return 	<li>{post.title}</li>
 		})
 
-		return (
-			<div>
-				<div className="Archives">
-				<p className="ArchiveTitle">Contributors:</p>
-				<ul>{ showAuthor }</ul>
-		
-				<p className="ArchiveTitle">Blog Archive</p>
+		const archives = ( 
+			<Auxiliary>
 				<div className="list">
 					<ul>
 						{showYears}
-						<div className="ArchiveList-item">
 						<ul>
-							{showYears}
+							{showMonths}
+							<ul>
+								<li>
+									{showTitle}
+								</li>
+							</ul>
 						</ul>
-							<div className="list">
-								<ul>
-									<div className="ArchiveList-item">
-										<input id="togList11" type="checkbox" />
-										<label>
-											<span><li key="1">August(2)</li></span>
-											<span><li key="1e">August(2)</li></span>
-										</label>
-										<div className="list">
-											<ul>
-												<li key="1wer">Blog Title</li>
-												<li key="asdf1">Blog Title</li>
-											</ul>
-										</div>
-									</div>
-									<li key="1eeweq">July(2)</li>
-									<li key="qqq1">June(2)</li>
-									<li key="qwer1">May(10)</li>
-								</ul>
-							</div>
-						</div>
 					</ul>
 				</div>
-					<p className="ArchiveTitle">Statement:</p>
-					<p className="ArchiveInfo">Lorem ipsum dolor sit amet, 
-					consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-					Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
+			</Auxiliary>
+
+		)
+
+
+
+
+
+		return (
+			<div className="Archives">
+				<p className="ArchiveTitle">Contributors</p>					
+				<ul>
+					{showAuthor}
+				</ul>
+				<p className="">Blog Archive</p>
+				{archives}
+				<p className="ArchiveTitle">Statement:</p>
+				<p className="ArchiveInfo">Lorem ipsum dolor sit amet, 
+				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
 			</div>
 		)
 	}

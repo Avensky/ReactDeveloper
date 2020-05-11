@@ -5,15 +5,14 @@ const Post = mongoose.model('posts');
 module.exports = app => {
     
     app.get('/api/archive/year',(req,res) => {
-        Post.find({date: { $gte:'2020-01-01', $lte:'2020-09-05'}})
-            .sort({date:1},(err,doc)=>{
+        Post.find({date: { $gte:'2020-01-01', $lte:'2020-09-05'}},(err,doc)=>{
             if(doc)
                 res.json(doc);
             else {
                 res.err(err);
             }
         })
-    });
+    })
 
     app.get('/api/posts', (req,res) =>{          //get all posts info from db
         Post.find({},(err,doc)=>{
