@@ -13,8 +13,9 @@ module.exports = app => {
         })
     })
     
-    app.get('/api/archive/year',(req,res) => {
-        const start = '2010-01-01'
+    app.get('/api/archive/:year',(req,res) => {
+        const year = req.params.year
+        const start = year + '-01-01';
         const end = new Date
         Post.find({date: { $gte:start, $lte:end}},(err,doc)=>{
             if(doc)

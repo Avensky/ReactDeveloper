@@ -2,123 +2,70 @@ import React, { Component } from 'react';
 import './Archives.modules.css';
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
-import Auxiliary from '../../hoc/Auxiliary';
+// import Auxiliary from '../../hoc/Auxiliary';
 
 class Archives extends Component {
-	componentDidMount() {
-		console.log(this.props);
-		this.props.onfetchPostsByYear();
-		this.props.onfetchPostsByMonth();
-	}
+	state = {
+        myPosts: [],
+    }
 	
-	fetchYearHandler() {
-	}
-	
-	removeDuplicatesHandler = (array) => {
-		return array.filter((a, b) => array.indexOf(a) === b)
-	}
+	removeDuplicatesHandler = (array) => {return array.filter((a, b) => array.indexOf(a) === b)}
 
 	render() {
 //        let archives = <p style={{textAlign: 'center'}}>Something went wrong!</p> 
 //		if (!this.props.error) {
 //		}
-
-
 		let showAuthor =  this.props.fetchedPosts.map(post => {
 			return post.author
 		})
 		showAuthor = this.removeDuplicatesHandler(showAuthor);
 
-{/* 
-// Title
-		let showTitle = this.props.fetchedPostsByMonth.map(post => {
-			return 	(
-				<ul>
-					<li key={post._id}>{post.title}</li>
-				</ul>
-			)
-		})
-
 		
-// Years
-		let showYearsArray = this.props.fetchedPosts.map(post => {
-			const d = new Date(post.date);
-			const date = d.getFullYear();
-			return date
-		})
-		showYearsArray = this.removeDuplicatesHandler(showYearsArray)
-		showYearsArray = showYearsArray.reverse()
-		let showYears = showYearsArray.map( year => {
-
-
-// Months
-			const m = [ "January", "February", "March", "April", "May", "June", 
-			"July", "August", "September", "October", "November", "December" ];
-			let showMonthsArray = this.props.fetchedPostsByMonth.map(post => {
-				const d = new Date(post.date);
-				const date = m[d.getMonth()];
-				return date
-			})
-			showMonthsArray= this.removeDuplicatesHandler(showMonthsArray)
-			showMonthsArray = showMonthsArray.reverse()
-			let showMonths = showMonthsArray.map( months => {
-				return (
-					<ul>
-						<li key={months}>{months}</li>
-					</ul>
-				)
-			})
-
-		console.log('showMonths: ' + showMonths)	
-			
-			return showMonths
-		})
-	*/}
-
-
 
 		let years = this.props.fetchedPosts.map(post => {
 			const d = new Date(post.date);
 			const year = d.getFullYear();
-			console.log("Year: " + year)
 			return year
 		})
 		years = this.removeDuplicatesHandler(years)
+		years = years.reverse()
 		console.log('years: ' + years)
 
 
 
-		
 
-
-
-		const m = [ "January", "February", "March", "April", "May", "June", 
-		"July", "August", "September", "October", "November", "December" ];
-		let showMonthsArray = this.props.fetchedPostsByYear.map(post => {
-			const d = new Date(post.date);
-			const date = m[d.getMonth()];
-			return date
+		const showTitles = this.props.fetchedPosts.map( post => {
+			const titles = post.title
+			return titles
 		})
-		showMonthsArray= this.removeDuplicatesHandler(showMonthsArray)
-		showMonthsArray = showMonthsArray.reverse()
-		console.log('showMonthsArray: ' + showMonthsArray)	
-		let showMonths = showMonthsArray.map( months => {
+
+
+
+		let months = this.props.fetchedPosts.map(post => {
+			const d = new Date(post.date);
+			const month = d.getMonth()
+			return month
+		})
+		months = this.removeDuplicatesHandler(months)
+		months = months.sort(function(a, b){return a-b}).reverse()
+		console.log('months: ' + months)
+
+		let showMonths =  months.map( month => {
+			const m = [ "January", "February", "March", "April", "May", "June", 
+			"July", "August", "September", "October", "November", "December" ];
 			return (
-				<li key={months}>
-					{months}
+				<li key={month}>
+					{m[month]}
+					<ul>
+						{showTitles}
+					</ul>
 				</li>
 			)
 		})
 
-
-
-
-		
-
 		let archives = years.map(year => {
-
 			return 	(
-				<ul>
+				<ul key={year}>
 					{year}
 					<ul>
 						{showMonths}
@@ -126,7 +73,6 @@ class Archives extends Component {
 				</ul>			
 			)
 		})
-
 
 
 		return (
@@ -163,8 +109,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
 		onFetchPosts:  () => dispatch( actions.fetchPosts()),
-		onfetchPostsByYear: () => dispatch( actions.fetchPostsByYear()),
-
+		onfetchPostsByYear: (year) => dispatch( actions.fetchPostsByYear(year)),
 		onfetchPostsByMonth: () => dispatch( actions.fetchPostsByMonth()),
 
     }

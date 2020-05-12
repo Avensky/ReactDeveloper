@@ -114,10 +114,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_POSTS_BY_YEAR_START: return fetchPostsByYearStart(state, action);
         case actionTypes.FETCH_POSTS_BY_YEAR_FAIL: return fetchPostsByYearFail(state, action);
         case actionTypes.FETCH_POSTS_BY_YEAR_SUCCESS: return fetchPostsByYearSuccess(state, action);
-
-        case actionTypes.FETCH_POSTS_BY_YEAR_START: return fetchPostsByMonthStart(state, action);
-        case actionTypes.FETCH_POSTS_BY_YEAR_FAIL: return fetchPostsByMonthFail(state, action);
-        case actionTypes.FETCH_POSTS_BY_YEAR_SUCCESS: return fetchPostsByMonthSuccess(state, action);
+        case actionTypes.FETCH_POSTS_BY_MONTH_START: return fetchPostsByMonthStart(state, action);
+        case actionTypes.FETCH_POSTS_BY_MONTH_FAIL: return fetchPostsByMonthFail(state, action);
+        case actionTypes.FETCH_POSTS_BY_MONTH_SUCCESS: return fetchPostsByMonthSuccess(state, action);
         case actionTypes.DELETE_POST_START: return deletePostStart(state, action);
         case actionTypes.DELETE_POST_FAIL: return deletePostFail(state, action);
         case actionTypes.DELETE_POST_SUCCESS: return deletePostSuccess(state, action);

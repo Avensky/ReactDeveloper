@@ -126,10 +126,10 @@ export const fetchPostsByYearStart = () => {
         type:  actionTypes.FETCH_POSTS_BY_YEAR_START
     }
 }
-export const fetchPostsByYear = () => {
+export const fetchPostsByYear = (year) => {
     return dispatch => {
         dispatch(fetchPostsByYearStart());
-        axios.get( '/api/archive/year')
+        axios.get( '/api/archive/' + year)
         .then( result => {
             console.log(result)
             const fetchedPostsByYear = result.data
