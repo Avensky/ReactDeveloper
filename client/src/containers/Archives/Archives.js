@@ -40,8 +40,26 @@ class Archives extends Component {
 		})
 
 
+		//Get the currentYear and the currentMonth
+		const currentMonth = new Date().getMonth()
+		const currentYear = new Date().getFullYear()
+//
+//		//Get the year and month from the iterated date
+//		let [year, month] = e.date.split('-');
+//
+//		//Then filter the dates
+//		let events = array.filter(e => {
+//			var [year, month] = e.date.split('-'); // Or, var month = e.date.split('-')[1];
+//			return (currentMonth === +month) && (currentYear == year);
+//		});
 
-		let months = this.props.fetchedPosts.map(post => {
+		let months = this.props.fetchedPosts.filter( post => {
+			const d = new Date(post.date);
+			var year = d.getFullYear()
+			return (currentYear === year);
+		})
+
+		months = months.map(post => {
 			const d = new Date(post.date);
 			const month = d.getMonth()
 			return month
@@ -83,13 +101,6 @@ class Archives extends Component {
 				</ul>
 				<p className="">Blog Archive:</p>
 				{archives}
-				<p className="ArchiveTitle">Statement:</p>
-				<p className="ArchiveInfo">Lorem ipsum dolor sit amet, 
-				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-				Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
 			</div>
 		)
 	}
