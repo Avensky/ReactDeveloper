@@ -7,14 +7,22 @@ const keys = require('../config/keys')
 const User = mongoose.model('users');
 
 passport.serializeUser((user, done) => {
+  console.log('*** serializeUser called, user: ')
+	console.log(user) // the whole raw user object!
+	console.log('---------')
   done(null, user.id);
 });
   
 passport.deserializeUser((id, done) => {
+  console.log('DeserializeUser called')
   User.findById(id).then(user => {
+    console.log('*** Deserialize user, user:')
+    console.log(user)
+    console.log('--------------')
     done(null, user);
   });
 });
+
   
 passport.use(
     new GoogleStrategy(

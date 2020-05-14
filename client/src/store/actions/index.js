@@ -3,7 +3,8 @@ export {
     logout,
     loginCheckState,
     setLoginRedirectPath,
-    fetchUser
+    fetchUser,
+    getUser
 } from './auth';
 
 export {

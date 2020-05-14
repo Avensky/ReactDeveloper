@@ -130,3 +130,41 @@ export const loginCheckState = () => {
         }
     }
 }
+
+
+
+export const getUserStart = () => {
+    return {
+        type: actionTypes.GET_USER_START
+    }
+};
+
+export const getUserSuccess = (payload) => {
+    return {
+        type: actionTypes.GET_USER_SUCCESS,
+        payload: payload
+        
+    }
+};
+
+export const getUserFail = (error) => {
+    return {
+        type: actionTypes.GET_USER_FAIL,
+        error: error
+    }
+};
+
+export const getUser = () => {
+    return dispatch => {
+        dispatch(getUserStart());
+        axios.get('/api/user/')
+        .then(result => {
+            console.log('Get user response: ' + result);
+            const payload = result.data
+            dispatch(getUserSuccess(payload));
+        })
+        .catch( error => {
+            dispatch(getUserFail(error));
+        })
+    }
+}
