@@ -21,7 +21,6 @@ class Archives extends Component {
 		showAuthor = this.removeDuplicatesHandler(showAuthor);
 
 		
-
 		let years = this.props.fetchedPosts.map(post => {
 			const d = new Date(post.date);
 			const year = d.getFullYear();
@@ -31,57 +30,48 @@ class Archives extends Component {
 		years = years.reverse()
 		console.log('years: ' + years)
 
-
-
-
-		const showTitles = this.props.fetchedPosts.map( post => {
-			const titles = post.title
-			return titles
-		})
-
-
-		//Get the currentYear and the currentMonth
-		const currentMonth = new Date().getMonth()
-		const currentYear = new Date().getFullYear()
-//
-//		//Get the year and month from the iterated date
-//		let [year, month] = e.date.split('-');
-//
-//		//Then filter the dates
-//		let events = array.filter(e => {
-//			var [year, month] = e.date.split('-'); // Or, var month = e.date.split('-')[1];
-//			return (currentMonth === +month) && (currentYear == year);
-//		});
-
-		let months = this.props.fetchedPosts.filter( post => {
-			const d = new Date(post.date);
-			var year = d.getFullYear()
-			return (currentYear === year);
-		})
-
-		months = months.map(post => {
-			const d = new Date(post.date);
-			const month = d.getMonth()
-			return month
-		})
-		months = this.removeDuplicatesHandler(months)
-		months = months.sort(function(a, b){return a-b}).reverse()
-		console.log('months: ' + months)
-
-		let showMonths =  months.map( month => {
-			const m = [ "January", "February", "March", "April", "May", "June", 
-			"July", "August", "September", "October", "November", "December" ];
-			return (
-				<li key={month}>
-					{m[month]}
-					<ul>
-						{showTitles}
-					</ul>
-				</li>
-			)
-		})
-
 		let archives = years.map(year => {
+			const yearData = this.props.fetchedPosts.filter( post => {
+				const d = new Date(post.date);
+				const postYear = d.getFullYear()
+				return (postYear === year)
+			})
+
+			let months = yearData.map(post => {
+				const d = new Date(post.date);
+				const month = d.getMonth()
+				return month
+			})
+
+			months = this.removeDuplicatesHandler(months)
+			months = months.sort(function(a, b){return a-b}).reverse()
+			console.log('months: ' + months)
+
+			let showMonths =  months.map( month => {
+				const m = [ "January", "February", "March", "April", "May", "June", 
+				"July", "August", "September", "October", "November", "December" ];
+				
+				const monthData = yearData.filter( post => {
+					const d = new Date(post.date);
+					const postMonth = d.getMonth()
+					return (postMonth === month)
+				})
+				const showTitles = monthData.map( post => {
+					const titles = post.title
+					return titles
+				})
+		
+
+				return (
+					<li key={month}>
+						{m[month]}
+						<ul>
+							{showTitles}
+						</ul>
+					</li>
+				)
+			})
+
 			return 	(
 				<ul key={year}>
 					{year}
