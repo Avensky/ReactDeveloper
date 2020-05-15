@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+//const session = require('express-session');
+//const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
@@ -20,14 +20,14 @@ app.use(express.json())
 app.use(bodyParser.json())
 
 // Sessions
-app.use(
-	session({
-		secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
-		store: new MongoStore({ mongooseConnection: dbConnection }),
-		resave: false, //required
-		saveUninitialized: false //required
-	})
-)
+//app.use(
+//	session({
+//		secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
+//		store: new MongoStore({ mongooseConnection: dbConnection }),
+//		resave: false, //required
+//		saveUninitialized: false //required
+//	})
+//
 
 app.use(
     cookieSession({

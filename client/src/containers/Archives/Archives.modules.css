@@ -6,8 +6,7 @@
 }
 .Archives, li {
     margin: 0;
-    padding-left: 15px;
-    list-style: none;
+    margin-left: 15px;
 }
 
 .Archives ul {
@@ -19,3 +18,7 @@
     margin: 0 ;
 
 }
+
+li {
+    list-style: disc; 
+ }
