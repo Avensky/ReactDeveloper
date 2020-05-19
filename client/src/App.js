@@ -25,7 +25,7 @@ class App extends Component {
     }
 
   componentDidMount () {
-    this.props.onGetUser()
+  //  this.props.onGetUser()
     this.props.autoLogin();
     this.props.onFetchUser();
 
@@ -97,7 +97,7 @@ const mapDispatchToProps = dispatch => {
   return {
     autoLogin: () => dispatch( actions.loginCheckState() ),
     onFetchUser: () => dispatch(actions.fetchUser()),
-    onGetUser: () => dispatch(actions.getUser())
+//    onGetUser: () => dispatch(actions.getUser())
   };
 };
 

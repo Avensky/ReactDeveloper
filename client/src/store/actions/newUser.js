@@ -27,16 +27,31 @@ export const newUserSuccess = (userData) => {
         userData: userData
     }
 }
+
     
-export const newUser = (username, givenName, familyName, email, password, picture, date) => {
+export const newUser = (username, givenName, familyName, email, password, picture) => {
     return dispatch => {
-        const userData={username, givenName, familyName, email, password, picture, date}
         dispatch(newUserStart())
+        const userData = {
+            username    : username, 
+            givenName   : givenName, 
+            familyName  : familyName, 
+            email       : email, 
+            password    : password, 
+            picture     : picture, 
+        }
+        
         axios.post('/api/addUser', userData)
             .then(response => {
                 console.log(response);
-                dispatch(newUserSuccess(userData))
-        })
+//                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+//                localStorage.setItem('token', response.data.idToken);
+//                localStorage.setItem('expirationDate', expirationDate);
+//                localStorage.setItem('userId', response.data.localId);
+//                dispatch(newUserSuccess(response.data.idToken, response.data.localId));
+//                dispatch(checkLoginTimeout(response.data.expiresIn));       
+                dispatch(newUserSuccess(userData))        
+            })
         .catch(error => {
             console.log(error);
             dispatch(newUserFail(error))

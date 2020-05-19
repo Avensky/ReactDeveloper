@@ -2,31 +2,26 @@
 
 // set up ======================================================================
 // const app = require('./app')
-const express    = require('express')
-const app        = express()
-const PORT       = process.env.PORT || 5000;
-const bodyParser = require('body-parser')
-const session    = require('express-session')
-const passport   = require('passport')
-const flash      = require('connect-flash')
-const mongoose   = require('mongoose')
-const keys       = require('./config/keys')
+const express       = require('express')
+const app           = express()
+const PORT          = process.env.PORT || 5000;
+const bodyParser    = require('body-parser')
+const session       = require('express-session')
+const passport      = require('passport')
+const mongoose      = require('mongoose')
+const keys          = require('./config/keys')
+const flash         = require('connect-flash')
+// const cookieSession = require('cookie-session');
 
 // configuration ===============================================================
 require('./app/models/User');
+require('./config/passport')(passport); // pass passport for configuration
+
 mongoose.Promise = global.Promise;// connect to our database
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true,useUnifiedTopology: true })
     .then(connect => console.log('connected to mongodb'))
     .catch(err => console.log('could not connect to mongodb', err))
 module.exports = {mongoose}
-// let db = mongoose.connection;
-// db.on('error', ()=>{
-//     console.error('Unable to connect MongoDB!')
-// });
-// db.once('open', ()=> {
-//     console.log('Connected to mongoDB!');
-// });
-require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
 //app.use(logger('dev')); // log every request to the console
@@ -37,23 +32,28 @@ require('./config/passport')(passport); // pass passport for configuration
 //         keys: [keys.cookieKey]
 //     })
 // )
-app.use(bodyParser.urlencoded({extended: false})) // get information from html forms
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+app.use(express.json())
+app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({extended: false})) // get information from html forms
+
+// app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 app.use(session({ 
-    secret: 'ilovescotchscotchyscotchscotch',
+    secret: 'ilovescotchscotchyscotchscotch',   // session secret
     resave: false,
     saveUninitialized: false
-})); // session secret
+})); 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 require('./app/routes/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
+require('./app/routes/postRoutes')(app, passport);
+// require('./app/routes/authRoutes')(app, passport);
+// require('./app/routes/accountRoutes')(app, passport);
 
 // launch ======================================================================
 if (process.env.NODE_ENV === 'production') {

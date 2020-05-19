@@ -22,7 +22,7 @@ module.exports = app => {
   })
 
   app.get(
-    '/api', (req, res, next) => {
+    '/', (req, res, next) => {
       console.log('===== user!!======')
       console.log(req.user)
     if (req.user) {
@@ -30,18 +30,13 @@ module.exports = app => {
     } else {
         res.json({ user: null })
     }
-})
+  })
 
-app.post(
-  '/api/logout', (req, res) => {
-    if (req.user) {
-        req.logout();
-        res.send({ msg: 'logging out' })
-    } else {
-        res.send({ msg: 'no user to log out' })
-    }
-})
-
+  app.get(
+    '/api/logout', (req, res) => {
+    req.logout();
+    res.redirect('/home');
+  })
 
   app.get(
     '/auth/google',
@@ -55,12 +50,6 @@ app.post(
         res.redirect('/blog');
     }
   );
-
-  app.get(
-    '/api/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
-  });
 
   app.get(
     '/api/current_user', (req, res) => {

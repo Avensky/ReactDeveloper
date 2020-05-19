@@ -206,9 +206,9 @@ class Login extends Component {
                     onClick={this.switchModeHandler}
                     className={myClasses.Danger}
                 >{this.state.isSignup ? 'Need an account? Sign up!' : 'Already registered? Sign in!'}</button>
-                <button >
-                    <a href="/auth/google">Login With Google</a>
-                </button>
+                <a href="/auth/google" className="btn btn-danger">Google</a>
+                <a href="/auth/facebook"className="btn btn-primary">Facebook</a>
+                <a href="/auth/twitter" className="btn btn-info">Twitter</a>
                 <p>Forgot Password?</p>
                 <div className={classes.borderTop + classes.pt3}  />
                 

@@ -1,20 +1,20 @@
 // config/passport.js
 
 // load all the things we need
-const LocalStrategy = require('passport-local').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
-const TwitterStrategy  = require('passport-twitter').Strategy;
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const mongoose      = require('mongoose')
+const LocalStrategy     = require('passport-local').Strategy;
+const FacebookStrategy  = require('passport-facebook').Strategy;
+const TwitterStrategy   = require('passport-twitter').Strategy;
+const GoogleStrategy    = require('passport-google-oauth20').Strategy;
+const mongoose          = require('mongoose')
 
 // load up the user model
-const User          = mongoose.model('users')
+const User              = mongoose.model('users')
 
 // load the auth variables
-const configAuth = require('./secrets');
+const configAuth        = require('./secrets');
 
 // expose this function to our app using module.exports
-module.exports      = function(passport) {
+module.exports          = function(passport) {
 
 	// =========================================================================
     // passport session setup ==================================================
@@ -24,9 +24,9 @@ module.exports      = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        console.log('*** serializeUser called, user: ')
-        console.log(user) // the whole raw user object!
-        console.log('---------')
+ //       console.log('*** serializeUser called, user: ')
+ //       console.log(user) // the whole raw user object!
+ //       console.log('---------')
         done(null, user.id);
     });
 
@@ -34,9 +34,9 @@ module.exports      = function(passport) {
     passport.deserializeUser(function(id, done) {
         console.log('DeserializeUser called')
         User.findById(id, function(err, user) {
-            console.log('*** Deserialize user, user:')
-            console.log(user)
-            console.log('--------------')
+ //           console.log('*** Deserialize user, user:')
+ //           console.log(user)
+ //           console.log('--------------')
             done(err, user);
         });
     });
@@ -49,31 +49,33 @@ module.exports      = function(passport) {
 
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
+        usernameField       : 'email',
+        passwordField       : 'password',
+        passReqToCallback   : true // allows us to pass back the entire request to the callback
     },
-    function (req, email, password, done) {
+    (req, email, password, done) => {
 
+        console.log('user signup');        
+        
         // asynchronous
-        process.nextTick(function() {
+        process.nextTick(() => {
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email' :  email }, function(err, user) {
+            User.findOne({ 'local.email' :  email }, (err, existingUser) => {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
 
                 // check to see if theres already a user with that email
-                if (user) {
+                if (existingUser) 
                     return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
 
                 //  If we're logged in, we're connecting a new local account.
                 if(req.user) {
                     var user            = req.user;
-                    user.local.email    = email;
-                    user.local.password = user.generateHash(password);
+                    user.local.email    = req.body.email;
+                    user.local.password = user.generateHash(req.body.password);
                     user.save(function(err) {
                         if (err)
                             throw err;
@@ -81,18 +83,22 @@ module.exports      = function(passport) {
                     });
                 }
                 //  We're not logged in, so we're creating a brand new user.
-                } else {
+                else {
 
                     // if there is no user with that email
                     // create the user
                     var newUser            = new User();
 
                     // set the user's local credentials
-                    newUser.local.email    = email;
-                    newUser.local.password = newUser.generateHash(password); // use the generateHash function in our user model
-
+                    newUser.local.email         = req.body.email;
+                    newUser.local.password      = newUser.generateHash(req.body.password); // use the generateHash function in our user model
+                    newUser.local.username      = req.body.username, 
+                    newUser.local.givenName     = req.body.givenName, 
+                    newUser.local.familyName    = req.body.familyName,
+                    newUser.local.picture       = req.body.picture,
+                    newUser.local.date          = new Date()
                     // save the user
-                    newUser.save(function(err) {
+                    newUser.save((err) => {
                         if (err)
                             throw err;
                         return done(null, newUser);
@@ -116,13 +122,13 @@ module.exports      = function(passport) {
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function (req, email, password, done) { // callback with email and password from our form
+    (req, email, password, done) => { // callback with email and password from our form
 
         // asynchronous
         process.nextTick(function() {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email' :  email }, function(err, user) {
+            User.findOne({ 'local.email' :  email }, (err, user) => {
                 // if there are any errors, return the error before anything else
                 if (err)
                     return done(err);
@@ -317,22 +323,23 @@ module.exports      = function(passport) {
 
         clientID        : configAuth.googleAuth.clientID,
         clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : configAuth.googleAuth.callbackURL,
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-//        proxy: true
+//        callbackURL     : configAuth.googleAuth.callbackURL,
+        callbackURL: "/auth/google/callback",
+        passReqToCallback : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        proxy: true
 
     },
-    function (req, token, refreshToken, profile, done) {
+    async (req, token, refreshToken, profile, done) => {
 
         // make the code asynchronous
         // User.findOne won't fire until we have all our data back from Google
-        process.nextTick(function() {
+//        process.nextTick(() =>{
             console.log('profile', profile);
 
             // check if the user is already logged in
             if (!req.user) {
             // try to find the user based on their google id
-            User.findOne({ 'google.id' : profile.id }, function(err, user) {
+            User.findOne({ 'google.id' : profile.id }, (err, user) => {
 
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database
@@ -345,7 +352,12 @@ module.exports      = function(passport) {
                     // just add our token and profile information
                     if (!user.google.token) {
                         user.google.token = token;
-                        user.google.name  = profile.displayName;
+                        //user.google.name  = profile.displayName;
+                        user.google.username     = profile.displayName;
+                        user.google.givenName    = profile.givenName;
+                        user.google.familyName   = profile.familyName;
+                        user.google.picture      = profile.picture;
+                        user.google.date         = new Date();
                         //user.google.name  = profile.name.givenName + ' ' + profile.name.familyName;
                         user.google.email = profile.emails[0].value;
                         user.save(function(err) {
@@ -359,14 +371,18 @@ module.exports      = function(passport) {
                     return done(null, user); // user found, return that user
                 } else {
                     // if the user isnt in our database, create a new user
-                    var newUser          = new User();
+                    var newUser                 = new User();
 
                     // set all of the relevant information
-                    newUser.google.id    = profile.id;
-                    newUser.google.token = token;
-                    newUser.google.name  = profile.displayName;
-                    //newUser.google.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                    newUser.google.email = profile.emails[0].value; // pull the first email
+                    newUser.google.id           = profile.id;
+                    newUser.google.token        = token;
+                    newUser.google.username     = profile.displayName;
+                    newUser.google.givenName    = profile.givenName;
+                    newUser.google.familyName   = profile.familyName;
+                    newUser.google.picture      = profile.picture;
+                    newUser.google.date         = new Date();
+                    //newUser.google.name = profile.name.givenName + ' ' + profile.name.familyName;
+                    newUser.google.email        = profile.emails[0].value; // pull the first email
 
                     // save the user
                     newUser.save(function(err) {
@@ -381,9 +397,14 @@ module.exports      = function(passport) {
             var user            = req.user; // pull the user out of the session
 
             // update the current users facebook credentials
-            user.google.id    = profile.id;
-            user.google.token = token;
-            user.google.name  = profile.displayName;
+            user.google.id              = profile.id;
+            user.google.token           = token;
+//            user.google.name  = profile.displayName;
+            newUser.google.username     = profile.displayName;
+            newUser.google.givenName    = profile.givenName;
+            newUser.google.familyName   = profile.familyName;
+            newUser.google.picture      = profile.picture;
+            newUser.google.date         = new Date();
             //user.google.name  = profile.name.givenName + ' ' + profile.name.familyName;
             user.google.email = profile.emails[0].value;
 
@@ -393,6 +414,7 @@ module.exports      = function(passport) {
                     throw err;
                 return done(null, user);
             });
-        }});
+        }
+    // });
     })); 
 };

@@ -12,6 +12,13 @@ const userSchema = new Schema({
     local            : {
         email        : String,
         password     : String,
+        username     : String,
+        givenName    : String,
+        familyName   : String,
+        password     : String,
+        picture      : String,
+        date         : Date,
+
     },
     facebook         : {
         id           : String,
@@ -29,7 +36,12 @@ const userSchema = new Schema({
         id           : String,
         token        : String,
         email        : String,
-        name         : String
+        username     : String,
+        givenName    : String,
+        familyName   : String,
+        password     : String,
+        picture      : String,
+        date         : Date,
     }
 
 //    googleId: String,
