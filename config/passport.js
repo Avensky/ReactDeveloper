@@ -53,7 +53,7 @@ module.exports          = function(passport) {
         passwordField       : 'password',
         passReqToCallback   : true // allows us to pass back the entire request to the callback
     },
-    (req, email, password, done) => {
+    (req, done) => {
 
         console.log('user signup');        
         
@@ -62,7 +62,7 @@ module.exports          = function(passport) {
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email' :  email }, (err, existingUser) => {
+            User.findOne({ 'local.email' :  req.body.email }, (err, existingUser) => {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
@@ -118,14 +118,14 @@ module.exports          = function(passport) {
 
     passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
+        usernameField       : 'email',
+        passwordField       : 'password',
+        passReqToCallback   : true // allows us to pass back the entire request to the callback
     },
-    (req, email, password, done) => { // callback with email and password from our form
+    async (req, email, password, done) => { // callback with email and password from our form
 
         // asynchronous
-        process.nextTick(function() {
+//        process.nextTick(function() {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             User.findOne({ 'local.email' :  email }, (err, user) => {
@@ -144,7 +144,7 @@ module.exports          = function(passport) {
                 // all is well, return successful user
                 return done(null, user);
             });
-        })
+//       })
     }));
 
     // =========================================================================
@@ -299,12 +299,12 @@ module.exports          = function(passport) {
             });
         } else {
             // user already exists and is logged in, we have to link accounts
-            var user            = req.user; // pull the user out of the session
+            var user                 = req.user; // pull the user out of the session
 
             // update the current users facebook credentials
-            user.twitter.id    = profile.id;
-            user.twitter.token = token;
-            user.twitter.username  = profile.username;
+            user.twitter.id          = profile.id;
+            user.twitter.token       = token;
+            user.twitter.username    = profile.username;
             user.twitter.displayName = profile.displayName;
 
             // save the user
@@ -321,12 +321,12 @@ module.exports          = function(passport) {
     // =========================================================================
     passport.use(new GoogleStrategy({
 
-        clientID        : configAuth.googleAuth.clientID,
-        clientSecret    : configAuth.googleAuth.clientSecret,
-//        callbackURL     : configAuth.googleAuth.callbackURL,
-        callbackURL: "/auth/google/callback",
-        passReqToCallback : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-        proxy: true
+        clientID            : configAuth.googleAuth.clientID,
+        clientSecret        : configAuth.googleAuth.clientSecret,
+//        callbackURL       : configAuth.googleAuth.callbackURL,
+        callbackURL         : "/auth/google/callback",
+        passReqToCallback   : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        proxy               : true
 
     },
     async (req, token, refreshToken, profile, done) => {
@@ -351,15 +351,15 @@ module.exports          = function(passport) {
                     // if there is a user id already but no token (user was linked at one point and then removed)
                     // just add our token and profile information
                     if (!user.google.token) {
-                        user.google.token = token;
-                        //user.google.name  = profile.displayName;
+                        user.google.token        = token;
+                        //user.google.name       = profile.displayName;
                         user.google.username     = profile.displayName;
                         user.google.givenName    = profile.givenName;
                         user.google.familyName   = profile.familyName;
                         user.google.picture      = profile.picture;
                         user.google.date         = new Date();
-                        //user.google.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                        user.google.email = profile.emails[0].value;
+                        //user.google.name       = profile.name.givenName + ' ' + profile.name.familyName;
+                        user.google.email        = profile.emails[0].value;
                         user.save(function(err) {
                             if (err)
                                 throw err;
@@ -381,7 +381,7 @@ module.exports          = function(passport) {
                     newUser.google.familyName   = profile.familyName;
                     newUser.google.picture      = profile.picture;
                     newUser.google.date         = new Date();
-                    //newUser.google.name = profile.name.givenName + ' ' + profile.name.familyName;
+                    //newUser.google.name       = profile.name.givenName + ' ' + profile.name.familyName;
                     newUser.google.email        = profile.emails[0].value; // pull the first email
 
                     // save the user
@@ -394,19 +394,19 @@ module.exports          = function(passport) {
             });
         } else {
             // user already exists and is logged in, we have to link accounts
-            var user            = req.user; // pull the user out of the session
+            var user                    = req.user; // pull the user out of the session
 
             // update the current users facebook credentials
             user.google.id              = profile.id;
             user.google.token           = token;
-//            user.google.name  = profile.displayName;
+//            user.google.name          = profile.displayName;
             newUser.google.username     = profile.displayName;
             newUser.google.givenName    = profile.givenName;
             newUser.google.familyName   = profile.familyName;
             newUser.google.picture      = profile.picture;
             newUser.google.date         = new Date();
-            //user.google.name  = profile.name.givenName + ' ' + profile.name.familyName;
-            user.google.email = profile.emails[0].value;
+            //user.google.name          = profile.name.givenName + ' ' + profile.name.familyName;
+            user.google.email           = profile.emails[0].value;
 
             // save the user
             user.save(function(err) {

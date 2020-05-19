@@ -16,8 +16,11 @@ module.exports = (app, passport) => {
     //     res.render('index.ejs'); // load the index.ejs file
     // });
 
+    // =====================================
+    // API =================================
+    // =====================================
     app.get(
-        '/', (req, res, next) => {
+        '/api', (req, res, next) => {
           console.log('===== user!!======')
           console.log(req.user)
         if (req.user) {
@@ -25,18 +28,18 @@ module.exports = (app, passport) => {
         } else {
             res.json({ user: null })
         }
-      })
+    })
 
     // =====================================
     // PROFILE SECTION =====================
     // =====================================
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, (req, res) => {
-        res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
-    });
+//    app.get('/profile', isLoggedIn, (req, res) => {
+//        res.render('profile.ejs', {
+//            user : req.user // get the user out of session and pass to template
+//        });
+//    });
 
     // =====================================
     // LOGOUT ==============================
@@ -57,19 +60,6 @@ module.exports = (app, passport) => {
         res.redirect('/');
       })
 
-    // =====================================
-    // API =================================
-    // =====================================
-    app.get(
-        '/api', (req, res, next) => {
-          console.log('===== user!!======')
-          console.log(req.user)
-        if (req.user) {
-            res.json({ user: req.user })
-        } else {
-            res.json({ user: null })
-        }
-    })
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
@@ -80,16 +70,17 @@ module.exports = (app, passport) => {
     // LOGIN ===============================
     // =====================================
         
-    app.get('/login', function(req, res) {
-         // render the page and pass in any flash data if it exists
-         res.render('login.ejs', { message: req.flash('loginMessage') }); 
-    });
+//    app.get('/login', function(req, res) {
+//         // render the page and pass in any flash data if it exists
+//         res.render('login.ejs', { message: req.flash('loginMessage') }); 
+//    });
 
     // process the login form
-	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/', // redirect to the secure profile section
-		failureRedirect : '/', // redirect back to the signup page if there is an error
-		failureFlash : true // allow flash messages
+	app.post('api/login', passport.authenticate('local-login', {
+//		successRedirect     : '/blog', // redirect to the secure profile section
+		failureRedirect     : '/', // redirect back to the signup page if there is an error
+        failureFlash        : true, // allow flash messages
+        proxy               : true
     }));
     
     // =====================================
@@ -100,7 +91,7 @@ module.exports = (app, passport) => {
 //        // render the page and pass in any flash data if it exists
 //        res.render('signup.ejs', { message: req.flash('signupMessage') });
 //    });
-//
+    //
 //    // process the signup form
 //	app.post('/signup', passport.authenticate('local-signup', {
 //
@@ -109,7 +100,7 @@ module.exports = (app, passport) => {
 //		failureFlash : true // allow flash messages
 //	}));
     app.post('/api/addUser', passport.authenticate('local-signup', {
-		successRedirect : '/', // redirect to the secure profile section
+		successRedirect : '/login', // redirect to the secure profile section
 		failureRedirect : '/', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages    
     }));
@@ -157,8 +148,8 @@ module.exports = (app, passport) => {
 
     // the callback after google has authenticated the user
     app.get(
-        '/auth/google/callback',
-        passport.authenticate('google', { failureRedirect : '/login'}),
+        '/auth/google/callback', passport.authenticate('google', { 
+            failureRedirect : '/login'}),
         (req, res) => {
             // Successful authentication, redirect home.
             res.redirect('/blog');
@@ -168,13 +159,13 @@ module.exports = (app, passport) => {
 // AUTHORIZE (FIRST LOGIN) =====================================================
 // =============================================================================
 
-	// locally --------------------------------
-    app.get('/connect/local', (req, res) => {
-        res.render('connect-local.ejs', { message: req.flash('loginMessage') });
-    });
-    app.post('/connect/local', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/connect/local', // redirect back to the signup page if there is an error
+// locally --------------------------------
+//    app.get('/connect/local', (req, res) => {
+//        res.render('connect-local.ejs', { message: req.flash('loginMessage') });
+//    });
+    app.post('/api/login', passport.authenticate('local-signup', {
+//        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 // =====================================
