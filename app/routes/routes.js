@@ -4,9 +4,12 @@ const requireLogin = require('../middlewares/requireLogin');
 
 module.exports = (app, passport) => {
 
-    app.get(
-        '/api/current_user', (req, res) => {
-        res.send(req.user);
+    app.get('/api/current_user', (req, res) => {
+        if (req.user){
+            res.send(req.user);
+        }
+        else 
+            res.send({ user: null })
       });
 
     // =====================================
@@ -54,8 +57,7 @@ module.exports = (app, passport) => {
 //      }
 //  });
 
-    app.get(
-        '/api/logout', (req, res) => {
+    app.get('/api/logout', (req, res) => {
         req.logout();
         res.redirect('/');
       })
@@ -77,10 +79,10 @@ module.exports = (app, passport) => {
 
     // process the login form
 	app.post('api/login', passport.authenticate('local-login', {
-//		successRedirect     : '/blog', // redirect to the secure profile section
+		successRedirect     : '/blog', // redirect to the secure profile section
 		failureRedirect     : '/', // redirect back to the signup page if there is an error
         failureFlash        : true, // allow flash messages
-        proxy               : true
+//        proxy               : true
     }));
     
     // =====================================
