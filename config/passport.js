@@ -53,16 +53,16 @@ module.exports          = function(passport) {
         passwordField       : 'password',
         passReqToCallback   : true // allows us to pass back the entire request to the callback
     },
-    (req, done) => {
+    async (req, email, password, done) => {
 
         console.log('user signup');        
         
         // asynchronous
-        process.nextTick(() => {
+        // process.nextTick(() => {
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email' :  req.body.email }, (err, existingUser) => {
+            User.findOne({ 'local.email' :  email }, (err, existingUser) => {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
@@ -74,8 +74,8 @@ module.exports          = function(passport) {
                 //  If we're logged in, we're connecting a new local account.
                 if(req.user) {
                     var user            = req.user;
-                    user.local.email    = req.body.email;
-                    user.local.password = user.generateHash(req.body.password);
+                    user.local.email    = email;
+                    user.local.password = user.generateHash(password);
                     user.save(function(err) {
                         if (err)
                             throw err;
@@ -91,22 +91,24 @@ module.exports          = function(passport) {
 
                     // set the user's local credentials
                     newUser.local.email         = req.body.email;
-                    newUser.local.password      = newUser.generateHash(req.body.password); // use the generateHash function in our user model
+                    newUser.local.password      = newUser.generateHash(password); // use the generateHash function in our user model
                     newUser.local.username      = req.body.username, 
                     newUser.local.givenName     = req.body.givenName, 
                     newUser.local.familyName    = req.body.familyName,
                     newUser.local.picture       = req.body.picture,
                     newUser.local.date          = new Date()
                     // save the user
-                    newUser.save((err) => {
+                    console.log(newUser)
+                    newUser.save(function(err) {
                         if (err)
                             throw err;
                         return done(null, newUser);
                     });
                 }   
 
-            });
+//            });
         })
+        
 
     }));
 
@@ -116,7 +118,7 @@ module.exports          = function(passport) {
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-    passport.use('local-login', new LocalStrategy({
+    passport.use('local', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField       : 'email',
         passwordField       : 'password',
@@ -155,7 +157,7 @@ module.exports          = function(passport) {
         // pull in our app id and secret from our auth.js file
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL,
+        callbackURL     : "/auth/facebook/callback",
         passReqToCallback : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
         profileFields   : ['id', 'displayName', 'photos', 'email','first_name', 'last_name'],
         enableProof     : true

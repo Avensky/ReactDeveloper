@@ -3,8 +3,7 @@ import Layout from '../../Layout/Layout';
 import Header from '../../Layout/Header/Header';
 import classes from '../Pages.module.css';
 import myClasses from './Login.module.css';
-import { Redirect } from 'react-router-dom';
-//import { checkValidity } from '../../../utility/utility';
+//import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
 //import { updateObject } from '../../../utility/utility';
@@ -230,9 +229,9 @@ class Login extends Component {
         }
         
         let loginRedirect = null;
-        if (this.props.isLoggedIn) {
-            loginRedirect = <Redirect to={this.props.loginRedirectPath}/>
-        }
+        //if (this.props.isLoggedIn) {
+        //    loginRedirect = <Redirect to={this.props.loginRedirectPath}/>
+        //}
 
         return(
             <Layout grid="new">
@@ -249,7 +248,7 @@ const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
         error: state.auth.error,
-        isLoggedIn: state.auth.payload,
+        isLoggedIn: state.auth.user,
         loginRedirectPath: state.auth.loginRedirectPath
     };
 };

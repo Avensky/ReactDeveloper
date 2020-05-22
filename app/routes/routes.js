@@ -8,104 +8,77 @@ module.exports = (app, passport) => {
         if (req.user){
             res.send(req.user);
         }
-        else 
-            res.send({ user: null })
       });
-
-    // =====================================
-    // HOME PAGE (with login links) ========
-    // =====================================
-    // app.get('/', (req, res) => {
-    //     res.render('index.ejs'); // load the index.ejs file
-    // });
-
-    // =====================================
-    // API =================================
-    // =====================================
-    app.get(
-        '/api', (req, res, next) => {
-          console.log('===== user!!======')
-          console.log(req.user)
-        if (req.user) {
-            res.json({ user: req.user })
-        } else {
-            res.json({ user: null })
-        }
-    })
-
-    // =====================================
-    // PROFILE SECTION =====================
-    // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-//    app.get('/profile', isLoggedIn, (req, res) => {
-//        res.render('profile.ejs', {
-//            user : req.user // get the user out of session and pass to template
-//        });
-//    });
 
     // =====================================
     // LOGOUT ==============================
     // =====================================
-//  app.post('/api/logout', (req, res) => {
-//      if (req.user) {
-//          req.logout();
-//          res.send({ msg: 'logging out' })
-//          res.redirect('/');
-//      } else {
-//          res.send({ msg: 'no user to log out' })
-//      }
-//  });
-
-    app.get('/api/logout', (req, res) => {
+    app.get('/api/logout', (req, res, next) => {
         req.logout();
-        res.redirect('/');
-      })
+        req.session.save((err) => {
+            if (err) {
+                return next(err);
+            }
+            res.redirect('/login');
+        });
+      });
+
+    app.get('/ping', (req, res) => {
+        res.status(200).send("pong!");
+    });    
 
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
+
 // =====================================
 // LOCAL ===============================
 // =====================================
+    
     // =====================================
     // LOGIN ===============================
     // =====================================
-        
-//    app.get('/login', function(req, res) {
-//         // render the page and pass in any flash data if it exists
-//         res.render('login.ejs', { message: req.flash('loginMessage') }); 
-//    });
-
-    // process the login form
-	app.post('api/login', passport.authenticate('local-login', {
+	app.post('/api/login', passport.authenticate('local', {
 		successRedirect     : '/blog', // redirect to the secure profile section
 		failureRedirect     : '/', // redirect back to the signup page if there is an error
         failureFlash        : true, // allow flash messages
-//        proxy               : true
-    }));
+    }), (req, res, next) => {
+        req.session.save((err) => {
+            if (err) {
+                return next(err);
+            }
+            res.redirect('/');
+        });
+    });
     
     // =====================================
     // REGISTER ============================
     // =====================================
-//    app.get('/signup', function(req, res) {
-//
-//        // render the page and pass in any flash data if it exists
-//        res.render('signup.ejs', { message: req.flash('signupMessage') });
-//    });
-    //
-//    // process the signup form
-//	app.post('/signup', passport.authenticate('local-signup', {
-//
-//		successRedirect : '/profile', // redirect to the secure profile section
-//		failureRedirect : '/signup', // redirect back to the signup page if there is an error
-//		failureFlash : true // allow flash messages
-//	}));
     app.post('/api/addUser', passport.authenticate('local-signup', {
 		successRedirect : '/login', // redirect to the secure profile section
 		failureRedirect : '/', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages    
-    }));
+    })),(req, res) => {
+        // Successful authentication, redirect home.
+        res.redirect('/blog');
+    }
+
+    app.post('/api/register', (req, res, next) => {
+        Account.register(new Account({ username : req.body.username }), req.body.password, (err, account) => {
+            if (err) {
+              return res.render('register', { error : err.message });
+            }
+    
+            passport.authenticate('local')(req, res, () => {
+                req.session.save((err) => {
+                    if (err) {
+                        return next(err);
+                    }
+                    res.redirect('/');
+                });
+            });
+        });
+    });
     // =====================================
     // FACEBOOK ROUTES =====================
     // =====================================
@@ -119,7 +92,7 @@ module.exports = (app, passport) => {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
 
-            successRedirect : '/profile',
+            successRedirect : '/blog',
             failureRedirect : '/'
         })
     );

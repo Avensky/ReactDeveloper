@@ -25,7 +25,7 @@ export const fetchUserFail = (error) => {
 export const fetchUser = () => {
     return dispatch => {
         dispatch(fetchUserStart());
-        axios.get('/api/current_user')
+        axios.get('/api/fetchUser')
         .then( result => {
             console.log(result)
             const payload = result.data
@@ -83,25 +83,21 @@ export const login = (email, password, isSignup) => {
             email: email,
             password: password,
             returnSecureToken: true
-        }
-        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDo0MjXkcVqlbWrXY-wqPS245aKcXi2smw'
-        if (!isSignup) {
-            url= 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDo0MjXkcVqlbWrXY-wqPS245aKcXi2smw'
-        }
-        
-        axios.post(url, authData)
+        }        
+        axios.post('/api/login', authData)
             .then(response => {
-                console.log(response);
-                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-                localStorage.setItem('token', response.data.idToken);
-                localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userId', response.data.localId); 
-                dispatch(loginSuccess(response.data.idToken, response.data.localId));
-                dispatch(checkLoginTimeout(response.data.expiresIn));
-            })
+//                console.log(response);
+//                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+//                localStorage.setItem('token', response.data.idToken);
+//                localStorage.setItem('expirationDate', expirationDate);
+//                localStorage.setItem('userId', response.data.localId); 
+//                dispatch(loginSuccess(response.data.idToken, response.data.localId));
+//                dispatch(checkLoginTimeout(response.data.expiresIn));
+                dispatch(loginSuccess(response)) 
+})
             .catch(err => {
                 console.log(err);
-                dispatch(loginFail(err.response.data.error));
+                dispatch(loginFail(err));
             });
     }
 }
@@ -120,6 +116,7 @@ export const loginCheckState = () => {
             dispatch(logout());
         } else {
             const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            console.log(expirationDate)
             if (expirationDate <= new Date()){
                 dispatch(logout());
             } else {

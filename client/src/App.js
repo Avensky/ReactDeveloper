@@ -30,9 +30,9 @@ class App extends Component {
     this.props.onFetchUser();
 
   }
-  updateUser (userObject) {
-    this.setState(userObject)
-  }
+//  updateUser (userObject) {
+//    this.setState(userObject)
+//  }
 
   render() {
     let routes = (
@@ -95,9 +95,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    autoLogin: () => dispatch( actions.loginCheckState() ),
-    onFetchUser: () => dispatch(actions.fetchUser()),
-//    onGetUser: () => dispatch(actions.getUser())
+    autoLogin   : () => dispatch( actions.loginCheckState() ),
+    onFetchUser : () => dispatch(actions.fetchUser()),
+//    onGetUser : () => dispatch(actions.getUser())
   };
 };
 
