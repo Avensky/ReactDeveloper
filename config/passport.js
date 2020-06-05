@@ -11,7 +11,7 @@ const mongoose          = require('mongoose')
 const User              = mongoose.model('users')
 
 // load the auth variables
-const configAuth        = require('./secrets');
+const configAuth        = require('./keys'); // use this one for testing
 
 // expose this function to our app using module.exports
 module.exports          = function(passport) {
@@ -118,7 +118,7 @@ module.exports          = function(passport) {
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-    passport.use('local', new LocalStrategy({
+    passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField       : 'email',
         passwordField       : 'password',
@@ -155,12 +155,12 @@ module.exports          = function(passport) {
     passport.use(new FacebookStrategy({
 
         // pull in our app id and secret from our auth.js file
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : "/auth/facebook/callback",
-        passReqToCallback : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-        profileFields   : ['id', 'displayName', 'photos', 'email','first_name', 'last_name'],
-        enableProof     : true
+        clientID            : configAuth.facebookClientID,
+        clientSecret        : configAuth.facebookClientSecret,
+        callbackURL         : "/auth/facebook/callback",
+        passReqToCallback   : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        profileFields       : ['id', 'displayName', 'photos', 'email','first_name', 'last_name'],
+        enableProof         : true
 
     },
 
@@ -242,10 +242,11 @@ module.exports          = function(passport) {
     // =========================================================================
     passport.use(new TwitterStrategy({
 
-        consumerKey     : configAuth.twitterAuth.consumerKey,
-        consumerSecret  : configAuth.twitterAuth.consumerSecret,
-        callbackURL     : configAuth.twitterAuth.callbackURL,
-        passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        consumerKey         : configAuth.twitterConsumerKey,
+        consumerSecret      : configAuth.twitterConsumerSecret,
+//        callbackURL     : configAuth.twitterCallbackURL,
+        callbackURL         : '/auth/twitter/callback',
+        passReqToCallback   : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
     },
     function(req, token, tokenSecret, profile, done) {
@@ -323,8 +324,8 @@ module.exports          = function(passport) {
     // =========================================================================
     passport.use(new GoogleStrategy({
 
-        clientID            : configAuth.googleAuth.clientID,
-        clientSecret        : configAuth.googleAuth.clientSecret,
+        clientID        : configAuth.googleClientID,
+        clientSecret    : configAuth.googleClientSecret,
 //        callbackURL       : configAuth.googleAuth.callbackURL,
         callbackURL         : "/auth/google/callback",
         passReqToCallback   : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)

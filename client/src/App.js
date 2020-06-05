@@ -79,11 +79,9 @@ class App extends Component {
     }
 
     return (
-      <BrowserRouter>
           <Wrapper>
             {routes}
           </Wrapper>
-      </BrowserRouter>
     );
   }
 }

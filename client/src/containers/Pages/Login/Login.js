@@ -93,7 +93,11 @@ class Login extends Component {
     
     loginHandler = ( event ) => {
         event.preventDefault();
-        this.props.onLogin( this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup );
+        this.props.onLogin( 
+            this.state.controls.email.value, 
+            this.state.controls.password.value, 
+            this.state.isSignup 
+        );
     }
     newUserHandler = ( event ) => {
         event.preventDefault();
@@ -112,7 +116,7 @@ class Login extends Component {
     render () {
     //       let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
         let form = (
-            <form onSubmit={this.loginHandler}>
+            <form action="/auth/login" method="post">
             <legend>Log in!</legend>
             <label>Email:</label>
             <input 
@@ -139,12 +143,12 @@ class Login extends Component {
         if (!this.state.isSignup){
             form = (
             <Auxiliary>
-                <form onSubmit={this.newUserHandler}>
+                <form action="/auth/signup" method="post">
                     <legend>Register Today!</legend>
                     <label>Username:</label>
                     <input 
                         type="text"
-                        name="Username"
+                        name="username"
                         onChange={(event) => this.inputChangedHandler( event, "username")}
                         placeholder="Enter Username"
                     />
@@ -165,23 +169,23 @@ class Login extends Component {
                     <label>Email:</label>
                     <input 
                         type="email"
-                        name="Email"
+                        name="email"
                         onChange={(event) => this.inputChangedHandler( event, "email")}
                         placeholder="Enter Email"
                     />
 
                     <label>Password:</label>
                     <input 
-                        type="Password"
-                        name="Password"
+                        type="password"
+                        name="password"
                         onChange={(event) => this.inputChangedHandler( event, "password")}
                         placeholder="Enter Password"
                     />
 
                     <label>Confirm Password:</label>
                     <input 
-                        type="Password"
-                        name="Confirm Password"
+                        type="password"
+                        name="confirm Password"
                         onChange={(event) => this.inputChangedHandler( event, "confirmPassword")}
                         placeholder="Confirm Password"
                     />
@@ -255,7 +259,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogin: (email, password, isSignup) => dispatch(actions.login(email,password,isSignup)),
+        onLogin: (email, password, isSignup) => dispatch(actions.login(email, password, isSignup)),
         onSetLoginRedirectPath: () => dispatch(actions.setLoginRedirectPath('/blog')),
         onNewUser: (username, givenName, familyName, email, password, picture) => dispatch(actions.newUser(username, givenName, familyName, email, password, picture))
     }

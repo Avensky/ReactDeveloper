@@ -7,6 +7,7 @@ const app           = express()
 const PORT          = process.env.PORT || 5000;
 const bodyParser    = require('body-parser')
 //const cookieParser  = require('cookie-parser');
+const cookieParser  = require('cookie-parser');
 const session       = require('express-session')
 const passport      = require('passport')
 const mongoose      = require('mongoose')
@@ -35,13 +36,13 @@ module.exports = {mongoose}
 // )
 
 app.use(express.json())
-app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({extended: false})) // get information from html forms
+app.use(cookieParser()); // read cookies (needed for auth)
+//app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))  // get information from html forms
 
 // app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-//app.use(cookieParser()); // read cookies (needed for auth)
 app.use(session({ 
     secret: 'ilovescotchscotchyscotchscotch',   // session secret
     resave: false,
