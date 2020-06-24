@@ -17,7 +17,7 @@ const sidebar = (props) => {
             <div className={attachedClasses.join(' ')} onClick={props.closed}>
                 <Link to="/">
                     <div className={classes.Logo}>
-                        <Logo height="11%" />
+                        <Logo />
                     </div>
                 </Link>
                 <div>
