@@ -1,24 +1,29 @@
 .NavItem {
-    margin: 10px 0;
-    box-sizing: border-box;
-    display: flex;
+    margin: 0;
     width: 100%;
+    height: 6vh;
     color: #0093B9;
-    font-size: 1.15em;
+    font-size: 1.5rem;
+    display: block;
+    box-sizing: border-box;
 }
 
 .NavItem a {
+    text-decoration: none;
+    width: 100%;
     box-sizing: border-box;
+    display: block;
+    color: #7703bb;
 }
 
 .NavItem a:hover,
 .NavItem a:active,
 .NavItem a.active {
-    color: #40A4C8;
+    color: #a424ee;
 }
 
 /* responsive setting*/
-@media (min-width: 500px) {
+@media (min-width: 600px) {
     .NavItem {
         margin: 0;
         display: flex;
@@ -28,18 +33,16 @@
     }
     
     .NavItem a {
-        font-size: 1.25em;
+        height: 100%;
+        font-size: 1.5rem;
         font-weight: bold;
         color: #0093B9;
-        height: 100%;
-        padding: 16px 10px;
-        border-bottom: 3px solid transparent;
-    }
-    
-    .NavItem a:hover{
-        color: purple;
+        padding: 1.6vh 1vw;
+        border-bottom: 4px solid transparent;
+        align-items: center;
     }
 
+    .NavItem a:hover,
     .NavItem a:active,
     .NavItem a.active {
         border-bottom: 3px solid purple;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import axios from 'axios'
-import { Route, Switch, withRouter, Redirect, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/index';
 import Blog from './containers/Pages/Blog/Blog';

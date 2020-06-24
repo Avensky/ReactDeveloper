@@ -5,12 +5,12 @@ import NavItems from '../NavItems/NavItems';
 import SidebarToggle from '../Sidebar/SidebarToggle/SidebarToggle';
 
 const navbar = (props) => (
-    <nav>
+    <div className={classes.Navbar}>
         <SidebarToggle clicked={props.sidebarToggleClicked}/>
-        <div className={classes.Navbar}>
+        <div className={[classes.Navbar, classes.DesktopOnly].join(' ')}>
             <NavItems isLoggedIn={props.isLogged}/>
         </div>
-    </nav>
+    </div>
 );
 
 export default navbar;
