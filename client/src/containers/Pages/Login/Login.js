@@ -238,8 +238,8 @@ class Login extends Component {
         //}
 
         return(
-            <Layout grid="new">
-                <Header></Header>
+            <Layout>
+                <Header>Login or Sign up</Header>
                 {loginRedirect}
                 {errorMessage}
                 {body}

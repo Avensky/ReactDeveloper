@@ -104,7 +104,7 @@ class Blog extends Component {
 
         return (
             <Layout grid="blog">
-                <Header />
+                <Header >All Posts</Header>
                 <section className={classes.Blog}>
                     {featuredPost}
                     {blogPosts}

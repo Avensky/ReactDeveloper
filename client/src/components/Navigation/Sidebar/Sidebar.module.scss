@@ -13,6 +13,11 @@
     text-align: center;
 }
 
+.Logo {
+    height: 6rem;
+    margin: 1vh 0 3vh;
+}
+
 @media (min-width: 600px) {
     .Sidebar {
         display: none;
@@ -25,9 +30,4 @@
 
 .Close {
     transform: translateX(-100%);
-}
-
-.Logo {
-    height: 11%;
-    margin-bottom: 32px;
 }

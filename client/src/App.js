@@ -17,6 +17,8 @@ import Wrapper from './components/Wrapper/Wrapper';
 import FullPost from './containers/Pages/Blog/FullPost/FullPost';
 import Signup from './components/sign-up'
 import LoginForm from './components/login-form'
+import './App.scss';
+// import "./materialize-src/sass/materialize.scss";
 
 class App extends Component {
   state = {

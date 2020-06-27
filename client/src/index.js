@@ -10,6 +10,8 @@ import * as serviceWorker from './serviceWorker';
 import authReducer from './store/reducers/auth';
 import newPostReducer from './store/reducers/newPost';
 import blogReducer from './store/reducers/blog';
+import "./materialize-src/sass/materialize.scss";
+
 // Development only axios helpers!
 import axios from 'axios';
 window.axios = axios;
@@ -35,8 +37,11 @@ const app = (
     <Provider store={store}>
         <BrowserRouter>
             <App />
-            <script type="text/javascript" src="../materialize-src/js/bin/materialize.min.js"></script>
         </BrowserRouter>
+
+        {/* <script type="text/javascript" src="../src/materialize-src/js/bin/materialize.min.js"></script>
+    <script src="../materialize-src/js/bin/materialize.js"></script>
+    <script src="../materialize-src/js/bin/init.js"></script> */}
     </Provider>
 )
 

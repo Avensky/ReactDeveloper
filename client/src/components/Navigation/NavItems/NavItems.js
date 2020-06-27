@@ -4,7 +4,7 @@ import myClasses from'./NavItem/NavItem.module.scss';
 import NavItem from './NavItem/NavItem';
 
 const navItems = (props) => (
-      <ul className={classes.NavItems}>
+      <ul className={[classes.NavItems].join(' ')}>
             <NavItem link='/home'>Home</NavItem>
             <NavItem link='/about'>About</NavItem>
             <NavItem link='/blog'>Blog</NavItem>

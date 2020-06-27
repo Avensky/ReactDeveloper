@@ -6,7 +6,7 @@ import SidebarToggle from '../Sidebar/SidebarToggle/SidebarToggle';
 import { NavLink } from 'react-router-dom';
 
 const navbar = (props) => (
-    <div className={classes.Navbar}>
+    <nav className={[classes.Navbar].join(' ')} role="navigation">
         <SidebarToggle clicked={props.sidebarToggleClicked}/>
         <div className={[classes.Logo, classes.Mobile].join(' ')}>
             <NavLink  to="/">
@@ -16,7 +16,7 @@ const navbar = (props) => (
         <div className={[classes.Navbar, classes.DesktopOnly].join(' ')}>
             <NavItems isLoggedIn={props.isLogged}/>
         </div>
-    </div>
+    </nav>
 );
 
 export default navbar;

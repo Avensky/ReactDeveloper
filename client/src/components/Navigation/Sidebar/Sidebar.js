@@ -4,7 +4,7 @@ import NavItems from '../NavItems/NavItems';
 import classes from './Sidebar.module.scss';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Auxiliary from '../../../hoc/Auxiliary';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const sidebar = (props) => {
     let attachedClasses = [classes.Sidebar, classes.Close];
@@ -14,16 +14,20 @@ const sidebar = (props) => {
     return (
         <Auxiliary>
             <Backdrop show={props.open} clicked={props.closed}/>
-            <div className={attachedClasses.join(' ')} onClick={props.closed}>
-                <Link to="/">
-                    <div className={classes.Logo}>
-                        <Logo />
-                    </div>
-                </Link>
-                <div>
+            <nav 
+                role="navigation" 
+                className={attachedClasses.join(' ')} 
+                onClick={props.closed}
+            >
+                <div className={[classes.Logo, classes.Mobile].join(' ')}>
+                <NavLink  to="/">
+                    <Logo />
+                </NavLink>
+                </div>
+                <div className={[classes.Navbar, classes.DesktopOnly].join(' ')}>
                     <NavItems isLoggedIn={props.isLogged} />
                 </div>
-            </div>
+            </nav>
         </Auxiliary>
     );
 }
