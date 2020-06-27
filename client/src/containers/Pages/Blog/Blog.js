@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 //import axios from '../../../axios';
-import classes from './Blog.module.css';
+import classes from './Blog.module.scss';
 import Header from '../../Layout/Header/Header';
 import Archives from '../../Archives/Archives';
 import Post from './Posts/Post/Post';

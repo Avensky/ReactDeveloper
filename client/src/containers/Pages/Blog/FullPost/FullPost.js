@@ -6,8 +6,8 @@ import Header from '../../../Layout/Header/Header';
 import Archives from '../../../Archives/Archives';
 import * as actions from '../../../../store/actions/index'
 import Post from '../Posts/Post/Post';
-import classes from './FullPost.module.css';
-import myClasses from '../Posts/Post/Post.module.css';
+import classes from './FullPost.module.scss';
+import myClasses from '../Posts/Post/Post.module.scss';
 //import { Redirect } from 'react-router-dom'
 import Spinner from '../../../../components/UI/Spinner/Spinner'
 //import user from '../../../../assets/images/user.jpg'

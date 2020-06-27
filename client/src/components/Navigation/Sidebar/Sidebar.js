@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../Logo/Logo';
 import NavItems from '../NavItems/NavItems';
-import classes from './Sidebar.module.css';
+import classes from './Sidebar.module.scss';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Auxiliary from '../../../hoc/Auxiliary';
 import { Link } from 'react-router-dom';

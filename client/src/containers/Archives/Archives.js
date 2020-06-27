@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Archives.modules.css';
+import './Archives.modules.scss';
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
 // import Auxiliary from '../../hoc/Auxiliary';

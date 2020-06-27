@@ -1,8 +1,8 @@
 import React from 'react';
 import Layout from '../../Layout/Layout';
 //import Header from '../../Layout/Header/Header';
-import './Register.module.css';
-import classes from '../Pages.module.css';
+import './Register.module.scss';
+import classes from '../Pages.module.scss';
 
 const register = () => {
     return(

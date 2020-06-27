@@ -4,7 +4,7 @@ import Post from './Post/Post';
 import {connect} from 'react-redux';
 //import FullPost from '../FullPost/FullPost';
 import * as actions from '../../../../store/actions/index'
-import classes from './Posts.module.css';
+import classes from './Posts.module.scss';
 
 
 class Posts extends Component {

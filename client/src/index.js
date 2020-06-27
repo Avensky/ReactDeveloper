@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
+import './index.scss';
 import App from './App';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
@@ -35,6 +35,7 @@ const app = (
     <Provider store={store}>
         <BrowserRouter>
             <App />
+            <script type="text/javascript" src="../materialize-src/js/bin/materialize.min.js"></script>
         </BrowserRouter>
     </Provider>
 )

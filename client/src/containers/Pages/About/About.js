@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../../Layout/Layout';
 //import Header from '../../Layout/Header/Header';
-//import classes from './About.module.css';
+//import classes from './About.module.scss';
 
 const about = () => {
     return(

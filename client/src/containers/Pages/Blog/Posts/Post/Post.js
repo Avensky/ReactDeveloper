@@ -1,6 +1,6 @@
 import React from 'react';
 import user from '../../../../../assets/images/user.jpg'
-import classes from './Post.module.css';
+import classes from './Post.module.scss';
 //import TextTruncate from 'react-text-truncate'; // recommend
 //import { NavLink } from 'react-router-dom'
 

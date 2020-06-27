@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
 import Header from '../../Layout/Header/Header';
-import classes from '../Pages.module.css';
-import myClasses from './Login.module.css';
+import classes from '../Pages.module.scss';
+import myClasses from './Login.module.scss';
 //import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';

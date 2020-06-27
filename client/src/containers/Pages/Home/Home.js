@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Home.module.css';
+import classes from './Home.module.scss';
 import Auxiliary from '../../../hoc/Auxiliary';
 
 const home = () => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Auxiliary from '../../hoc/Auxiliary';
-import classes from './Wrapper.module.css';
+import classes from './Wrapper.module.scss';
 import Navbar from '../Navigation/Navbar/Navbar';
 import Sidebar from '../Navigation/Sidebar/Sidebar';
 import Background from '../UI/Background/Background';
