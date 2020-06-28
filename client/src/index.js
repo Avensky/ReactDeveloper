@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './index.scss';
 import App from './App';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
@@ -10,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import authReducer from './store/reducers/auth';
 import newPostReducer from './store/reducers/newPost';
 import blogReducer from './store/reducers/blog';
-import "./materialize-src/sass/materialize.scss";
+import './index.scss';
 
 // Development only axios helpers!
 import axios from 'axios';
@@ -38,10 +37,6 @@ const app = (
         <BrowserRouter>
             <App />
         </BrowserRouter>
-
-        {/* <script type="text/javascript" src="../src/materialize-src/js/bin/materialize.min.js"></script>
-    <script src="../materialize-src/js/bin/materialize.js"></script>
-    <script src="../materialize-src/js/bin/init.js"></script> */}
     </Provider>
 )
 

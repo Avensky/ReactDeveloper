@@ -18,7 +18,7 @@ import FullPost from './containers/Pages/Blog/FullPost/FullPost';
 import Signup from './components/sign-up'
 import LoginForm from './components/login-form'
 import './App.scss';
-// import "./materialize-src/sass/materialize.scss";
+
 
 class App extends Component {
   state = {
@@ -30,7 +30,6 @@ class App extends Component {
   //  this.props.onGetUser()
     this.props.autoLogin();
     this.props.onFetchUser();
-
   }
 //  updateUser (userObject) {
 //    this.setState(userObject)
