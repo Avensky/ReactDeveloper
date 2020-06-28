@@ -9,7 +9,7 @@
     --peach: #ff9469;
     --transition-delay: 0.3s;
     --transition-delay-step: 0.3s;
-    --skills-width: 120px;
+    --skills-width: 100px;
   }
   
   * {
@@ -20,6 +20,10 @@
   
   ul {
     list-style: none;
+  }
+
+  li {
+      margin: 0;
   }
   
   a {
@@ -114,7 +118,27 @@
     color: var(--black);
   }
   
-
+  /* HEADER
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .page-header {
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    z-index: 10;
+  }
+  
+  .page-header .logo {
+    font-size: 1.7rem;
+  }
+  
+  .page-header li:not(:last-child) {
+    margin-right: 20px;
+  }
+  
+  .page-header a {
+    font-size: 1.1rem;
+  }
   
   /* SCROLL-DOWN
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -125,14 +149,14 @@
     text-transform: uppercase;
     transition: all 0.5s;
   }
-   
+  
   .scroll-down.is-hidden {
     opacity: 0;
     visibility: hidden;
   }
-   
+  
   .scroll-down::after {
-    content: '';
+    content: "";
     display: block;
     margin: 3px auto 0;
     width: 1px;
@@ -141,7 +165,6 @@
     transform-origin: bottom;
     animation: pulse 3.5s infinite linear;
   }
-
   
   /* BG IMG
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -166,7 +189,7 @@
   /* CHART
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
   .chart-wrapper {
-    width: 95%;
+    width: 100%;
     max-width: 500px;
   }
   
@@ -199,28 +222,28 @@
   }
   
   .chart-wrapper.in-view .chart-skills li:nth-child(2)::before {
-    width: calc(75% - var(--skills-width));
+    width: calc(95% - var(--skills-width));
     transition-delay: calc(
       var(--transition-delay) + var(--transition-delay-step)
     );
   }
   
   .chart-wrapper.in-view .chart-skills li:nth-child(3)::before {
-    width: calc(62% - var(--skills-width));
+    width: calc(80% - var(--skills-width));
     transition-delay: calc(
       var(--transition-delay) + var(--transition-delay-step) * 2
     );
   }
   
   .chart-wrapper.in-view .chart-skills li:nth-child(4)::before {
-    width: calc(49% - var(--skills-width));
+    width: calc(60% - var(--skills-width));
     transition-delay: calc(
       var(--transition-delay) + var(--transition-delay-step) * 3
     );
   }
   
   .chart-wrapper.in-view .chart-skills li:nth-child(5)::before {
-    width: calc(38% - var(--skills-width));
+    width: calc(75% - var(--skills-width));
     transition-delay: calc(
       var(--transition-delay) + var(--transition-delay-step) * 4
     );
@@ -292,4 +315,4 @@
     html {
       font-size: 12px;
     }
-  }
+}

@@ -26,16 +26,19 @@
 }
 
 .Next {
-	margin-bottom: 15vh;
 	margin-bottom: 0vh;
 }
-.ParallaxContainer {
+
+
+.ParallaxHalf {
 	height: 60vh;
-	margin: 20vh 0;
-
 }
 
-.ParallaxContainer  img {
-	
+.vh {
+	height: 100vh;
+	padding: 10vh 0;
 }
 
+.row {
+	margin-bottom: 0;
+}

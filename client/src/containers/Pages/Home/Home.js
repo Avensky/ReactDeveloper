@@ -14,7 +14,7 @@ class Home extends Component {
                 <div className={["container", classes.Home].join(' ')}>
                     <br /><br />
                     <h1>Hello, I'm <span className={classes.highlight}>Uriel Zacarias</span></h1>
-                    <div className="row center">                    
+                    <div className="row center">                
                         <h4>Full Stack Web Developer</h4>
                         <h5 className="header col s12 light">Welcome to my site! Feel free to look around and signup!</h5>
                     </div>
@@ -24,28 +24,80 @@ class Home extends Component {
                     <br /><br />
                     <div className="position-absolute scroll-down">Scroll Down</div>
                 </div>
-                <div id="next" className={classes.Next}>
+                <div id="next" className={classes.Next}></div>
+                <div className={["container", classes.vh].join(' ')}>
+                    <div className="section">
+                        <div className="row">
+                            <div className="col s12 center">
+                                <h2>Skills</h2>
+                            </div>
+                        </div>
+                        
+                        <div className={["d-flex", "section", classes.ParallaxHalf].join(' ')} id="skills">            
+                            <div className="position-relative flex-grow-1 bg-img"></div>
+                            <div className="d-flex justify-content-center align-items-center flex-grow-1">
+                                <div className="position-relative chart-wrapper">
+                                <ul className="chart-skills">
+                                    <li className="position-relative">
+                                    <span>CSS</span>
+                                    </li>
+                                    <li className="position-relative">
+                                    <span>HTML</span>
+                                    </li>
+                                    <li className="position-relative">
+                                    <span>JavaScript</span>
+                                    </li>
+                                    <li className="position-relative">
+                                    <span>Python</span>
+                                    </li>
+                                    <li className="position-relative">
+                                    <span>Ruby</span>
+                                    </li>
+                                </ul>
+                                <ul className="d-flex position-absolute chart-levels">
+                                    <li className="flex-grow-1 position-relative">
+                                    <span className="position-absolute">Novice</span>
+                                    </li>
+                                    <li className="flex-grow-1 position-relative">
+                                    <span className="position-absolute">Beginner</span>
+                                    </li>
+                                    <li className="flex-grow-1 position-relative">
+                                    <span className="position-absolute">Intermediate</span>
+                                    </li>
+                                    <li className="flex-grow-1 position-relative">
+                                    <span className="position-absolute">Advanced</span>
+                                    </li>
+                                    <li className="flex-grow-1 position-relative">
+                                    <span className="position-absolute">Expert</span>
+                                    </li>
+                                </ul>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+                <div className={classes.vh}>
+                    <div id="index-banner" className={["parallax-container", classes.ParallaxContainer].join(' ')}>
+                        <div className={["section no-pad-bot", classes.ParallaxSection ].join(' ')}>
+                            <div className="container">
+                                <br /><br />
+                                <h1 className="header center teal-text text-lighten-2">Parallax Template</h1>
+                                <div className="row center">
+                                    <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                                </div>
+                                <div className="row center">
+                                    <a href="http://materializecss.com/getting-started.html" id="download-button" className="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+                                </div>
+                                <br /><br />
+                            </div>
+                        </div>
+                        <div className="parallax">
+                            <img src={background1} alt="Unsplashed background img 1" /></div>
+                    </div>
+
                 </div>
 
-                <div id="index-banner" className={["parallax-container", classes.ParallaxContainer].join(' ')}>
-                    <div className={["section no-pad-bot", classes.ParallaxSection ].join(' ')}>
-                        <div className="container">
-                            <br /><br />
-                            <h1 className="header center teal-text text-lighten-2">Parallax Template</h1>
-                            <div className="row center">
-                                <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-                            </div>
-                            <div className="row center">
-                                <a href="http://materializecss.com/getting-started.html" id="download-button" className="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
-                            </div>
-                            <br /><br />
-                        </div>
-                    </div>
-                    <div className="parallax">
-                        <img src={background1} alt="Unsplashed background img 1" /></div>
-                </div>
-    
-                <div className="container">
+                <div className={["container", classes.vh].join(' ')}>
                     <div className="section">
     
                         {/*  Icon Section   */}
@@ -79,42 +131,49 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
+
+
+                <div className={classes.vh}>
+                    <div className="parallax-container valign-wrapper">
+                        <div className="section no-pad-bot">
+                            <div className="container">
+                                <div className="row center">
+                                    <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="parallax"><img src={background2} alt="Unsplashed background img 2" /></div>
+                    </div>
+                </div>
+
+
+                <div className={classes.vh}>
+                    <div className="container">
+                        <div className="section">
+        
+                        <div className="row">
+                            <div className="col s12 center">
+                                <h3><i className="mdi-content-send brown-text"></i></h3>
+                                <h4>Contact Us</h4>
+                                <p className="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                            </div>
+                        </div>
+        
+                        </div>
+                    </div>
+                </div>
     
-                <div className="parallax-container valign-wrapper">
-                    <div className="section no-pad-bot">
-                        <div className="container">
-                            <div className="row center">
+                <div className={classes.vh}>
+                    <div className="parallax-container valign-wrapper">
+                        <div className="section no-pad-bot">
+                            <div className="container">
+                                <div className="row center">
                                 <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                                </div>
                             </div>
                         </div>
+                        <div className="parallax"><img src={background3} alt="Unsplashed background img 3" /></div>
                     </div>
-                    <div className="parallax"><img src={background2} alt="Unsplashed background img 2" /></div>
-                </div>
-    
-                <div className="container">
-                    <div className="section">
-    
-                    <div className="row">
-                        <div className="col s12 center">
-                            <h3><i className="mdi-content-send brown-text"></i></h3>
-                            <h4>Contact Us</h4>
-                            <p className="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-                        </div>
-                    </div>
-    
-                    </div>
-                </div>
-    
-    
-                <div className="parallax-container valign-wrapper">
-                    <div className="section no-pad-bot">
-                        <div className="container">
-                            <div className="row center">
-                            <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="parallax"><img src={background3} alt="Unsplashed background img 3" /></div>
                 </div>
     
                 <footer className="page-footer teal">
