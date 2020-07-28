@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1vw;
+    padding: 0 2vw;
     box-sizing: border-box;
     white-space: nowrap;
     z-index: 90;
@@ -16,24 +16,57 @@
     box-shadow: none;
 }
 
-.Navbar .Mobile {
-    height: 100%;
-}
-
-.Mobile a {
-    height: 80%;
-}
 
 .Navbar a {
     height: 100%;
+    margin: 0;
+    align-items: center;
 }
 
 .Navbar nav {
     height: 100%;
 }
 
+.Navbar .Mobile {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+}
+
+.Mobile a {
+    height: 80%;
+    padding: 0;
+}
+
+.Navbar h2,
+.Navbar h3 {
+    margin: 0;
+}
+
+
+a:hover {
+    color: white;
+}
+
+a:active {
+    color: white;
+    text-decoration: none;
+
+}
+
+a:link {
+    text-decoration: white;
+}
+  
+a:visited {
+    text-decoration: white;
+}
+
 .DesktopOnly {
     display: none;
+    text-align: center;
 }
 
 @media only screen and (min-width: 600px) {
@@ -44,6 +77,10 @@
 
     .Navbar .MobileLinks, .Navbar .Logo {
         display: none;
+    }
+
+    .Navbar {
+        justify-content: center;
     }
 }
 
@@ -56,6 +93,14 @@
     .Navbar .MobileLinks, .Navbar .Logo {
         display: none;
     }
+    
+    .Navbar {
+        justify-content: center;
+    }
 
+    a {
+        padding: 0;
+        
+    }
 
 }

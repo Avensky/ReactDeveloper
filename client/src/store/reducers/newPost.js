@@ -27,7 +27,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.NEW_POST_SUCCESS: return newPostSuccess(state, action);
         case actionTypes.NEW_POST_FAIL: return newPostFail(state, action);
         case actionTypes.NEW_POST_START: return newPostStart(state, action);
-        case actionTypes.NEW_POST_INIT: return newPostInit(state, action);
+        
         default: return state;
     }
 };
