@@ -1,12 +1,15 @@
-.Blog { grid-area: content; }
+.Blog { 
+    margin: 0 2vw;
+    grid-area: content; 
+}
 
 .Blog .FeaturedPost {
     height: 21rem;
-    margin: 0 0 1rem;
+    margin: 0 0 1vh;
 }
 
 .Blog .Posts {
-    height: 9.7em;
+    margin: 0 0 1vh;
 }
 
 .Blog .EditOff {

@@ -1,12 +1,8 @@
 .Archives {
     background-color: rgba(34,84,112,0.35);
     box-shadow: 0 0 20px rgba(0,0,0,.2);
-    padding: 0;
-    margin: 0;
-}
-.Archives, li {
-    margin: 0;
-    margin-left: 15px;
+    padding: 1vh 2vw 2vh;
+    margin: 0 2vw 1vh;
 }
 
 .Archives ul {
@@ -14,10 +10,6 @@
     padding-left: 15px;
 }
 
-.Archives, p {
-    margin: 0 ;
-
-}
 
 li {
     list-style: disc; 

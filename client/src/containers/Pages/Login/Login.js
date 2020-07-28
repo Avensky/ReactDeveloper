@@ -64,11 +64,19 @@ class Login extends Component {
                 }
             }
         },
-        isSignup: true
+        isSignup: true,
+        authLogin: true,
+        loading: false,
     }
 
     componentDidMount() {
         console.log("isSignup: " + this.state.isSignup)
+    }
+
+    loginToggleHandler = () => {
+        this.setState(prevState => {
+            return {authLogin: true};
+        });
     }
 
     switchModeHandler = () => {
@@ -117,21 +125,19 @@ class Login extends Component {
     //       let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
         let form = (
             <form action="/auth/login" method="post">
-            <legend>Log in!</legend>
-            <label>Email:</label>
             <input 
                 type="email"
                 name="email"
                 onChange={(event) => this.inputChangedHandler( event, "email")}
                 placeholder="Enter Email"
+                className={myClasses.AuthInput}
             />
-
-            <label>Password:</label>
             <input 
                 type="password"
                 name="password"
                 onChange={(event) => this.inputChangedHandler( event, "password")}
                 placeholder="Enter Password"
+                className={myClasses.AuthInput}
             />
             
             <input type="checkbox"/> <p className={classes.inline}>Rembember Me</p>
@@ -140,87 +146,73 @@ class Login extends Component {
             </form>
 
         )        
-        if (!this.state.isSignup){
+        if (!this.state.authLogin){
             form = (
-            <Auxiliary>
+            <Auxiliary className={myClasses.Auth}>
                 <form action="/auth/signup" method="post">
-                    <legend>Register Today!</legend>
-                    <label>Username:</label>
                     <input 
                         type="text"
                         name="username"
                         onChange={(event) => this.inputChangedHandler( event, "username")}
                         placeholder="Enter Username"
+                        className={myClasses.AuthInput}
                     />
-                    <label>First Name:</label>
                     <input 
                         type="text"
                         name="givenName"
                         onChange={(event) => this.inputChangedHandler( event, "givenName")}
                         placeholder="Enter Username"
+                        className={myClasses.AuthInput}
                     />
-                    <label>Last Name:</label>
                     <input 
                         type="text"
                         name="familyName"
                         onChange={(event) => this.inputChangedHandler( event, "familyName")}
                         placeholder="Enter Last Name"
+                        className={myClasses.AuthInput}
                     />
-                    <label>Email:</label>
                     <input 
                         type="email"
                         name="email"
                         onChange={(event) => this.inputChangedHandler( event, "email")}
                         placeholder="Enter Email"
+                        className={myClasses.AuthInput}
                     />
-
-                    <label>Password:</label>
                     <input 
                         type="password"
                         name="password"
                         onChange={(event) => this.inputChangedHandler( event, "password")}
                         placeholder="Enter Password"
+                        className={myClasses.AuthInput}
                     />
-
-                    <label>Confirm Password:</label>
                     <input 
                         type="password"
                         name="confirm Password"
                         onChange={(event) => this.inputChangedHandler( event, "confirmPassword")}
                         placeholder="Confirm Password"
+                        className={myClasses.AuthInput}
                     />
-                    <p>Update profile picture</p>
                     <input 
                         className={classes.picure} 
                         type="file" 
                         name="picture"
+                        className={myClasses.AuthInput}
                     />
                         <button 
                             className={classes.btn}>Register</button>
+                        
+                        <button className={[myClasses.Btn, classes.AuthBtn, 'auth-btn' ].join(' ')}>
+                            <div className={myClasses.BtnDiv}>
+                                <span className="fa fa-user"></span> Sign Up
+                            </div>
+                        </button>
                     </form>
                 </Auxiliary>
             )
         }
-
-        let body = (
-            <div className={classes.Pages}>
-                {form}
-                <button 
-                    onClick={this.switchModeHandler}
-                    className={myClasses.Danger}
-                >{this.state.isSignup ? 'Need an account? Sign up!' : 'Already registered? Sign in!'}</button>
-                <a href="/auth/google" className="btn btn-danger">Google</a>
-                <a href="/auth/facebook"className="btn btn-primary">Facebook</a>
-                <a href="/auth/twitter" className="btn btn-info">Twitter</a>
-                <p>Forgot Password?</p>
-                <div className={classes.borderTop + classes.pt3}  />
-                
-                <div className={classes.borderTop + classes.pt3}  />
-            </div>
-        )
  
         
-        if (this.props.loading) {
+        if (this.state.loading) {
             form = <Spinner />
         }
 
@@ -237,12 +229,57 @@ class Login extends Component {
         //    loginRedirect = <Redirect to={this.props.loginRedirectPath}/>
         //}
 
+        
+        let selected, unselected = myClasses.AuthToggle;
+        if  ( this.state.authLogin === false){
+            selected = myClasses.AuthToggle
+            unselected = [myClasses.AuthToggle, myClasses.AuthSelected].join(' ')
+        }
+        if  ( this.state.authLogin === true){
+            selected = [myClasses.AuthToggle, myClasses.AuthSelected].join(' ')
+            unselected = myClasses.AuthToggle
+
+        }
+
         return(
             <Layout>
-                <Header>Login or Sign up</Header>
                 {loginRedirect}
                 {errorMessage}
-                {body}
+                <div className={[classes.Card, myClasses.Auth].join(' ')}>
+                    <div className={myClasses.AuthNav}>
+                        <button 
+                            onClick={this.loginToggleHandler}
+                            className={selected}
+                        ><h2><span className="fa fa-sign-in" /> Login</h2>
+                        </button>
+
+                        <button 
+                            onClick={this.registerToggleHandler}
+                            className={unselected}
+                        ><h2><span className="fa fa-user" /> Signup</h2>
+                        </button>   
+                    </div>
+                </div>
+                <div className={[classes.Pages].join(' ')}>
+                {form}
+                <button 
+                    onClick={this.switchModeHandler}
+                    className={myClasses.Danger}
+                >{this.state.isSignup ? 'Need an account? Sign up!' : 'Already registered? Sign in!'}</button>                
+                <button className={[myClasses.Btn, "btn-primary"].join(' ')}>
+                    <a href="/auth/facebook"><span className="fa fa-facebook" /> Facebook</a>
+                </button>
+                <button className={[myClasses.Btn, "btn-info"].join(' ')}>
+                    <a href="/auth/twitter"><span className="fa fa-twitter" /> Twitter</a>
+                </button>
+                <button className={[myClasses.Btn, "btn-danger"].join(' ')}>
+                    <a href="/auth/google"><span className="fa fa-google-plus" /> Google+</a>
+                </button>
+                <p>Forgot Password?</p>
+                <div className={classes.borderTop + classes.pt3}  />
+                
+                <div className={classes.borderTop + classes.pt3}  />
+            </div>
             </Layout>
             )
     }

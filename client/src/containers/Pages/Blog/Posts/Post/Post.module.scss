@@ -13,7 +13,7 @@
 
 .Card {   
 	grid-template-columns: 3fr 1fr;
-    grid-template-rows: 30px 30px  1fr;
+    grid-template-rows: 30px 30px 1fr;
     grid-template-areas:
 		"title thumbnail"
 		"details thumbnail"
@@ -21,18 +21,17 @@
 }
 
 .CardTitle {
+    font-size: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    grid-area: title;
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: 3px;
     display: flex;
+    grid-area: title;
 }
 
 
 .CardTitle h1{ 
+    font-size: 2rem;
     margin: 0;
     align-items: baseline;
 }
@@ -40,31 +39,34 @@
 
 .CardDetails {
     overflow: hidden;
+    font-size: 1.5rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: flex;
     align-self: start;
     align-items: center;
-    font-size: .85rem;
     margin:0;
 
 }
 
 .CardDetails h2 {
-    font-weight: 600;
+    font-size: 1.5rem;
     letter-spacing: 1px;
     color: #42C3C9;
     margin:0;
 }
 
 .CardDetails p {
+    font-size: 1.25rem;
     font-weight: 400;
     letter-spacing: 2px;
     margin:0;
 }
 
 .CardDescription {
+    height: 20vh;
     white-space: wrap;
+    font-size: 1.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     grid-area: description;
