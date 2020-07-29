@@ -16,7 +16,7 @@ const flash         = require('connect-flash')
 // const cookieSession = require('cookie-session');
 
 // configuration ===============================================================
-//require('./app/models/user');
+require('./app/models/user');
 //require('./app/models/Post');
 require('./config/passport')(passport); // pass passport for configuration
 
