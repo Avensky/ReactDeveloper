@@ -1,22 +1,27 @@
 import React from 'react';
-import classes from './Navbar.module.scss'
+import classes from '../../../containers/Pages/Pages.module.scss'
+import myClasses from './Navbar.module.scss'
 import Logo from '../../Logo/Logo';
 import NavItems from '../NavItems/NavItems';
 import SidebarToggle from '../Sidebar/SidebarToggle/SidebarToggle';
 import { NavLink } from 'react-router-dom';
 
 const navbar = (props) => (
-    <nav className={[classes.Navbar].join(' ')} role="navigation">
+    <div className={myClasses.Navbar}>
         <SidebarToggle clicked={props.sidebarToggleClicked}/>
-        <div className={[classes.Logo, classes.Mobile].join(' ')}>
-            <NavLink  to="/">
-                <Logo />    
-            </NavLink >
+        <div className={[myClasses.MobileLinks, myClasses.Mobile].join(' ')}>
+        <div className={[myClasses.Logo, myClasses.Mobile].join(' ')}>
+            <a  href="/home">
+                <div className={myClasses.Logo}>
+                    <Logo />   
+                </div> 
+            </a >
         </div>
-        <div className={[classes.Navbar, classes.DesktopOnly].join(' ')}>
+        </div>
+        <div className={myClasses.DesktopOnly}>
             <NavItems isLoggedIn={props.isLogged}/>
         </div>
-    </nav>
+    </div>
 );
 
 export default navbar;

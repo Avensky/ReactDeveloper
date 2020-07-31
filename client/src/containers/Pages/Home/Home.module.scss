@@ -1,3 +1,36 @@
+.Skills {
+	flex-direction: column;
+	padding-right: 2vw;
+}
+
+.SkillBtn {
+	margin: 5vh 0 10vh;
+}
+
+.SkillChart {
+
+}
+
+.vh {
+	height: 100vh;
+	width: 100%;
+	
+	position: relative;
+}
+
+.ParallaxContainer {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+
+}
+
+.About {
+	padding: 0 5vw;
+}
+
 .Home {
 	padding: 15vh 0 0;
 	width: 100%;
@@ -10,7 +43,6 @@
 	color: #9cdee7;
 	text-shadow: 2px 2px 4px #000000;
 }
-
 
 .Home h4{
 	text-shadow: 2px 2px 2px #000000;
@@ -32,11 +64,7 @@
 
 .ParallaxHalf {
 	height: 60vh;
-}
-
-.vh {
-	height: 100vh;
-	padding: 10vh 0;
+	flex-direction: column;
 }
 
 .row {

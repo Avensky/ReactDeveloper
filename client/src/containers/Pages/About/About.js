@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../../Layout/Layout';
 //import Header from '../../Layout/Header/Header';
 //import classes from './About.module.scss';
-import background2 from '../../../assets/images/background2.jpg'
+//import background2 from '../../../assets/images/background2.jpg'
 
 const about = () => {
     return(
