@@ -5,11 +5,39 @@ import classes from './Home.module.scss';
 import background1 from '../../../assets/images/background1.jpg';
 import background2 from '../../../assets/images/background2.jpg';
 import background3 from '../../../assets/images/background3.jpg';
+import Auxiliary from '../../../hoc/Auxiliary';
 // import $ from 'jquery'
 class Home extends Component {
+    componentDidMount(){
+            
+    const chartWrapper = document.querySelector(".chart-wrapper");
+    const scrollDown = document.querySelector(".scroll-down");
+    
+    function isElementInViewport(el) {
+      var rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+    
+    window.addEventListener("scroll", scrollHandler);
+    
+    function scrollHandler() {
+      window.pageYOffset > 0
+        ? scrollDown.classList.add("is-hidden")
+        : scrollDown.classList.remove("is-hidden");
+      if (isElementInViewport(chartWrapper)) chartWrapper.classList.add("in-view");
+    }
 
+    }
+    
     render() {
         return (
+            <Auxiliary>
             <Layout>
                 <div className={["container", classes.Home].join(' ')}>
                     <br /><br />
@@ -175,41 +203,41 @@ class Home extends Component {
                         <div className="parallax"><img src={background3} alt="Unsplashed background img 3" /></div>
                     </div>
                 </div>
-    
-                <footer className="page-footer teal">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col l6 s12">
-                                <h5 className="white-text">Company Bio</h5>
-                                <p className="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-                            </div>
-                            <div className="col l3 s12">
-                                <h5 className="white-text">Settings</h5>
-                                <ul>
-                                    <li><a className="white-text" href="#!">Link 1</a></li>
-                                    <li><a className="white-text" href="#!">Link 2</a></li>
-                                    <li><a className="white-text" href="#!">Link 3</a></li>
-                                    <li><a className="white-text" href="#!">Link 4</a></li>
-                                </ul>
-                            </div>
-                            <div className="col l3 s12">
-                                <h5 className="white-text">Connect</h5>
-                                <ul>
-                                    <li><a className="white-text" href="#!">Link 1</a></li>
-                                    <li><a className="white-text" href="#!">Link 2</a></li>
-                                    <li><a className="white-text" href="#!">Link 3</a></li>
-                                    <li><a className="white-text" href="#!">Link 4</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="footer-copyright">
-                        <div className="container">
-                            Made by <a className="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-                        </div>
-                    </div>
-                </footer>
             </Layout>
+                            <footer className="page-footer teal">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col l6 s12">
+                                        <h5 className="white-text">Company Bio</h5>
+                                        <p className="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                                    </div>
+                                    <div className="col l3 s12">
+                                        <h5 className="white-text">Settings</h5>
+                                        <ul>
+                                            <li><a className="white-text" href="#!">Link 1</a></li>
+                                            <li><a className="white-text" href="#!">Link 2</a></li>
+                                            <li><a className="white-text" href="#!">Link 3</a></li>
+                                            <li><a className="white-text" href="#!">Link 4</a></li>
+                                        </ul>
+                                    </div>
+                                    <div className="col l3 s12">
+                                        <h5 className="white-text">Connect</h5>
+                                        <ul>
+                                            <li><a className="white-text" href="#!">Link 1</a></li>
+                                            <li><a className="white-text" href="#!">Link 2</a></li>
+                                            <li><a className="white-text" href="#!">Link 3</a></li>
+                                            <li><a className="white-text" href="#!">Link 4</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="footer-copyright">
+                                <div className="container">
+                                    Made by <a className="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                                </div>
+                            </div>
+                        </footer>
+                        </Auxiliary>
         )
         
     }

@@ -6,8 +6,8 @@ const initialState = {
     loading: false,
 };
 
-const newPostInit = (state, action) => {
-    return updateObject( state, { posted: false });}
+//const newPostInit = (state, action) => {
+//    return updateObject( state, { posted: false });}
 
 const newPostStart = (state, action) => {
     return updateObject( state, { loading: true });}

@@ -30,30 +30,29 @@ class App extends Component {
   //  this.props.onGetUser()
     this.props.autoLogin();
     this.props.onFetchUser();
-    
-//    const chartWrapper = document.querySelector(".chart-wrapper");
-//    const scrollDown = document.querySelector(".scroll-down");
-//    
-//    function isElementInViewport(el) {
-//      var rect = el.getBoundingClientRect();
-//      return (
-//        rect.top >= 0 &&
-//        rect.left >= 0 &&
-//        rect.bottom <=
-//          (window.innerHeight || document.documentElement.clientHeight) &&
-//        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-//      );
-//    }
-//    
-//    window.addEventListener("scroll", scrollHandler);
-//    
-//    function scrollHandler() {
+  }
+
+//  isElementInViewport = (el) =>{
+//    var rect = el.getBoundingClientRect();
+//    return (
+//      rect.top >= 0 &&
+//      rect.left >= 0 &&
+//      rect.bottom <=
+//        (window.innerHeight || document.documentElement.clientHeight) &&
+//      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+//    );
+//  }
+
+//  scrollHandler = () => {
+//    let chartWrapper = document.querySelector(".chart-wrapper");
+//    let scrollDown = document.querySelector(".scroll-down");
 //      window.pageYOffset > 0
 //        ? scrollDown.classList.add("is-hidden")
 //        : scrollDown.classList.remove("is-hidden");
-//      if (isElementInViewport(chartWrapper)) chartWrapper.classList.add("in-view");
+//      if (this.isElementInViewport(chartWrapper)) chartWrapper.classList.add("in-view");
 //    }
-  }
+
+
 //  updateUser (userObject) {
 //    this.setState(userObject)
 //  }
@@ -61,12 +60,12 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
-        <Route path="/home" exact component={Home} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/fullPost" component={FullPost} />
-        <Route path="/posts" exact component={Posts} />
-        <Route path="/about" component={About} />
-        <Route path="/projects" component={Projects} />
+        <Route path="/home"       exact component={Home} />
+        <Route path="/blog"       component={Blog} />
+        <Route path="/fullPost"   component={FullPost} />
+        <Route path="/posts"      exact component={Posts} />
+        <Route path="/about"      component={About} />
+        <Route path="/projects"   component={Projects} />
         <Route 
           path="/login" 
           component={Login}

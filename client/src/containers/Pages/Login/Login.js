@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
-import Header from '../../Layout/Header/Header';
+//import Header from '../../Layout/Header/Header';
 import classes from '../Pages.module.scss';
 import myClasses from './Login.module.scss';
 //import { Redirect } from 'react-router-dom';
@@ -245,27 +245,28 @@ class Login extends Component {
             <Layout>
                 {loginRedirect}
                 {errorMessage}
+                <div className='container'>
+                    <div className={['page-header', 'text-center'].join(' ')}>
+                        <a href='/shop' ><h3>Join the Team!</h3></a>
+                    </div>
+                </div>
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
                         <button 
                             onClick={this.loginToggleHandler}
                             className={selected}
-                        ><h2><span className="fa fa-sign-in" /> Login</h2>
+                        ><h3><span className="fa fa-sign-in" /> Login</h3>
                         </button>
 
                         <button 
                             onClick={this.registerToggleHandler}
                             className={unselected}
-                        ><h2><span className="fa fa-user" /> Signup</h2>
+                        ><h3><span className="fa fa-user" /> Signup</h3>
                         </button>   
                     </div>
                 </div>
-                <div className={[classes.Pages].join(' ')}>
                 {form}
-                <button 
-                    onClick={this.switchModeHandler}
-                    className={myClasses.Danger}
-                >{this.state.isSignup ? 'Need an account? Sign up!' : 'Already registered? Sign in!'}</button>                
+                <div className={classes.CardTitle}>Or continue with:</div>                
                 <button className={[myClasses.Btn, "btn-primary"].join(' ')}>
                     <a href="/auth/facebook"><span className="fa fa-facebook" /> Facebook</a>
                 </button>
@@ -277,11 +278,9 @@ class Login extends Component {
                 </button>
                 <p>Forgot Password?</p>
                 <div className={classes.borderTop + classes.pt3}  />
-                
-                <div className={classes.borderTop + classes.pt3}  />
-            </div>
+            
             </Layout>
-            )
+        )
     }
 }
 
