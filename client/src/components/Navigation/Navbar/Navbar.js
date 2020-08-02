@@ -1,10 +1,10 @@
 import React from 'react';
-import classes from '../../../containers/Pages/Pages.module.scss'
+//import classes from '../../../containers/Pages/Pages.module.scss'
 import myClasses from './Navbar.module.scss'
 import Logo from '../../Logo/Logo';
 import NavItems from '../NavItems/NavItems';
 import SidebarToggle from '../Sidebar/SidebarToggle/SidebarToggle';
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
 
 const navbar = (props) => (
     <div className={myClasses.Navbar}>

@@ -3,11 +3,11 @@ import './Home.module.scss';
 import Layout from '../../Layout/Layout';
 import classes from './Home.module.scss';
 import background1 from '../../../assets/images/background1.jpg';
-import background2 from '../../../assets/images/background2.jpg';
+//import background2 from '../../../assets/images/background2.jpg';
 import background3 from '../../../assets/images/background3.jpg';
 import Auxiliary from '../../../hoc/Auxiliary';
-import { NavLink } from 'react-router-dom';
-import Header from '../../Layout/Header/Header';
+//import { NavLink } from 'react-router-dom';
+//import Header from '../../Layout/Header/Header';
 // import $ from 'jquery'
 class Home extends Component {
     componentDidMount(){

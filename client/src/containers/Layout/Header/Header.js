@@ -10,10 +10,11 @@ const header = (props) => {
             <div className={classes.HeaderRight}>
                 <div className={classes.HeaderItem}>
                     <a href="...">+</a>
-                <p className={classes.CardNewPostTitle}>{props.children}</p>
+                    <p className={classes.CardNewPostTitle}>{props.children}</p>
+                </div>
             </div>
+            <p>{props.error}</p>
         </div>
-    </div>
     )
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
-//import Header from '../../Layout/Header/Header';
+import Header from '../../Layout/Header/Header';
 import classes from '../Pages.module.scss';
 import myClasses from './Login.module.scss';
 //import { Redirect } from 'react-router-dom';
@@ -193,10 +193,9 @@ class Login extends Component {
                         className={myClasses.AuthInput}
                     />
                     <input 
-                        className={classes.picure} 
+                        className={[myClasses.AuthInput, classes.picure]} 
                         type="file" 
                         name="picture"
-                        className={myClasses.AuthInput}
                     />
                         <button 
                             className={classes.btn}>Register</button>
@@ -244,12 +243,7 @@ class Login extends Component {
         return(
             <Layout>
                 {loginRedirect}
-                {errorMessage}
-                <div className='container'>
-                    <div className={['page-header', 'text-center'].join(' ')}>
-                        <a href='/shop' ><h3>Join the Team!</h3></a>
-                    </div>
-                </div>
+                <Header errror={errorMessage}>Log in or Sign up</Header>
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
                         <button 
@@ -264,21 +258,21 @@ class Login extends Component {
                         ><h3><span className="fa fa-user" /> Signup</h3>
                         </button>   
                     </div>
+                
+                    {form}
+                    <div className={classes.CardTitle}>Or continue with:</div>                
+                    <button className={[myClasses.Btn, "btn-primary"].join(' ')}>
+                        <a href="/auth/facebook"><span className="fa fa-facebook" /> Facebook</a>
+                    </button>
+                    <button className={[myClasses.Btn, "btn-info"].join(' ')}>
+                        <a href="/auth/twitter"><span className="fa fa-twitter" /> Twitter</a>
+                    </button>
+                    <button className={[myClasses.Btn, "btn-danger"].join(' ')}>
+                        <a href="/auth/google"><span className="fa fa-google-plus" /> Google+</a>
+                    </button>
+                    <p>Forgot Password?</p>
+                    <div className={classes.borderTop + classes.pt3}  />
                 </div>
-                {form}
-                <div className={classes.CardTitle}>Or continue with:</div>                
-                <button className={[myClasses.Btn, "btn-primary"].join(' ')}>
-                    <a href="/auth/facebook"><span className="fa fa-facebook" /> Facebook</a>
-                </button>
-                <button className={[myClasses.Btn, "btn-info"].join(' ')}>
-                    <a href="/auth/twitter"><span className="fa fa-twitter" /> Twitter</a>
-                </button>
-                <button className={[myClasses.Btn, "btn-danger"].join(' ')}>
-                    <a href="/auth/google"><span className="fa fa-google-plus" /> Google+</a>
-                </button>
-                <p>Forgot Password?</p>
-                <div className={classes.borderTop + classes.pt3}  />
-            
             </Layout>
         )
     }
