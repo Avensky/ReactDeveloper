@@ -64,24 +64,17 @@ class Login extends Component {
                 }
             }
         },
-        isSignup: true,
         authLogin: true,
         loading: false,
     }
 
     componentDidMount() {
-        console.log("isSignup: " + this.state.isSignup)
-    }
-
-    loginToggleHandler = () => {
-        this.setState(prevState => {
-            return {authLogin: true};
-        });
+        console.log("isSignup: " + this.state.authLogin)
     }
 
     switchModeHandler = () => {
         this.setState(prevState => {
-            return {isSignup: !prevState.isSignup};
+            return {authLogin: !prevState.authLogin};
         });
     }
 
@@ -104,7 +97,7 @@ class Login extends Component {
         this.props.onLogin( 
             this.state.controls.email.value, 
             this.state.controls.password.value, 
-            this.state.isSignup 
+            this.state.authLogin 
         );
     }
     newUserHandler = ( event ) => {
@@ -124,7 +117,7 @@ class Login extends Component {
     render () {
     //       let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
         let form = (
-            <form action="/auth/login" method="post">
+            <form action="/api/login" method="post">
             <input 
                 type="email"
                 name="email"
@@ -140,49 +133,45 @@ class Login extends Component {
                 className={myClasses.AuthInput}
             />
             
-            <input type="checkbox"/> <p className={classes.inline}>Rembember Me</p>
+            <input type="checkbox"/> <h5 className={classes.inline}>Rembember Me</h5>
                     <button 
-                        className={classes.btn}>Login</button>
+                        className={[myClasses.Btn, myClasses.AuthBtn].join(' ')}
+                    ><div className={myClasses.BtnDiv}>Login</div></button>
             </form>
 
         )        
         if (!this.state.authLogin){
             form = (
             <Auxiliary className={myClasses.Auth}>
-                <form action="/auth/signup" method="post">
-                    <input 
-                        type="text"
-                        name="username"
-                        onChange={(event) => this.inputChangedHandler( event, "username")}
-                        placeholder="Enter Username"
-                        className={myClasses.AuthInput}
-                    />
-                    <input 
-                        type="text"
-                        name="givenName"
-                        onChange={(event) => this.inputChangedHandler( event, "givenName")}
-                        placeholder="Enter Username"
-                        className={myClasses.AuthInput}
-                    />
-                    <input 
-                        type="text"
-                        name="familyName"
-                        onChange={(event) => this.inputChangedHandler( event, "familyName")}
-                        placeholder="Enter Last Name"
-                        className={myClasses.AuthInput}
-                    />
+                <form action="/api/signup" method="post">
+                    <div className={classes.line}>
+                        <input 
+                            type="text"
+                            name="givenName"
+                            onChange={(event) => this.inputChangedHandler( event, "givenName")}
+                            placeholder="First Name"
+                            className={myClasses.AuthInput}
+                        />
+                        <input 
+                            type="text"
+                            name="familyName"
+                            onChange={(event) => this.inputChangedHandler( event, "familyName")}
+                            placeholder="Last Name"
+                            className={myClasses.AuthInput}
+                        />
+                    </div>
                     <input 
                         type="email"
                         name="email"
                         onChange={(event) => this.inputChangedHandler( event, "email")}
-                        placeholder="Enter Email"
+                        placeholder="Email"
                         className={myClasses.AuthInput}
                     />
                     <input 
                         type="password"
                         name="password"
                         onChange={(event) => this.inputChangedHandler( event, "password")}
-                        placeholder="Enter Password"
+                        placeholder="Password"
                         className={myClasses.AuthInput}
                     />
                     <input 
@@ -197,14 +186,9 @@ class Login extends Component {
                         type="file" 
                         name="picture"
                     />
-                        <button 
-                            className={classes.btn}>Register</button>
-                        
-                        <button className={[myClasses.Btn, classes.AuthBtn, 'auth-btn' ].join(' ')}>
-                            <div className={myClasses.BtnDiv}>
-                                <span className="fa fa-user"></span> Sign Up
-                            </div>
-                        </button>
+                    <button 
+                        className={[myClasses.Btn, myClasses.AuthBtn].join(' ')}
+                    ><div className={myClasses.BtnDiv}><span className="fa fa-user"></span> Sign Up</div></button>
                     </form>
                 </Auxiliary>
             )
@@ -247,15 +231,16 @@ class Login extends Component {
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
                         <button 
-                            onClick={this.loginToggleHandler}
+                            onClick={this.switchModeHandler}
                             className={selected}
-                        ><h3><span className="fa fa-sign-in" /> Login</h3>
+                        ><div className={myClasses.BtnDiv}
+                        ><h3><span className="fa fa-sign-in" /> Login</h3></div>
                         </button>
 
                         <button 
-                            onClick={this.registerToggleHandler}
+                            onClick={this.switchModeHandler}
                             className={unselected}
-                        ><h3><span className="fa fa-user" /> Signup</h3>
+                        ><div className={myClasses.BtnDiv}><h3><span className="fa fa-user" /> Signup</h3></div>
                         </button>   
                     </div>
                 

@@ -14,7 +14,7 @@ const navItems = (props) => (
             {props.isLoggedIn 
                   ? <NavItem link='/account'>Account</NavItem>
                   : null}
-            {!props.isLoggedIn 
+            {props.isLoggedIn 
                   ? <NavItem link='/login'>Login</NavItem> 
                   : <li className={myClasses.NavItem}><a href="/api/logout">Logout</a></li>}
       </ul>
