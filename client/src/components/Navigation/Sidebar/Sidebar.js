@@ -25,7 +25,7 @@ const sidebar = (props) => {
                 </NavLink>
                 </div>
                 <div className={[classes.Navbar, classes.DesktopOnly].join(' ')}>
-                    <NavItems isLoggedIn={props.isLogged} />
+                    <NavItems isLoggedIn={props.isLogged} logout={props.logout}/>
                 </div>
             </nav>
         </Auxiliary>

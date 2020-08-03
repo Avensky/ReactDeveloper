@@ -227,7 +227,7 @@ class Login extends Component {
         return(
             <Layout>
                 {loginRedirect}
-                <Header errror={errorMessage}>Log in or Sign up</Header>
+                <Header errror={errorMessage}></Header>
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
                         <button 

@@ -86,13 +86,13 @@ export const login = (email, password, isSignup) => {
         }        
         axios.post('/api/login', authData)
             .then(response => {
-//                console.log(response);
-//                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-//                localStorage.setItem('token', response.data.idToken);
-//                localStorage.setItem('expirationDate', expirationDate);
-//                localStorage.setItem('userId', response.data.localId); 
-//                dispatch(loginSuccess(response.data.idToken, response.data.localId));
-//                dispatch(checkLoginTimeout(response.data.expiresIn));
+                console.log(response);
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userId', response.data.localId); 
+                dispatch(loginSuccess(response.data.idToken, response.data.localId));
+                dispatch(checkLoginTimeout(response.data.expiresIn));
                 dispatch(loginSuccess(response)) 
 })
             .catch(err => {

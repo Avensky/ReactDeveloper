@@ -59,9 +59,9 @@ module.exports = function(app, passport) {
             // =====================================
             // LOGIN ===============================
             // =====================================
-            app.post('/auth/login', passport.authenticate('local-login', {
-                successRedirect : '/profile', // redirect to the secure profile section
-    //			failureRedirect : '/', // redirect back to the signup page if there is an error
+            app.post('/api/login', passport.authenticate('local-login', {
+                successRedirect : '/blog', // redirect to the secure profile section
+    			failureRedirect : '/login', // redirect back to the signup page if there is an error
                 failureFlash : true // allow flash messages
             }));
             // =====================================

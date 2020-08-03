@@ -25,17 +25,25 @@ class Wrapper extends Component {
         });
     }
 
+    logoutHandler = () => {
+        this.props.onLogout()        
+    }
+
     render () {
         return (    
             <Auxiliary>
                 <Background />
                 <Navbar 
-                    isLogged={this.props.isLoggedIn}
-                    sidebarToggleClicked={this.sidebarToggleHandler} />
+                    isLogged                ={this.props.isLoggedIn}
+                    sidebarToggleClicked    ={this.sidebarToggleHandler} 
+                    logout                  = {this.logoutHandler}
+                />
                 <Sidebar 
-                    isLogged={this.state.isLoggedIn}
-                    open={this.state.showSidebar} 
-                    closed={this.sidebarClosedHandler} />
+                    isLogged                ={this.props.isLoggedIn}
+                    open                    ={this.state.showSidebar} 
+                    closed                  ={this.sidebarClosedHandler} 
+                    logout                  = {this.logoutHandler}
+                />
                 <main className={classes.Wrapper}>
                     {this.props.children}
                 </main>
@@ -51,7 +59,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchPosts:  () => dispatch( actions.fetchPosts()),
-        onFetchUser: () => dispatch(actions.fetchUser())
+        onFetchUser: () => dispatch(actions.fetchUser()),
+        onLogout: () => dispatch(actions.logout())
     }
 }
 
