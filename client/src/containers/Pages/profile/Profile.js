@@ -7,7 +7,58 @@ import myClasses from './Profile.module.scss';
 
 class Login extends Component {
     render () {
-        
+        let payload = this.props.payload
+        let local, facebook, twitter, google = '';
+        if (this.props.payload['local']) {
+            local = (
+            <Link 
+                id = {this.props.payload['_id']}
+                link = "Local"
+                email = {this.props.payload['local'].email}
+                token = {this.props.payload['local'].token}
+                name = "Name"
+                icon = "fa-user"
+                mystyle = "auth-btn"
+            />)
+        }
+        if (this.props.payload['facebook']){
+            facebook = (
+                <Link 
+                id      = {this.props.payload['facebook'].id}
+                link    = "Facebook"
+                email   = {this.props.payload['facebook'].email}
+                token   = {this.props.payload['facebook'].token}
+                name    = {this.props.payload['facebook'].name}
+                icon    = "fa-facebook"
+                mystyle = "btn-primary"
+            />                )
+        }
+        if (this.props.payload['twitter']){
+            twitter = (
+                <Link 
+                id          = {this.props.payload['twitter'].id}
+                link        = "Twitter"
+                displayName = {this.props.payload['twitter'].displayName}                        token       = "token"
+                username    = {this.props.payload['twitter'].username}
+                token       = {this.props.payload['twitter'].token}
+                icon        = "fa-twitter"
+                mystyle     = "btn-info"
+            />
+            )
+        }
+        if (this.props.payload['google']){
+            google =(
+                <Link 
+                id = {this.props.payload['google'].id}
+                link = "Google"
+                email = {this.props.payload['google'].email}
+                token = {this.props.payload['google'].token}
+                name = {this.props.payload['google'].name}
+                icon = "fa-google-plus"
+                mystyle = "btn-danger"
+            />
+            )
+        }
         let body = (
             <Auxiliary>
                 <div className="container">
@@ -16,44 +67,12 @@ class Login extends Component {
         
                     </div>
                 </div>
+
                 <div className={[classes.Card, myClasses.Profile].join(' ')}>
-                    <Link 
-                        id = "id"
-                        link = "Local"
-                        email = "Email"
-                        name = "Name"
-                        icon = "fa-user"
-                        mystyle = "auth-btn"
-                    />
-
-                    <Link 
-                        id = "id"
-                        link = "Facebook"
-                        email = "Email"
-                        token = "Token"
-                        name = "name"
-                        icon = "fa-facebook"
-                        mystyle = "btn-primary"
-                    />
-                    <Link 
-                        id = "id"
-                        link = "Twitter"
-                        displayName = "displayName"
-                        token = "token"
-                        username = "username"
-                        icon = "fa-twitter"
-                        mystyle = "btn-info"
-                    />
-                    <Link 
-                        id = "id"
-                        link = "Google+"
-                        email = "Email"
-                        token = "token"
-                        name = "name"
-                        icon = "fa-google-plus"
-                        mystyle = "btn-danger"
-                    />
-
+                    {local}
+                    {facebook}
+                    {twitter}
+                    {google}      
                 </div>                  
                 </Auxiliary>
             )
@@ -68,7 +87,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        facebook:      state.auth.payload,
+        payload:      state.auth.payload,
     }
 }
 
