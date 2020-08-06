@@ -17,7 +17,7 @@ import Wrapper    from './components/Wrapper/Wrapper';
 import FullPost   from './containers/Pages/Blog/FullPost/FullPost';
 import Signup     from './components/sign-up';
 import LoginForm  from './components/login-form';
-import Profile    from './containers/Pages/Profile/Profile';
+//import Profile    from './containers/Pages/Profile/Profile';
 import './App.scss';
 
 
@@ -97,7 +97,8 @@ class App extends Component {
           <Route path="/posts" exact component={Posts} />
           <Route path="/newPost" exact component={NewPost} />
           <Route path="/projects" component={Projects} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" //component={Profile} 
+          />
           <Route path="/account" component={Account} />
           <Redirect to="/home" /> 
         </Switch>
