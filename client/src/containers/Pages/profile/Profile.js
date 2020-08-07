@@ -14,7 +14,7 @@ class Login extends Component {
             <Link 
                 id = {this.props.payload['_id']}
                 link = "Local"
-                email = {this.props.payload['local'].email}
+                email = {this.props.paylfoad['local'].email}
                 token = {this.props.payload['local'].token}
                 name = "Name"
                 icon = "fa-user"
