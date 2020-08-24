@@ -133,10 +133,9 @@ class Login extends Component {
                 className={myClasses.AuthInput}
             />
             
-            <input type="checkbox"/> <h5 className={classes.inline}>Rembember Me</h5>
-                    <button 
-                        className={[myClasses.Btn, myClasses.AuthBtn].join(' ')}
-                    ><div className={myClasses.BtnDiv}>Login</div></button>
+                <button 
+                    className={[myClasses.Btn, myClasses.AuthBtn].join(' ')}
+                ><div className={myClasses.BtnDiv}>Login</div></button>
             </form>
 
         )        
@@ -227,6 +226,11 @@ class Login extends Component {
         return(
             <Layout>
                 {loginRedirect}
+                <div className='container'>
+                    <div className={['page-header', 'text-center'].join(' ')}>
+                        <h3>Join the Team!</h3>
+                    </div>
+                </div>
                
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
@@ -234,27 +238,32 @@ class Login extends Component {
                             onClick={this.switchModeHandler}
                             className={selected}
                         ><div className={myClasses.BtnDiv}
-                        ><h3><span className="fa fa-sign-in" /> Login</h3></div>
+                        ><h4><span className="fa fa-sign-in" /> Login</h4></div>
                         </button>
 
                         <button 
                             onClick={this.switchModeHandler}
                             className={unselected}
-                        ><div className={myClasses.BtnDiv}><h3><span className="fa fa-user" /> Signup</h3></div>
+                        ><div className={myClasses.BtnDiv}><h4><span className="fa fa-user" /> Signup</h4></div>
                         </button>   
                     </div>
                 
                     {form}
-                    <div className={classes.CardTitle}>Or continue with:</div>                
+
+                    <div className={classes.CardTitle}>Or continue with:</div>
+
                     <button className={[myClasses.Btn, "btn-primary"].join(' ')}>
                         <a href="/auth/facebook"><span className="fa fa-facebook" /> Facebook</a>
                     </button>
+
                     <button className={[myClasses.Btn, "btn-info"].join(' ')}>
                         <a href="/auth/twitter"><span className="fa fa-twitter" /> Twitter</a>
                     </button>
+
                     <button className={[myClasses.Btn, "btn-danger"].join(' ')}>
                         <a href="/auth/google"><span className="fa fa-google-plus" /> Google+</a>
                     </button>
+
                     <p>Forgot Password?</p>
                     <div className={classes.borderTop + classes.pt3}  />
                 </div>

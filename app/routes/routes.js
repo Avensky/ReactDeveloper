@@ -14,17 +14,17 @@ module.exports = function(app, passport) {
             }
         });
         
-          app.get('/ping', (req, res) => {
+        app.get('/ping', (req, res) => {
             res.status(200).send("pong!");
         });   
         // =====================================
         // PROFILE SECTION =====================
         // =====================================
-        app.get('/profile', isLoggedIn, function(req, res) {
-            res.render('profile.ejs', {
-                user : req.user
-            });
-        });
+        // app.get('/profile', isLoggedIn, function(req, res) {
+        //     res.render('profile.ejs', {
+        //         user : req.user
+        //     });
+        // });
     
         // =====================================
         // LOGOUT ==============================
@@ -49,9 +49,9 @@ module.exports = function(app, passport) {
         // locally --------------------------------
             // LOGIN ===============================
             // show the login form
-                app.get('/login', function(req, res) {
-                    res.render('login.ejs', { message: req.flash('loginMessage') });
-                });
+            //    app.get('/login', function(req, res) {
+            //        res.render('login.ejs', { message: req.flash('loginMessage') });
+            //    });
     
     // =====================================
     // LOCAL ===============================
@@ -68,26 +68,26 @@ module.exports = function(app, passport) {
             // SIGNUP ==============================
             // =====================================
             // show the signup form
-            app.get('/signup', function(req, res) {
-                res.render('signup.ejs', { message: req.flash('loginMessage') });
-            });
+            // app.get('/signup', function(req, res) {
+            //     res.render('signup.ejs', { message: req.flash('loginMessage') });
+            // });
         // =====================================
         // REGISTER ============================
         // =====================================
             // process the signup form
             app.post('/auth/signup', passport.authenticate('local-signup', {
                 successRedirect : '/profile', // redirect to the secure profile section
-    //			failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    			failureRedirect : '/login', // redirect back to the signup page if there is an error
                 failureFlash : true // allow flash messages
             }));
     
     
             // process the signup form
-            app.post('/api/signup', passport.authenticate('local-signup', {
-                successRedirect : '/profile', // redirect to the secure profile section
-                failureRedirect : '/signup', // redirect back to the signup page if there is an error
-                failureFlash : true // allow flash messages
-            }));
+            // app.post('/api/signup', passport.authenticate('local-signup', {
+            //     successRedirect : '/profile', // redirect to the secure profile section
+            //     failureRedirect : '/signup', // redirect back to the signup page if there is an error
+            //     failureFlash : true // allow flash messages
+            // }));
     
     
         // =====================================

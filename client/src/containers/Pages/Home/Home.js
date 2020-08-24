@@ -57,7 +57,8 @@ class Home extends Component {
         )
 
         let section2 = (
-            <div className={classes.vh}>
+            <div className={classes.vh}
+            >
                 <div className="section">
                     <div className='container'>
                         <div className={['page-header', 'text-center'].join(' ')}>
@@ -112,7 +113,8 @@ class Home extends Component {
         )
 
         let section3 = (
-            <div className={classes.vh}>
+            <div //className={classes.vh}
+            >
                 <a href='#about' >
                     <div id="index-banner" className={["parallax-container", classes.ParallaxContainer].join(' ')}>
                         <div className={["section no-pad-bot", classes.AboutSection ].join(' ')}>
@@ -134,7 +136,8 @@ class Home extends Component {
         )
 
         let section4 = (
-            <div className={classes.vh}>
+            <div //className={classes.vh}
+            >
                 <a href='#end' >
                     <div className={["parallax-container", classes.ParallaxContainer].join(' ')}>
                         {/*  Icon Section   */}
@@ -171,7 +174,8 @@ class Home extends Component {
         )
 
         let section5 = (
-            <div className={classes.vh}>
+            <div //className={classes.vh}
+            >
             <a href="#footer">
                 <div  className={["parallax-container valign-wrapper", classes.ParallaxContainer].join(' ')}>
                     <div className="section no-pad-bot">
