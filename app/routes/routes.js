@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
         // =====================================
         app.get('/api/logout', function(req, res) {
             req.logout();
-            res.redirect('/');
+            res.redirect('/login');
         });
     
         // when login failed, send failed msg
@@ -76,7 +76,7 @@ module.exports = function(app, passport) {
         // =====================================
             // process the signup form
             app.post('/api/signup', passport.authenticate('local-signup', {
-                successRedirect : '/profile', // redirect to the secure profile section
+                successRedirect : '/login', // redirect to the secure profile section
     			failureRedirect : '/login', // redirect back to the signup page if there is an error
                 failureFlash : true // allow flash messages
             }));

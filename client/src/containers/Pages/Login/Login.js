@@ -78,6 +78,18 @@ class Login extends Component {
         });
     }
 
+    loginToggleHandler = () => {
+        this.setState(prevState => {
+            return {authLogin: true};
+        });
+    }
+
+    registerToggleHandler = () => {
+        this.setState(prevState => {
+            return {authLogin: false};
+        });
+    }
+
     inputChangedHandler = ( event, controlName ) => {
         const updatedControls = {
             ...this.state.controls,
@@ -230,16 +242,16 @@ class Login extends Component {
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
                         <button 
-                            onClick={this.switchModeHandler}
+                            onClick={this.loginToggleHandler}
                             className={selected}
                         ><div className={myClasses.BtnDiv}
-                        ><h4><span className="fa fa-sign-in" /> Login</h4></div>
+                        ><h3><span className="fa fa-sign-in" /> Login</h3></div>
                         </button>
 
                         <button 
-                            onClick={this.switchModeHandler}
+                            onClick={this.registerToggleHandler}
                             className={unselected}
-                        ><div className={myClasses.BtnDiv}><h4><span className="fa fa-user" /> Signup</h4></div>
+                        ><div className={myClasses.BtnDiv}><h3><span className="fa fa-user" /> Signup</h3></div>
                         </button>   
                     </div>
                 

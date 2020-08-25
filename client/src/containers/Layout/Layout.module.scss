@@ -1,10 +1,11 @@
 .Layout {
-    margin: 0;
+    margin: 0 1vw;
     padding: 0;
     overflow: hidden;
 }
 
 .blog {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr;
 	grid-template-areas:
@@ -28,9 +29,14 @@
 
 
 @media only screen and (min-width: 600px) {
+    .Layout {
+        margin: 0 5vw;
+    }
+
     .blog {
         grid-template-rows: 1fr min-content;
-        grid-template-columns: 70vw 30vw;
+        grid-template-columns: 65vw 25vw;
+        grid-gap: 0 1vw;
         grid-template-areas:
             "header header"
             "content archives"
@@ -38,9 +44,13 @@
 }
 
 @media only screen and (min-width: 1025px) {
+    .Layout {
+        margin: 0 15vw;
+    }
+
     .blog {
         grid-template-rows: 1fr min-content;
-        grid-template-columns: 70vw 30vw;
+        grid-template-columns: 55vw 15vw;
         grid-gap: 0 1vw;
         grid-template-areas:
             "header header"

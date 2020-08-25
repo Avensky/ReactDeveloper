@@ -6,6 +6,7 @@
     min-width: 40vw;
     margin: 12vh 0 0;
     
+    
 }
 .Auth a { 
     width: 100%;
@@ -94,13 +95,13 @@
   @media only screen and (min-width: 600px) {
     /* For tablets: */
     .Auth {
-      margin: 15vh  20vw 0;
+      margin: 12vh  10vw 0;
     }
 }
 
 @media only screen and (min-width: 1025px) {
     /* For desktop: */
     .Auth {
-      margin: 15vh 30vw 0;
+      margin: 12vh 15vw 0;
     }
 }
