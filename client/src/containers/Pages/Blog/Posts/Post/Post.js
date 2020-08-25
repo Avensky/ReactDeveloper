@@ -8,19 +8,20 @@ import classes from './Post.module.scss';
 
 const post = (props) => (
 
-    <article className={[
-        classes.Post,
-        classes.Card,
-        props.clName
-      ].join(' ')} onClick={props.clicked}>
+    <article className={[classes.Post,classes.Card,props.clName].join(' ')} 
+        onClick={props.clicked}>
         <div className={classes.CardTitle}><h1>{props.title}</h1></div>
         <div className={classes.CardDetails}>
-            <h2>By {props.author} </h2>
-            <p> on {props.date}</p>
+            {props.author
+                ? <h2>{props.author}</h2>
+                : null}
+            <p>{props.date}</p>
         </div> 
         <div className={classes.CardDescription}>{props.content}</div>
         <figure className={classes.CardThumbnail}>
-            <img src={user} alt="user"/>
+        {props.pic 
+            ? <img src={user} alt="user"/>
+            : null}
         </figure>
         <div className={[
             classes.Edit,

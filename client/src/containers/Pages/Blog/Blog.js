@@ -60,7 +60,7 @@ class Blog extends Component {
                         lines={6}
                         clName={classes.FeaturedPost}
                         klName={classes.EditOff}
-                        clicked={() => this.postClickedHandler(featured._id)}
+                    //    clicked={() => this.postClickedHandler(featured._id)}
                     /> 
                 )
             })
@@ -78,7 +78,7 @@ class Blog extends Component {
                             lines={4}
                             clName={classes.BlogPost}
                             klName={classes.EditOff}
-                            clicked={() => this.postClickedHandler(post._id)}
+                            // clicked={() => this.postClickedHandler(post._id)}
                         />
                     </div>
                 )

@@ -31,7 +31,8 @@ class Posts extends Component {
                        content={post.content}
                        date={post.date}
    //                    clName={"Post"}
-                       clicked={() => this.postClickedHandler(post.id)}/>
+                       //clicked={() => this.postClickedHandler(post.id)}
+                       />
 
                    </div>
                )

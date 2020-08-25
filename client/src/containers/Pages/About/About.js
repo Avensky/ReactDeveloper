@@ -1,15 +1,14 @@
 import React from 'react';
 import Layout from '../../Layout/Layout';
 //import Header from '../../Layout/Header/Header';
-//import classes from './About.module.scss';
+import myClasses from './About.module.scss';
 //import background2 from '../../../assets/images/background2.jpg'
 
 const about = () => {
     return(
     <Layout grid="one">
-         <div className="container">
+         <div className={myClasses.About}>
                     <div className="section">
-    
                         {/*  Icon Section   */}
                         <div className="row">
                             <div className="col s12 m4">
