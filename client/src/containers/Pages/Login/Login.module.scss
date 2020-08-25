@@ -4,6 +4,7 @@
     color: rgb(255, 255, 255);
     background-color: rgba(34, 84, 112, 0.35);
     min-width: 40vw;
+    margin: 12vh 0 0;
     
 }
 .Auth a { 
@@ -93,13 +94,13 @@
   @media only screen and (min-width: 600px) {
     /* For tablets: */
     .Auth {
-      margin: 0 20vw 0;
+      margin: 15vh  20vw 0;
     }
 }
 
 @media only screen and (min-width: 1025px) {
     /* For desktop: */
     .Auth {
-      margin: 0 30vw 0;
+      margin: 15vh 30vw 0;
     }
 }

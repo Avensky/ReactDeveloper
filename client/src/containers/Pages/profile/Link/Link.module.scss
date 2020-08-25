@@ -3,9 +3,9 @@
     display: inline-block;
     padding: 2vh 2vw;
     width:100%;
-    background-color:#271e00;
+    background-color: rgba(34, 84, 112, 0.35);
 }
 
 .Link p {
-    white-space: normal;
+    overflow-wrap: anywhere;
 }

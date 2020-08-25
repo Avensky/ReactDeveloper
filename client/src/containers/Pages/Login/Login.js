@@ -226,12 +226,7 @@ class Login extends Component {
         return(
             <Layout>
                 {loginRedirect}
-                <div className='container'>
-                    <div className={['page-header', 'text-center'].join(' ')}>
-                        <h3>Join the Team!</h3>
-                    </div>
-                </div>
-               
+           
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
                         <button 
