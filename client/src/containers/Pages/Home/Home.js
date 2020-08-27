@@ -113,7 +113,7 @@ class Home extends Component {
         )
 
         let section3 = (
-            <div //className={classes.vh}
+            <div className={classes.vh}
             >
                 <a href='#about' >
                     <div id="index-banner" className={["parallax-container", classes.ParallaxContainer].join(' ')}>
@@ -136,7 +136,7 @@ class Home extends Component {
         )
 
         let section4 = (
-            <div //className={classes.vh}
+            <div className={classes.vh}
             >
                 <a href='#end' >
                     <div className={["parallax-container", classes.ParallaxContainer].join(' ')}>
@@ -174,7 +174,7 @@ class Home extends Component {
         )
 
         let section5 = (
-            <div //className={classes.vh}
+            <div className={classes.vh}
             >
             <a href="#footer">
                 <div  className={["parallax-container valign-wrapper", classes.ParallaxContainer].join(' ')}>
