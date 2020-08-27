@@ -12,28 +12,28 @@ import Auxiliary from '../../../hoc/Auxiliary';
 class Home extends Component {
     componentDidMount(){
             
-    const chartWrapper = document.querySelector(".chart-wrapper");
-    const scrollDown = document.querySelector(".scroll-down");
-    
-    function isElementInViewport(el) {
-      var rect = el.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-      );
-    }
-    
-    window.addEventListener("scroll", scrollHandler);
-    
-    function scrollHandler() {
-      window.pageYOffset > 0
-        ? scrollDown.classList.add("is-hidden")
-        : scrollDown.classList.remove("is-hidden");
-      if (isElementInViewport(chartWrapper)) chartWrapper.classList.add("in-view");
-    }
+        const chartWrapper = document.querySelector(".chart-wrapper");
+        const scrollDown = document.querySelector(".scroll-down");
+        
+        function isElementInViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+        }
+        
+        window.addEventListener("scroll", scrollHandler);
+        
+        function scrollHandler() {
+        window.pageYOffset > 0
+            ? scrollDown.classList.add("is-hidden")
+            : scrollDown.classList.remove("is-hidden");
+        if (isElementInViewport(chartWrapper)) chartWrapper.classList.add("in-view");
+        }
 
     }
     
@@ -57,11 +57,10 @@ class Home extends Component {
         )
 
         let section2 = (
-            <div className={classes.vh}
-            >
+            <div className={classes.vh}>
                 <div className="section">
                     <div className='container'>
-                        <div className={['page-header', 'text-center'].join(' ')}>
+                        <div className={['page-header', 'text-center', classes.header].join(' ')}>
                             <a href='#skills' ><h3>Skills</h3></a>
                         </div>
                     </div>
@@ -113,81 +112,85 @@ class Home extends Component {
         )
 
         let section3 = (
-            <div className={classes.vh}
-            >
-                <a href='#about' >
-                    <div id="index-banner" className={["parallax-container", classes.ParallaxContainer].join(' ')}>
-                        <div className={["section no-pad-bot", classes.AboutSection ].join(' ')}>
-                            <div className="container">
-                                <br /><br />
-                                <h1 className="header center teal-text text-lighten-2">Parallax Template</h1>
-                                <div className="row center">
-                                    <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+            <div className={classes.vh}>
+                <div className={classes.align}>                
+                    <a href='#about'>
+                        <div id="index-banner" className={["parallax-container", classes.ParallaxContainer].join(' ')}>
+                            <div className={["section no-pad-bot", classes.AboutSection].join(' ')}>
+                                <div className="container">
+                                    <br /><br />
+                                    <h1 className="header center teal-text text-lighten-2">Parallax Template</h1>
+                                    <div className="row center">
+                                        <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                                    </div>
+                                    <br /><br />
                                 </div>
-                                <br /><br />
+                            </div>
+                            <div className="parallax">
+                                <img className={classes.img} src={background1} alt="Unsplashed background img 1" />
                             </div>
                         </div>
-                        <div className="parallax">
-                            <img src={background1} alt="Unsplashed background img 1" />
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         )
 
         let section4 = (
-            <div className={classes.vh}
-            >
-                <a href='#end' >
-                    <div className={["parallax-container", classes.ParallaxContainer].join(' ')}>
-                        {/*  Icon Section   */}
-                        <div className={classes.About}>
-                            <div className="col s12 m4">
-                                <div className="icon-block">
-                                    <h2 className="center brown-text"><i className="material-icons">flash_on</i></h2>
-                                    <h5 className="center">Speeds up development</h5>
-    
-                                    <p className="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <div className={classes.vh}>
+                <div className={classes.align}>    
+                    <a href='#end' >
+                        <div className={["parallax-container", classes.ParallaxContainer].join(' ')}>
+                            {/*  Icon Section   */}
+                            <div className={classes.About}>
+                                <div className="col s12 m4">
+                                    <div className="icon-block">
+                                        <h2 className="center brown-text"><i className="material-icons">flash_on</i></h2>
+                                        <h5 className="center">Speeds up development</h5>
+        
+                                        <p className="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+                                    </div>
                                 </div>
-                            </div>
-    
-                            <div className="col s12 m4">
-                                <div className="icon-block">
-                                    <h2 className="center brown-text"><i className="material-icons">group</i></h2>
-                                    <h5 className="center">User Experience Focused</h5>
-    
-                                    <p className="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+        
+                                <div className="col s12 m4">
+                                    <div className="icon-block">
+                                        <h2 className="center brown-text"><i className="material-icons">group</i></h2>
+                                        <h5 className="center">User Experience Focused</h5>
+        
+                                        <p className="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+                                    </div>
                                 </div>
-                            </div>
-    
-                            <div className="col s12 m4">
-                                <div className="icon-block">
-                                    <h2 className="center brown-text"><i className="material-icons">settings</i></h2>
-                                    <h5 className="center">Easy to work with</h5>
-                                    <p className="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+        
+                                <div className="col s12 m4">
+                                    <div className="icon-block">
+                                        <h2 className="center brown-text"><i className="material-icons">settings</i></h2>
+                                        <h5 className="center">Easy to work with</h5>
+                                        <p className="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         )
 
         let section5 = (
-            <div className={classes.vh}
-            >
-            <a href="#footer">
-                <div  className={["parallax-container valign-wrapper", classes.ParallaxContainer].join(' ')}>
-                    <div className="section no-pad-bot">
-                        <div className="container">
-                            <div className="row center">
-                                <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+            <div className={classes.vh}>
+                <div className={classes.align}>
+
+                <a href="#footer">
+                    <div  className={["parallax-container valign-wrapper", classes.ParallaxContainer].join(' ')}>
+                        <div className="section no-pad-bot">
+                            <div className="container">
+                                <div className="row center">
+                                    <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+                                </div>
                             </div>
                         </div>
+                        <div className="parallax"><img src={background3} alt="Unsplashed background img 3" /></div>
                     </div>
-                    <div className="parallax"><img src={background3} alt="Unsplashed background img 3" /></div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
         )
         
