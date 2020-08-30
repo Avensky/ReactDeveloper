@@ -20,7 +20,6 @@ import LoginForm  from './components/login-form';
 import Profile    from './containers/Pages/profile/Profile';
 import './App.scss';
 
-
 class App extends Component {
   state = {
       loggedIn: false,

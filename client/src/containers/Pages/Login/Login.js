@@ -155,22 +155,13 @@ class Login extends Component {
             form = (
             <Auxiliary className={myClasses.Auth}>
                 <form action="/api/signup" method="post">
-                    <div className={classes.line}>
-                        <input 
-                            type="text"
-                            name="givenName"
-                            onChange={(event) => this.inputChangedHandler( event, "givenName")}
-                            placeholder="First Name"
-                            className={myClasses.AuthInput}
-                        />
-                        <input 
-                            type="text"
-                            name="familyName"
-                            onChange={(event) => this.inputChangedHandler( event, "familyName")}
-                            placeholder="Last Name"
-                            className={myClasses.AuthInput}
-                        />
-                    </div>
+                    <input 
+                        type="text"
+                        name="username"
+                        onChange={(event) => this.inputChangedHandler( event, "givenName")}
+                        placeholder="Username"
+                        className={myClasses.AuthInput}
+                    />
                     <input 
                         type="email"
                         name="email"
