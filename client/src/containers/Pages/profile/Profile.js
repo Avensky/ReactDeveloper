@@ -20,7 +20,7 @@ class Login extends Component {
             <Link link="Local"
                 icon="fa-user"
                 mystyle="auth-btn"
-                provider='login' 
+                provider='/connectlocal' 
                 providerUnlink='/unlink/local' 
                 
             />)
@@ -62,7 +62,7 @@ class Login extends Component {
                     name={this.props.payload['local'].name}
                     icon="fa-user"
                     mystyle="auth-btn"
-                    provider='/authentication' 
+                    provider='/profile' 
                     providerUnlink='/unlink/local' 
                 />)
         }

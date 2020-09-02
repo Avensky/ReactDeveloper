@@ -20,6 +20,9 @@ const navItems = (props) => (
             {!props.isLoggedIn 
                   ? <NavItem link='/login'>Login</NavItem> 
                   : <li className={myClasses.NavItem}><a href="/api/logout">Logout</a></li>}
+            {!props.isLoggedIn 
+                  ? <NavItem link='/signup'>Signup</NavItem> 
+                  : null }
       </ul>
 )
 

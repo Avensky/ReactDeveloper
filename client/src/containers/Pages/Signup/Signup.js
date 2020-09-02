@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../../Layout/Layout';
 //import Header from '../../Layout/Header/Header';
 import classes from '../Pages.module.scss';
-import myClasses from './Login.module.scss';
+import myClasses from './Signup.module.scss';
 //import { Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/index';
@@ -128,29 +128,51 @@ class Login extends Component {
 
     render () {
     //       let form = <p style={{textAlign: 'center'}}>Something went wrong!</p>
-        let form = (
-            <form action="/api/login" method="post">
-            <input 
-                type="email"
-                name="email"
-                onChange={(event) => this.inputChangedHandler( event, "email")}
-                placeholder="Enter Email"
-                className={myClasses.AuthInput}
-            />
-            <input 
-                type="password"
-                name="password"
-                onChange={(event) => this.inputChangedHandler( event, "password")}
-                placeholder="Enter Password"
-                className={myClasses.AuthInput}
-            />
-            
-                <button 
-                    className={[myClasses.Btn, myClasses.AuthBtn].join(' ')}
-                ><div className={myClasses.BtnDiv}>Login</div></button>
-            </form>
 
-        )        
+            let form = (
+            <Auxiliary className={myClasses.Auth}>
+                <form action="/api/signup" method="post">
+                    <input 
+                        type="text"
+                        name="username"
+                        onChange={(event) => this.inputChangedHandler( event, "givenName")}
+                        placeholder="Username"
+                        className={myClasses.AuthInput}
+                    />
+                    <input 
+                        type="email"
+                        name="email"
+                        onChange={(event) => this.inputChangedHandler( event, "email")}
+                        placeholder="Email"
+                        className={myClasses.AuthInput}
+                    />
+                    <input 
+                        type="password"
+                        name="password"
+                        onChange={(event) => this.inputChangedHandler( event, "password")}
+                        placeholder="Password"
+                        className={myClasses.AuthInput}
+                    />
+                    <input 
+                        type="password"
+                        name="confirm Password"
+                        onChange={(event) => this.inputChangedHandler( event, "confirmPassword")}
+                        placeholder="Confirm Password"
+                        className={myClasses.AuthInput}
+                    />
+                    <input 
+                        className={[myClasses.AuthInput, classes.picure]} 
+                        type="file" 
+                        name="picture"
+                    />
+                    <button 
+                        className={[myClasses.Btn, myClasses.AuthBtn].join(' ')}
+                    ><div className={myClasses.BtnDiv}><span className="fa fa-user"></span> Sign Up</div></button>
+                    </form>
+                </Auxiliary>
+            )
+        
+ 
         
         if (this.state.loading) {
             form = <Spinner />
@@ -188,16 +210,14 @@ class Login extends Component {
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
                         <button 
-                        //onClick={this.loginToggleHandler}
-                            className={selected}
-                        ><div className={myClasses.BtnDiv}
-                        ><h3><span className="fa fa-sign-in" /> Login</h3></div>
+                            className={[unselected, 'disabeled'].join(' ')}
+                        >
                         </button>
 
                         <button 
-                            //onClick={this.registerToggleHandler}
-                            className={[unselected, 'disabeled'].join(' ')}
-                        >
+                            // onClick={this.registerToggleHandler}
+                            className={selected}
+                        ><div className={myClasses.BtnDiv}><h3><span className="fa fa-user" /> Signup</h3></div>
                         </button>   
                     </div>
                 

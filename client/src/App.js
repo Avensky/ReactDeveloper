@@ -10,12 +10,14 @@ import Home       from './containers/Pages/Home/Home';
 import Projects   from './containers/Pages/Account/Account';
 import About      from './containers/Pages/About/About';
 import Login      from './containers/Pages/Login/Login';
+import Signup     from './containers/Pages/Signup/Signup';
+import Connect    from './containers/Pages/Connect/Local';
 import Account    from './containers/Pages/Account/Account';
 import Register   from './containers/Pages/Register/Register';
 //import asyncComponent from './hoc/asyncComponent';
 import Wrapper    from './components/Wrapper/Wrapper';
 import FullPost   from './containers/Pages/Blog/FullPost/FullPost';
-import Signup     from './components/sign-up';
+//import Signup     from './components/sign-up';
 import LoginForm  from './components/login-form';
 import Profile    from './containers/Pages/profile/Profile';
 import './App.scss';
@@ -77,10 +79,11 @@ class App extends Component {
         />
         <Route
           path="/signup"
-          render={() =>
-            <Signup/>}
+          //render={() =><Signup/>}
+          component={Signup}
         />
         <Route path="/register" component={Register} />
+        <Route path="/connectlocal" component={Connect} />
         <Route path="/" exact component={Home} />
         {/* <Redirect to="/home" /> */}              
       </Switch>
