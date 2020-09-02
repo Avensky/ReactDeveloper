@@ -20,7 +20,7 @@ class Login extends Component {
             <Link link="Local"
                 icon="fa-user"
                 mystyle="auth-btn"
-                provider='authentication' 
+                provider='login' 
                 providerUnlink='/unlink/local' 
                 
             />)
