@@ -209,16 +209,18 @@ class Login extends Component {
            
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
-                        <button 
-                            className={[unselected, 'disabeled'].join(' ')}
-                        >
-                        </button>
+
 
                         <button 
                             // onClick={this.registerToggleHandler}
                             className={selected}
                         ><div className={myClasses.BtnDiv}><h3><span className="fa fa-user" /> Signup</h3></div>
-                        </button>   
+                        </button>
+
+                        <button 
+                            className={[unselected, 'disabeled'].join(' ')}
+                        >
+                        </button> 
                     </div>
                 
                     {form}

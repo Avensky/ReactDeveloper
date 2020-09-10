@@ -73,12 +73,12 @@ module.exports         = function(passport) {
         passReqToCallback   : true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 //        proxy               : true
     },
-    async (req, email, password, done) => {
+    function (req, email, password, done) {
         
         console.log('user signup');
 
         // asynchronous
-        //process.nextTick(function() {
+        process.nextTick(function() {
 
             //  Whether we're signing up or connecting an account, we'll need
             //  to know if the email address is in use.
@@ -120,7 +120,7 @@ module.exports         = function(passport) {
                     });
                 }
 
-            // });
+            });
         });
 
     }));
@@ -343,7 +343,7 @@ module.exports         = function(passport) {
 
             } else {
                 // user already exists and is logged in, we have to link accounts
-                var user               = req.user; // pull the user out of the session
+                var user          = req.user; // pull the user out of the session
 
                 user.google.id    = profile.id;
                 user.google.token = token;

@@ -63,6 +63,7 @@ class Login extends Component {
                     icon="fa-user"
                     mystyle="auth-btn"
                     provider='/profile' 
+                    //provider='/connectlocal' 
                     providerUnlink='/unlink/local' 
                 />)
         }
