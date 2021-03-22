@@ -1,3 +1,27 @@
+export const AUTH_START               = 'AUTH_START';
+export const AUTH_SUCCESS             = 'AUTH_SUCCESS';
+export const AUTH_FAIL                = 'AUTH_FAIL';
+export const AUTH_LOGOUT              = 'AUTH_LOGOUT';
+
+export const CONNECT_START               = 'CONNECT_START';
+export const CONNECT_SUCCESS             = 'CONNECT_SUCCESS';
+export const CONNECT_FAIL                = 'CONNECT_FAIL';
+export const CONNECT_LOGOUT              = 'CONNECT_LOGOUT';
+
+export const FB_AUTH_START            = 'FB_AUTH_START';
+export const FB_AUTH_SUCCESS          = 'FB_AUTH_SUCCESS';
+export const FB_AUTH_FAIL             = 'FB_AUTH_FAIL';
+export const FB_AUTH_LOGOUT           = 'FB_AUTH_LOGOUT';
+
+export const NEW_ADDRESS_START        = 'NEW_ADDRESS_START';
+export const NEW_ADDRESS_SUCCESS      = 'NEW_ADDRESS_SUCCESS';
+export const NEW_ADDRESS_FAIL         = 'NEW_ADDRESS_FAIL';
+export const NEW_ADDRESS              = 'NEW_ADDRESS';
+
+
+export const SET_AUTH_REDIRECT_PATH   = 'SET_AUTH_REDIRECT_PATH';
+
+
 export const DELETE_USER_START = 'DELETE_USER_START'
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS'
 export const DELETE_USER_FAIL = 'DELETE_USER_FAIL'

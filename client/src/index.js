@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import './index.scss';
 import App from './App';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
@@ -9,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import authReducer from './store/reducers/auth';
 import newPostReducer from './store/reducers/newPost';
 import blogReducer from './store/reducers/blog';
-import './index.scss';
+
 
 // Development only axios helpers!
 import axios from 'axios';

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+
+import React, { useEffect, Suspense,/*, useCallback, useState*/ useState} from 'react'
 //import axios from 'axios'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,6 +11,7 @@ import Home       from './containers/Pages/Home/Home';
 import Projects   from './containers/Pages/Account/Account';
 import About      from './containers/Pages/About/About';
 import Login      from './containers/Pages/Login/Login';
+import Auth      from './containers/Pages/Auth/Auth';
 import Signup     from './containers/Pages/Signup/Signup';
 import Connect    from './containers/Pages/Connect/Local';
 import Account    from './containers/Pages/Account/Account';
@@ -22,18 +24,14 @@ import LoginForm  from './components/login-form';
 import Profile    from './containers/Pages/profile/Profile';
 import './App.scss';
 
-class App extends Component {
-  state = {
-      loggedIn: false,
-      username: null
-    }
+const App = props => {
+  const [authRedirectPath, onSetAuthRedirectPath] = useState('/')
+  const { shop, data, fetchedUser, loading, submitted, isLoggedIn /*, loading, userLoading*/ } = props
 
-  componentDidMount () {
-  //  this.props.onGetUser()
-    this.props.autoLogin();
-    this.props.onFetchUser();
-    console.log('payload ' + this.props.payload)
-  }
+useEffect(()=> {
+  const fetchData = async () => {props.onFetchUser()}
+    if ( !fetchedUser){fetchData()}
+  }, [fetchedUser])
 
 //  isElementInViewport = (el) =>{
 //    var rect = el.getBoundingClientRect();
@@ -52,15 +50,15 @@ class App extends Component {
 //      window.pageYOffset > 0
 //        ? scrollDown.classList.add("is-hidden")
 //        : scrollDown.classList.remove("is-hidden");
-//      if (this.isElementInViewport(chartWrapper)) chartWrapper.classList.add("in-view");
+//      if (isElementInViewport(chartWrapper)) chartWrapper.classList.add("in-view");
 //    }
 
 
 //  updateUser (userObject) {
-//    this.setState(userObject)
+//    setState(userObject)
 //  }
 
-  render() {
+
     let routes = (
       <Switch>
         <Route path="/home"       exact component={Home} />
@@ -69,14 +67,7 @@ class App extends Component {
         <Route path="/posts"      exact component={Posts} />
         <Route path="/about"      component={About} />
         <Route path="/projects"   component={Projects} />
-        <Route 
-          path="/login" 
-          component={Login}
-          render={() =>
-            <LoginForm
-              updateUser={this.updateUser}
-          />}
-        />
+        <Route path="/authentication"       component={Auth} />
         <Route
           path="/signup"
           //render={() =><Signup/>}
@@ -89,7 +80,7 @@ class App extends Component {
       </Switch>
     );
 
-    if (this.props.isLoggedIn) {
+    if (props.isLoggedIn) {
       routes = (
         <Switch>
           <Route path="/home" exact component={Home} />
@@ -108,11 +99,13 @@ class App extends Component {
 
     return (
           <Wrapper>
-            {routes}
+            <Suspense fallback={<p>Loading...</p>}>
+              {routes}
+            </Suspense>
           </Wrapper>
     );
   }
-}
+
 const mapStateToProps = state => {
   return {
     isLoggedIn:   state.auth.payload,

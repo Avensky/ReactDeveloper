@@ -188,7 +188,7 @@ class Login extends Component {
                 <div className={[classes.Card, myClasses.Auth].join(' ')}>
                     <div className={myClasses.AuthNav}>
                         <button 
-                        //onClick={this.loginToggleHandler}
+                            //onClick={this.loginToggleHandler}
                             className={selected}
                         ><div className={myClasses.BtnDiv}
                         ><h3><span className="fa fa-sign-in" /> Login</h3></div>

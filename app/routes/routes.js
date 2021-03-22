@@ -8,11 +8,16 @@ module.exports = function(app, passport) {
         //     res.render('index.ejs');
         // });
     
-        app.get('/api/fetchUser', (req, res) => {
+        app.get('/api/fetchUser', async (req, res, next) => {
             if (req.user){
                 res.send(req.user);
+                next();
+                return
             }
+            res.status(401).send('Not authorized');
         });
+    
+        
         
         app.get('/ping', (req, res) => {
             res.status(200).send("pong!");

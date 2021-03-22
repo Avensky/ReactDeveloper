@@ -1,5 +1,11 @@
 export {
     login,
+    auth,
+    fbAuth,
+    setAuthRedirectPath,
+    newAddress,
+    newAddressStart,
+    connect,
     logout,
     loginCheckState,
     setLoginRedirectPath,

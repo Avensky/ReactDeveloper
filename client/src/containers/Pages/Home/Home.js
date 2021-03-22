@@ -52,7 +52,7 @@ class Home extends Component {
                     <a 
                         href="#skills" 
                         className="btn-large waves-effect waves-light teal lighten-1">
-                    Skills</a>
+                    <h3>Checkout Skills</h3></a>
                 </div>
                 <br /><br />
                 <div className="position-absolute scroll-down">Scroll Down</div>
@@ -86,7 +86,7 @@ class Home extends Component {
                                         <span>Python</span>
                                     </li>
                                     <li className="position-relative">
-                                        <span>Ruby</span>
+                                        <span>Node</span>
                                     </li>
                                 </ul>
                                 <ul className="d-flex position-absolute chart-levels">
@@ -219,14 +219,7 @@ class Home extends Component {
                     {section1}
                     <div id="skills" className={classes.Next}></div>
                     {section2}
-                    <div id="parallax" className={classes.Parallax}></div>
-                    {section3}
-                    <div id="about" className={classes.About}></div>
-                    {section4}
-                    {section27}
-                    {section25}
-                    <div id="end" className={classes.About}></div>
-                    {section5}
+
                 </Layout>
                 <footer id="footer" className="page-footer teal">
                     <div className="container">
