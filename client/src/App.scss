@@ -233,6 +233,31 @@ button:focus {
     transform-origin: bottom;
     animation: pulse 3.5s infinite linear;
   }
+  /* SCROLL-DOWN NAV
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  .scroll-down-nav {
+    //left: 50%;
+    //bottom: 0;
+    //transform: translateX(-50%);
+    //text-transform: uppercase;
+    //transition: all 0.5s;
+  }
+  
+  .scroll-down-nav.is-hidden {
+    //opacity: 0;
+    //visibility: hidden;
+  }
+  
+  .scroll-down-nav::after {
+    //content: "";
+   // display: block;
+   // margin: 3px auto 0;
+   // width: 1px;
+    //height: 60px;
+    //background: var(--black);
+    //transform-origin: bottom;
+    //animation: pulse 3.5s infinite linear;
+  }
   
   /* BG IMG
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
