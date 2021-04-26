@@ -54,25 +54,22 @@ class Home extends Component {
                     <h4>Full Stack Web Developer</h4>
                 </div>
                 <div className="row center">
-                    <a 
-                        href="#skills" 
-                        className="btn-large waves-effect waves-light teal lighten-1">
-                    <h3>Checkout Skills</h3></a>
                 </div>
                 <br /><br />
                 <div className="position-absolute scroll-down">Scroll Down</div>
             </div>
-        )
+            )
 
         let section2 = (
             <div className={classes.vh}>
                 <div className="section">
                     <div className='container'>
-                        <div className={['page-header', 'text-center', classes.header].join(' ')}>
-                            <a href='#skills' ><h3>Skills</h3></a>
+                        <div className={['text-center', classes.header].join(' ')}>
+                                <h1>Skills  {/*<span className="fa fa-angle-up"></span>*/}
+                                <a href="#projects"><span className="fa fa-angle-down"></span></a></h1>
                         </div>
                     </div>
-                    <a href='#parallax' >
+                    <a href='#projects' >
                     <div className={["d-flex", "section", classes.ParallaxHalf].join(' ')} >            
                         {/* <div className="position-relative flex-grow-1 bg-img"></div> */}
                         <div className={[classes.Skills, "d-flex justify-content-center align-items-center flex-grow-1"].join(' ')}>
@@ -121,47 +118,66 @@ class Home extends Component {
         
         let section3 = (
             <div className={classes.vh}>
-                <a href='#projects'><h1 className="text-center">Recent Projects</h1></a>
-                <div className={classes.Projects}>
-                    <Project 
-                        btn='Author Website'
-                        pic={author}
-                        link={'https://authorapp.herokuapp.com/'}
-                    />
-                    <Project 
-                        btn='Vegan Restaurants'
-                        pic={veganDining}
-                        link={'https://www.avensky.com/'}
-                    />
+                <div className="section">
+                    <div className='container'>
+                        <div className={['text-center', classes.header].join(' ')}>
+                            <h1 className="text-center">Recent Projects <a href="#skills"> <span className="fa fa-angle-up"></span></a> <a href="#about"><span className="fa fa-angle-down"></span></a></h1>
+                        </div>
+                    </div>     
+                    <div className={classes.Projects}>
+                        <div className={["d-flex", "section", classes.ParallaxHalf].join(' ')} >            
+                    
+                        <Project 
+                            btn='Author Website'
+                            pic={author}
+                            link={'https://authorapp.herokuapp.com/'}
+                        />
+                        <Project 
+                            btn='Vegan Restaurants'
+                            pic={veganDining}
+                            link={'https://www.avensky.com/'}
+                        />
+                        </div>
+                    </div>
                 </div>
             </div>
         )
         
         let section4 = (
             <div className={classes.vh}>
-                <a href='#projects'><h1 className="text-center">About Me</h1></a>
-                <div className={classes.Projects}>
-                    <Project 
-                        description="Github"
-                        pic={github}
-                        link={'https://github.com/Avensky'}
-                        btn='GitHub'
-                    />
-                    <Project 
-                        description="LinkedIn"
-                        pic={linkedin}
-                        link={'https://linkedin.com/in/urielzacarias'}
-                        btn='LinkedIn'
-                    />
-                    <Project 
-                        description="YouTube Videos"
-                        vid={'https://www.youtube.com/embed/U9Us6g84wP0'}
-                    />
-                    <Project 
-                        description="TikTok"
-                        tik={true}
-                    />
-    
+                <div className="section">
+                    <div className='container'>
+                        <div className={['text-center', classes.header].join(' ')}>
+                            <h1 className="text-center">About Me <a href="#projects"><span className="fa fa-angle-up"></span></a> <a href="#footer"><span className="fa fa-angle-down"></span></a>
+                            </h1>
+                        </div>
+                    </div>
+            
+                    <div className={classes.Projects}>
+                        <div className={["d-flex", "section", classes.ParallaxHalf].join(' ')} >            
+
+                            <Project 
+                                description="Github"
+                                pic={github}
+                                link={'https://github.com/Avensky'}
+                                btn='GitHub'
+                            />
+                            <Project 
+                                description="LinkedIn"
+                                pic={linkedin}
+                                link={'https://linkedin.com/in/urielzacarias'}
+                                btn='LinkedIn'
+                            />
+                            <Project 
+                                description="YouTube Videos"
+                                vid={'https://www.youtube.com/embed/U9Us6g84wP0'}
+                            />
+                            <Project 
+                                description="TikTok"
+                                tik={true}
+                            />
+                        </div>        
+                    </div>
                 </div>
             </div>
         )
