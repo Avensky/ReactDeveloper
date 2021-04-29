@@ -65,7 +65,10 @@ a {
 
 input               { color: black !important; }
 input:checked         { background-color: black !important; }
-input::selection         { background-color: transparent !important; }
+input::selection  
+
+
+{ background-color: transparent !important; }
 
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
@@ -135,4 +138,46 @@ ul {
 
 li {
   list-style: none;
+} 
+
+.footer {
+  padding: 0 5vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  grid-template-areas: 
+    "bio" 
+    "connect" 
+    "projects"
+  ;
+}
+
+.bio {
+  grid-area: bio;
+}
+
+.connect{
+  grid-area: connect;
+}
+
+.projects {
+  grid-area: projects;
+}
+
+
+
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+}
+
+@media only screen and (min-width: 1025px) {
+  /* For desktop: */
+  .footer {
+    padding: 0 5vw;
+    grid-template-areas: 
+    "bio connect projects";
+    grid-template-columns: 3fr 1fr 1fr;
+  }
 }

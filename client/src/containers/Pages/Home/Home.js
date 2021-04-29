@@ -29,7 +29,7 @@ class Home extends Component {
             rect.top >= 0 &&
             rect.left >= 0 &&
             rect.bottom <=
-            (window.innerHeight || document.documentElement.clientHeight) &&
+                        (window.innerHeight || document.documentElement.clientHeight) &&
             rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
         }
@@ -65,7 +65,7 @@ class Home extends Component {
                 <div className="section">
                     <div className='container'>
                         <div className={['text-center', classes.header].join(' ')}>
-                                <h1>Skills  {/*<span className="fa fa-angle-up"></span>*/}
+                                <h1>Skills <a href="#home"><span className="fa fa-angle-up"></span></a>
                                 <a href="#projects"><span className="fa fa-angle-down"></span></a></h1>
                         </div>
                     </div>
@@ -297,13 +297,13 @@ class Home extends Component {
                 </Layout>
                 <footer id="footer" className="page-footer teal">
                     <div className="container">
-                        <div className="row">
-                            <div className="col l6 s12">
-                                <h5 className="white-text">Uriel Zacarias Bio</h5>
+                        <div className="footer">
+                            <div className="bio">
+                                <h3 className="white-text">Uriel Zacarias Bio</h3>
                                 <p className="grey-text text-lighten-4">I’m currently looking for a junior web developer position. For the last two years I’ve been learning and practicing Full Stack Web Development and my strongest framework is React.</p>
                             </div>
-                            <div className="col l3 s12">
-                                <h5 className="white-text">Connect</h5>
+                            <div className="connect">
+                                <h3 className="white-text">Connect</h3>
                                 <ul>
                                     <li><a className="white-text" href="https://urielzacarias.herokuapp.com/"   >Personal Website</a></li>
                                     <li><a className="white-text" href="https://github.com/avensky"             >GitHub</a></li>
@@ -312,8 +312,8 @@ class Home extends Component {
                                     <li>Phone: 619-621-7311</li>
                                 </ul>
                             </div>
-                            <div className="col l3 s12">
-                                <h5 className="white-text">Side Projects</h5>
+                            <div className="projects">
+                                <h3 className="white-text">Side Projects</h3>
                                 <ul>
                                     <li><a className="white-text" href="https://www.youtube.com/channel/UCyyo9pq7jcUaXzF7FngMqkg">Gaming and Video Editing - Youtube</a></li>
                                     <li><a className="white-text" href="https://www.youtube.com/channel/UCylRD_yUFN_KmU5SJgUadiA">Song covers - Youtube</a></li>
