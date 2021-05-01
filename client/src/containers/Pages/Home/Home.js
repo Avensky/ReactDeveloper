@@ -125,8 +125,6 @@ class Home extends Component {
                         </div>
                     </div>     
                     <div className={classes.Projects}>
-                        <div className={["d-flex", "section", classes.ParallaxHalf].join(' ')} >            
-                    
                         <Project 
                             btn='Author Website'
                             pic={author}
@@ -137,7 +135,6 @@ class Home extends Component {
                             pic={veganDining}
                             link={'https://www.avensky.com/'}
                         />
-                        </div>
                     </div>
                 </div>
             </div>
@@ -153,9 +150,7 @@ class Home extends Component {
                         </div>
                     </div>
             
-                    <div className={classes.Projects}>
-                        <div className={["d-flex", "section", classes.ParallaxHalf].join(' ')} >            
-
+                    <div className={classes.Projects}>                        
                             <Project 
                                 description="Github"
                                 pic={github}
@@ -175,8 +170,7 @@ class Home extends Component {
                             <Project 
                                 description="TikTok"
                                 tik={true}
-                            />
-                        </div>        
+                            />     
                     </div>
                 </div>
             </div>
@@ -303,9 +297,8 @@ class Home extends Component {
                                 <p className="grey-text text-lighten-4">I’m currently looking for a junior web developer position. For the last two years I’ve been learning and practicing Full Stack Web Development and my strongest framework is React.</p>
                             </div>
                             <div className="connect">
-                                <h3 className="white-text">Connect</h3>
+                                <h3 className="white-text">Connect with me</h3>
                                 <ul>
-                                    <li><a className="white-text" href="https://urielzacarias.herokuapp.com/"   >Personal Website</a></li>
                                     <li><a className="white-text" href="https://github.com/avensky"             >GitHub</a></li>
                                     <li><a className="white-text" href="https://linkedin.com/in/urielzacarias"  >LinkedIn</a></li>
                                     <li>Email: urielzacarias@gmail.com</li>
@@ -317,7 +310,6 @@ class Home extends Component {
                                 <ul>
                                     <li><a className="white-text" href="https://www.youtube.com/channel/UCyyo9pq7jcUaXzF7FngMqkg">Gaming and Video Editing - Youtube</a></li>
                                     <li><a className="white-text" href="https://www.youtube.com/channel/UCylRD_yUFN_KmU5SJgUadiA">Song covers - Youtube</a></li>
-                                    <li><a className="white-text" href="http://avenskypro.blogspot.com/">Tech and Gaming Blog</a></li>
                                 </ul>
                             </div>
                         </div>

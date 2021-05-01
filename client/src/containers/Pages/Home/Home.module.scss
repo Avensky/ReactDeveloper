@@ -84,12 +84,14 @@
 }
 
 .Projects {
-	min-height: 100vh;
+	//min-height: 100vh;
 	display: flex;
+	justify-content: space-between;
+	align-content:space-between;
 	flex-direction: column;
-	text-align: center;
-	align-items: center;
-	margin: 5vh 5vw;
+	//text-align: center;
+	//align-items: center;
+	margin: 0vh 5vw;
 }
 
 .container{
@@ -153,6 +155,11 @@
 
 .header {
 	border: none;
+}
+
+.Home li {
+	list-style: circle;
+	margin: 0;
 }
 
 @media only screen and (min-width: 600px) {

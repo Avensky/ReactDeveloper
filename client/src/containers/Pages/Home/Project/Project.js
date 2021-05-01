@@ -15,21 +15,21 @@ const project = (props) => (
             : null}
         <figure className={classes.CardThumbnail}>
             {props.pic      ? <img src={props.pic} alt="user"/>  : null}
-            {props.vid      ? <iframe 
+            {props.vid      ? <div className={classes.iframeContainer}><iframe 
                 src={props.vid}
-                style={{minHeight: '100%', maxWidth: '605px', minWidth: '325px'}} 
+                style={{height: '360px', maxHeight: '100%', width: '100%'}} 
                 frameBorder='0'
                 allow='autoplay; encrypted-media'
                 allowFullScreen
                 title='YouTube video player'
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                />
+                /></div>
             : null}
-            {props.tik      ? <blockquote 
+            {props.tik      ? <div className={classes.blockquoteContainer}><blockquote 
                 class="tiktok-embed" 
                 cite="https://www.tiktok.com/@uriza86/video/6911530527170252038" 
                 data-video-id="6911530527170252038" 
-                style={{minHeight: '100%', maxWidth: '605px', minWidth: '325px'}} > 
+                style={{height: '760px', maxHeight: '100%',width: '100%', padding: 0, margin: 0}} > 
                 <section> 
                     <a 
                         target="_blank" 
@@ -51,15 +51,15 @@ const project = (props) => (
                         title="♬ original sound - Uriel Zacarias" 
                         href="https://www.tiktok.com/music/original-sound-6911530511630387974">♬ original sound - Uriel Zacarias</a> 
                 </section> 
-            </blockquote> 
+            </blockquote></div>
             : null}
 
         </figure>
-        {props.description
+        {/*props.description
         ?<div className={classes.description} >
             <p>{props.description}</p>
         </div>
-        :null}
+        :null */}
     </div>
     )
 
