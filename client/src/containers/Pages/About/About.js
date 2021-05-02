@@ -3,14 +3,17 @@ import Layout from '../../Layout/Layout';
 //import Header from '../../Layout/Header/Header';
 import myClasses from './About.module.scss';
 //import background2 from '../../../assets/images/background2.jpg'
-
+import user from '../../../assets/images/me.jpg'
 const about = () => {
     return(
     <Layout grid="one">
-         <div className={myClasses.About}>
-                    <div className="section">
+        <div className={myClasses.About}>
+            <figure className={myClasses.figure}>
+                <img src={user} alt='user image' />
+            </figure>
+
                         {/*  Icon Section   */}
-                        <div className="row">
+
                             <div className="col s12 m4">
                                 <div className="icon-block">
                                     <h2 className="center brown-text"><i className="material-icons">flash_on</i></h2>
@@ -37,8 +40,8 @@ const about = () => {
                                     <p className="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        
+                   
                 </div>
 
     </Layout>
