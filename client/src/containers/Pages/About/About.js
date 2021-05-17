@@ -12,6 +12,15 @@ const about = () => {
                 <img src={user} alt='user image' />
             </figure>
 
+            <div className={myClasses.bio}>
+                <p>
+                    Hello, I am Uriel Zacarias, a full stack web developer. I'm currently looking for an entry level position. 
+                    I have been developing web applications since May 2019, as can be seen on my github account. I have previous exposure before that,
+                    but I began keeping track and working almost daily since then. I've worked on websites and blogs as side projects for a long time.
+                    But it was July 2018 when i began working on certificates and making it a daily habbit.
+                </p>
+            </div>
+
                         {/*  Icon Section   */}
 
                             <div className="col s12 m4">

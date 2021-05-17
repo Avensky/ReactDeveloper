@@ -4,9 +4,17 @@
 
 .figure {
     width: 200px;
+    float: right;
 }
 
 .figure img {
     width: 100%;
     border-radius: 50%;
+    float: right;
+}
+
+
+.bio {
+    //display: flex;
+
 }
