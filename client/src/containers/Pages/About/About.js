@@ -17,11 +17,11 @@ const about = () => {
                 <p>
                     I am a full stack web developer currently looking for an entry level position. 
                     I have been developing full stack web applications since May 2019. I have prior experience from
-                    working on websites, blogs, and side projects. My first website was a prebuilt gaming site with a forum that was used by a 
-                    group of online friends. This sparked my curiosity in code. It was too expensive to maintain at the time so the site is gone now, It made me appreciate the value in
-                    writing my own code. I've also worked on my own gaming and tech blog 
-                    but I began keeping track and working almost daily since then. I've worked on websites and blogs as side projects for a long time.
-                    But it was July 2018 when i began working on certificates and making it a daily habbit.
+                    working on websites and blogs as side projects. My first website was a prebuilt forum that was used by a 
+                    online group of gaming friends. This sparked my curiosity in editing and writing code but it was too expensive to maintain
+                    at the time. This really made me appreciate the value in
+                    writing my own code and working with servers. Although i've taken several online and junior college courses over the years I decided 
+                    to dedicate myself into turning my passion into a career. I started working day in and day on projects and certificates July 2018.
                 </p>
             </div>
             
