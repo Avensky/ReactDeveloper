@@ -20,7 +20,7 @@
 .NavItem a:active,
 .NavItem a.active {
     color: #50c9f8;
-    border-bottom: 3px solid transparent;
+//    border-bottom: 3px solid transparent;
 }
 
 /* responsive setting*/
@@ -36,14 +36,14 @@
     .NavItem a {
         height: 100%;
         font-weight: bold;
-        border-bottom: 3px solid transparent;
+        //border-bottom: 3px solid transparent;
         align-items: center;
     }
 
     .NavItem a:hover,
     .NavItem a:active,
     .NavItem a.active {
-        border-bottom: 3px solid purple;
+        //border-bottom: 3px solid purple;
         color: purple;
     }
 
