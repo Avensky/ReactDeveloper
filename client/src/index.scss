@@ -133,7 +133,8 @@ button {
 }
 
 .footer {
-  padding: 0 5vw;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 3vh 5vw;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;

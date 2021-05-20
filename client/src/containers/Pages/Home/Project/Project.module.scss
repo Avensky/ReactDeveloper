@@ -1,5 +1,5 @@
-.container{
-	position: relative;
+.containerWrapper{
+	//position: relative;
 	width: 100%;
     margin: 2vh 0vw;
 	padding: 0 5vw;
@@ -36,26 +36,34 @@
 	height: 100%;
 }
 .btn {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	background-color: rgba(15, 15, 15, 0.8);
-	color: rgba(255, 255, 255, 0.8);
+//	position: absolute;
+//	top: 50%;
+//	left: 50%;
+//	transform: translate(-50%, -50%);
+//	-ms-transform: translate(-50%, -50%);
+	background-color: rgba(65, 6, 83, 0.8);
+	color: rgb(255, 255, 255);
 	font-size: 16px;
 	padding: 2vh 4vw;
 	border: none;
-	cursor: pointer;
-	border-radius: 5px;
+	//cursor: pointer;
+	//border-radius: 5px;
 	text-align: center;
   }
-  .container .btn:hover {
-	background-color: rgb(0, 0, 0);
+  .CardThumbnail img{
+	  border: 2px solid black;
+	  border-radius: none;
+
+  }
+  .CardThumbnail img:hover {
+	border: 2px solid white;
 	color: rgb(255, 255, 255);
   }
 
+
+
 .container img {
+	cursor: pointer;
 	display:block;
 	width: 100%;
 	//height: 100%;
@@ -65,7 +73,14 @@
 }
 
 .description {
+	padding: 2vh 2vw;
+	background-color: rgba(0, 0, 0, 0.85);
+}
+.description li{
+	list-style-type: disc !important;
+	margin-left: 3vw;
 	//background-color: rgba(0, 0, 0, 0.1);
+
 }
 
 @media only screen and (min-width: 600px) {
@@ -80,6 +95,14 @@
 @media only screen and (min-width: 1025px) {
     /* For desktop: */
 	.container{
+		width: 100%;
+		display: flex;
+	}
+
+	.CardThumbnail {
+		width:50%
+	}
+	.description {
 		width: 50%;
 	}
 }

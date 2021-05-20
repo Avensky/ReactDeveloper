@@ -48,14 +48,13 @@ class Home extends Component {
     render() {
         let section1 = (
             <div className={["container", classes.Home].join(' ')}>
-                <br /><br />
+               
                 <h1>Hello, I'm <span className={classes.highlight}>Uriel Zacarias</span></h1>
-                <div className="row center">                
-                    <h4>Full Stack Web Developer</h4>
+                <h4>Full Stack Web Developer</h4>
+                <div className={classes.Skip}>
+                    <a href="#skills">Skip to Skills Section</a>
                 </div>
-                <div className="row center">
-                </div>
-                <br /><br />
+                
                 <div className="position-absolute scroll-down">Scroll Down</div>
             </div>
             )
@@ -65,8 +64,8 @@ class Home extends Component {
                 <div className="section">
                     <div className='container'>
                         <div className={['text-center', classes.header].join(' ')}>
-                                <h1>Skills <a href="#home"><span className="fa fa-angle-up"></span></a>
-                                <a href="#projects"><span className="fa fa-angle-down"></span></a></h1>
+                            <h1><a href="#skills">Skills</a> <a href="#home"><span className="fa fa-angle-up"></span></a>
+                            <a href="#projects"><span className="fa fa-angle-down"></span></a></h1>
                         </div>
                     </div>
                     <a href='#projects' >
@@ -121,19 +120,37 @@ class Home extends Component {
                 <div className="section">
                     <div className='container'>
                         <div className={['text-center', classes.header].join(' ')}>
-                            <h1 className="text-center">Recent Projects <a href="#skills"> <span className="fa fa-angle-up"></span></a> <a href="#about"><span className="fa fa-angle-down"></span></a></h1>
+                            <h1 className="text-center"><a href="#projects">Recent Projects</a> <a href="#skills"> <span className="fa fa-angle-up"></span></a> <a href="#footer"><span className="fa fa-angle-down"></span></a></h1>
                         </div>
                     </div>     
                     <div className={classes.Projects}>
                         <Project 
-                            btn='Author Website'
+                            btn="Book and Author's Website"
                             pic={author}
                             link={'https://authorapp.herokuapp.com/'}
+                            description="This website shows information abt the book, 
+                            author's, character's, and store."
+                            item1='ReactJs'
+                            item2='ExpressJs'
+                            item3='MongoDb'
+                            item4='Stripe'
+                            item5='Redux'
+                            item6='CSS'
+                            item7='HTML'
                         />
                         <Project 
-                            btn='Vegan Restaurants'
+                            btn='Vegan Restaurants Reviews by Cities in CA'
                             pic={veganDining}
                             link={'https://www.avensky.com/'}
+                            description="The purpose of this web app is to allow users to post 
+                            reviews on vegan restaurants located in California."
+                            item1='Ubuntu18'
+                            item2='Python3'
+                            item3='PostgreSQL'
+                            item4='Apache2'
+                            item5='Flask'
+                            item6='CSS'
+                            item7='HTML'
                         />
                     </div>
                 </div>
@@ -285,41 +302,8 @@ class Home extends Component {
                     {section2}
                     <div id="projects" className={classes.Next}></div>
                     {section3}
-                    <div id="about" className={classes.Next}></div>
-                    {section4}
 
                 </Layout>
-                <footer id="footer" className="page-footer teal">
-                    <div className="container">
-                        <div className="footer">
-                            <div className="bio">
-                                <h3 className="white-text">Uriel Zacarias Bio</h3>
-                                <p className="grey-text text-lighten-4">I’m currently looking for a junior web developer position. For the last two years I’ve been learning and practicing Full Stack Web Development and my strongest framework is React.</p>
-                            </div>
-                            <div className="connect">
-                                <h3 className="white-text">Connect with me</h3>
-                                <ul>
-                                    <li><a className="white-text" href="https://github.com/avensky"             >GitHub</a></li>
-                                    <li><a className="white-text" href="https://linkedin.com/in/urielzacarias"  >LinkedIn</a></li>
-                                    <li>Email: urielzacarias@gmail.com</li>
-                                    <li>Phone: 619-621-7311</li>
-                                </ul>
-                            </div>
-                            <div className="projects">
-                                <h3 className="white-text">Side Projects</h3>
-                                <ul>
-                                    <li><a className="white-text" href="https://www.youtube.com/channel/UCyyo9pq7jcUaXzF7FngMqkg">Gaming and Video Editing - Youtube</a></li>
-                                    <li><a className="white-text" href="https://www.youtube.com/channel/UCylRD_yUFN_KmU5SJgUadiA">Song covers - Youtube</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="footer-copyright">
-                        <div className="container">
-                            
-                        </div>
-                    </div>
-                </footer>
             </Auxiliary>
         ) 
     }

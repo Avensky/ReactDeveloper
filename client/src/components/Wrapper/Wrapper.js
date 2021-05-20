@@ -46,6 +46,7 @@ class Wrapper extends Component {
                 />
                 <main className={classes.Wrapper}>
                     {this.props.children}
+                    
                 </main>
             </Auxiliary>
         )

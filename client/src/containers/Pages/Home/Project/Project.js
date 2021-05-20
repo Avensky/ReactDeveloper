@@ -8,13 +8,14 @@ import classes from './Project.module.scss';
 
 
 const project = (props) => (
-
-    <div className={[classes.container].join(' ')}  onClick={props.clicked}>
+    <div className={classes.containerWrapper}>
         {props.btn      
-            ? <div className={classes.btn}><a href={props.link}><h4>{props.btn}</h4></a></div>
+            ? <div className={classes.btn}><h3>{props.btn}</h3></div>
             : null}
-        <figure className={classes.CardThumbnail}>
-            {props.pic      ? <img src={props.pic} alt="user"/>  : null}
+    <div className={[classes.container].join(' ')}  onClick={props.clicked}>
+        <div className={classes.CardThumbnail}>
+            {props.pic      ? <a href={props.link}><img src={props.pic} alt="user"/></a>  : null}
+
             {props.vid      ? <div className={classes.iframeContainer}><iframe 
                 src={props.vid}
                 style={{height: '360px', maxHeight: '100%', width: '100%'}} 
@@ -25,6 +26,7 @@ const project = (props) => (
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 /></div>
             : null}
+
             {props.tik      ? <div className={classes.blockquoteContainer}><blockquote 
                 class="tiktok-embed" 
                 cite="https://www.tiktok.com/@uriza86/video/6911530527170252038" 
@@ -53,15 +55,23 @@ const project = (props) => (
                 </section> 
             </blockquote></div>
             : null}
-
-        </figure>
-        {/*props.description
-        ?<div className={classes.description} >
-            <p>{props.description}</p>
         </div>
-        :null */}
-    </div>
-    )
 
+        {props.description
+            ?   <div className={classes.description} >
+                    <h4>{props.description}</h4>
+                    <ul>
+                        <li>{props.item1}</li>
+                        <li>{props.item2}</li>
+                        <li>{props.item3}</li>
+                        <li>{props.item4}</li>
+                        <li>{props.item5}</li>
+                        <li>{props.item6}</li>
+                    </ul>
+                </div>
+            : null }
+        </div>
+    </div>   
+    )
 
 export default project;
