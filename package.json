@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "engines": {
-    "node": "13.0.1",
-    "npm": "6.12.0"
+    "node": "14.7",
+    "npm": "6.14.13"
   },
   "scripts": {
     "start": "node server.js",
@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "auto-prefixer": "^0.4.2",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
