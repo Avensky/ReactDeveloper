@@ -42,20 +42,37 @@ const about = () => {
                 <img src={user} alt='user image' />
             </figure>
             <br />
-            <h1>Hello, I'm Uriel Zacarias</h1><br />
+            <h1>Hello World, I'm Uriel.</h1><br />
             <div className={myClasses.bio}>
                 <p>
                     I am a full stack web developer looking for an entry level position. 
-                    I have been developing full stack web applications since May 2019. I have prior experience from
-                    working on websites and blogs for fun on the side. My first website was a prebuilt forum that was used by a 
-                    online group of friends. This sparked my curiosity in editing and writing code becasue it was too expensive to maintain
-                    at the time. This experience sparked my interest in building my own websites and with my own code. I began learning to write code
-                    by reading a book called "How to code the hard way." Python, was my first languae to dabble in but then I began looking at php for 
-                    website development. It was in July of 2018 that I decided that I wanted to build web applications for a living. I began working with
-                    Javascript
+                    I began developing full stack web applications in May 2019. My experience comes from
+                    working on websites and blog passion projects. The first website I worked on was a prebuilt forum used by an 
+                    online group of friends. This sparked my interest in building my own website. 
+                </p>
+                <br />
+                <p>    
+                    I began learning to write code
+                    by reading a book called "Learn Python the Hard way" by Zed A. Shaw. I then built my first website using php by following
+                    online tutorials. It was in July of 2018 when I decided to build web applications 
+                    for a living and began to learn by immersion and practicing daily. 
+                </p>
+                <br />
+                <p>    
+                    I refreshed my frontend skills by completing the Responsive Web Design  
+                    certificate from FreeCodeCamp in March 2019. I moved on to complete the Full Stack Web Developer Nanodegree at Udacity in September 
+                    2019. This certificate focused on building web applications using an Ubuntu server and Flask frontend.
+                </p>
+                <br />
+                <p>
+                    I felt something was missing, my website ran too slow, so I began searching for something better. I decided to complete 
+                    React-The Complete Guide (Incl Hooks, React Router, Redux) at Udemy in April 2020. And now I am developing web applications 
+                    by reading documentations and research. 
+                    </p>
+                    <br />    
+                <p>
+                    I hope you found this information useful; I would love the opportunity to work on a team and push my limits further.
 
-                     and working with servers. Although i've taken several online and junior college courses over the years I decided 
-                    to dedicate myself into turning my passion into a career. I started working day in and day on projects and certificates July 2018.
                 </p>
             </div>
             
