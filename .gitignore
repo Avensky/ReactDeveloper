@@ -7,7 +7,7 @@ client/node_modules
 .pnp.js
 config/dev.js
 config/secrets.js
-
+INSTRUCTIONS.md
 # testing
 /coverage
 
